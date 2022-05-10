@@ -194,3 +194,18 @@ color: black;
 background-color: gray;
 color: white;
 }
+
+.floatLeft{float:left;margin-left:20px}
+
+.floatRight{float:right;margin-left:20px}
+
+.img-with-text {
+    text-align:center;
+    display:block;
+    background-color: transparent;
+    border: 1px solid transparent;
+    margin-right: 10px;
+    margin-bottom: 1px;
+    float:left;
+  }
+  
