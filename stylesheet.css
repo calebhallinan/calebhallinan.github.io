@@ -165,14 +165,16 @@ li {
 
 /* NAVBAR STYLING STARTS */
 .navbar {
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 5px;
+    padding: 2px;
     background-color: gray;
     color: #fff;
-    position: sticky;
+    position: relative;
     top: 0px;
+    overflow: hidden;
 }
 
 
@@ -182,10 +184,12 @@ text-align: center;
 color: #fff;
 text-decoration: none;
 font-size: 16px;
+padding: 5px 5px;
 }
 /* LOGO */
 .logo {
-font-size: 16px;
+font-size: 20px;
+padding: 5px;
 }
 /* NAVBAR MENU */
 .menu {
@@ -196,11 +200,18 @@ font-size: 16px;
 .menu li:hover {
 background-color: darkgray;
 border-radius: 5px;
-transition: 0.3s ease;
+transition: 0.5s ease;
 }
+
 .menu li {
-padding: 5px 24px;
+padding: 0px 16px;
 }
+
+/* Add a color to the active/current link */
+.menu li:active {
+    background-color: #04AA6D;
+  }
+
 /* DROPDOWN MENU */
 /* .services {
 position: relative; 
