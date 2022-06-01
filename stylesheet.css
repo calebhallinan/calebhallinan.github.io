@@ -196,8 +196,8 @@ float: left;
 
 .column {
     float: left;
-    width: 33%;
-    height: 700px;
+    width: 49%;
+    height: 500px;
     border-left: .5px solid gray;
     border-right: .5px solid gray;
 
@@ -237,3 +237,17 @@ clear: both;
     max-width: 100%;
     margin-right: 10px;
   }
+
+  .left-column{ 
+	float:left; 
+	width: 50%;
+} 
+.right-column{ 
+	float:right; 
+	width: 50%;
+} 
+
+#main{ 
+	width:80%; 
+	height:50vh; 
+} 
