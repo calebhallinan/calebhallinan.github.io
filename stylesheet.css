@@ -86,3 +86,8 @@ p2 {
 .navbar .active {
 background-color: darkgray;
 }
+
+img {
+    /* object-fit: scale-down;  */
+    max-width: 100%
+}
