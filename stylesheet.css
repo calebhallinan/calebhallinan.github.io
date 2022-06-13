@@ -1,5 +1,5 @@
 .profile_photo {
-    width:26%;
+    width:22%;
     max-width:40%;
     border-radius: 50%;
     margin-left: auto;
@@ -61,7 +61,7 @@ p2 {
   .column {
     flex: 50%;
     padding: 10px;
-    height: 300px; /* Should be removed. Only for demonstration */
+    /* height: 300px; Should be removed. Only for demonstration */
   }
 
 .center_img {
@@ -168,13 +168,17 @@ background-color: lightgray;
 }
 
 .resume {
-    height:auto;
-    max-width: 100%;
+    /* height:auto;
+    max-width: 100%; */
 }
 
 .column {
-    width: 100%;
+    flex-direction: row;
+    flex-wrap: wrap;
   }
+.row {
+    flex-basis: 45%;
+}
 
 }
 
