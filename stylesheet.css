@@ -88,40 +88,14 @@ iframe {
     height: 1150px;
 }
 
-/* Navbar */
-/* .navbar{
-    background-color: gray;
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    position: sticky;
-    font-family: 'Montserrat','Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', 'Geneva', Verdana, sans-serif; 
-
+.bch_img {
+    width: 40%;
 }
 
-/* .navbar a {
-    display: inline;
-    float:right;
-    border-right: 1px solid #bbb;
-} */
-/* 
-.navbar a {
-    display: block;
-    padding: 15px;
-    color: white;
-    text-align: center;
-    text-decoration: none;
-    float:right;
+
+.linkers {
+    width:5%;
 }
-
-.navbar a:hover {
-    background-color: lightgray;
-    }
-
-.active {
-background-color: lightgray;
-} */
 
 
 /* Add a black background color to the top navigation */
@@ -158,6 +132,10 @@ background-color: lightgray;
     display: none;
   }
 
+
+
+
+
 @media only screen and (hover: none) and (pointer: coarse) {
 .container {
     display: flex;
@@ -172,17 +150,17 @@ background-color: lightgray;
   }
 
 .profile_photo {
-    width:50%;
-    max-width:50%;
+    width:60%;
+    max-width:60%;
     border-radius: 50%;
     margin-left: auto;
     margin-right: auto;
     display: block;
 }
 
-.mobile_img {
+.bch_img {
     height: 100%;
-    width: 200%;
+    width: 100%;
 }
 
 iframe {
@@ -212,6 +190,10 @@ max-width: 100%;
     text-decoration: none;
     font-size: 17px;
   }
+
+  .linkers {
+    width:10%;
+}
 
 }
 
