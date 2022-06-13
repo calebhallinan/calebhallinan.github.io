@@ -32,9 +32,6 @@ p1 {
     line-height: 1.5;
 }
 
-p2 {
-    text-align:center; 
-}
 
 .container {
     display: flex;
@@ -62,12 +59,29 @@ p2 {
     flex: 50%;
     padding: 10px;
     /* height: 300px; Should be removed. Only for demonstration */
+    position: relative;
+    background: lightgray;
+
+    }
+
+  .column p{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin: 0;
+
   }
 
 .center_img {
 display: block;
 margin-left: auto;
 margin-right: auto;
+}
+
+iframe {
+    width: 90%;
+    height: 1150px;
 }
 
 /* Navbar */
@@ -167,17 +181,21 @@ background-color: lightgray;
     width: 200%;
 }
 
-.resume {
-    /* height:auto;
-    max-width: 100%; */
+iframe {
+    max-width: 100%;
+    height: 500px;
 }
 
-.column {
-    flex-direction: row;
-    flex-wrap: wrap;
-  }
+
 .row {
-    flex-basis: 45%;
+    flex-direction: column;
+}
+
+.center_img {
+display: block;
+margin-left: auto;
+margin-right: auto;
+max-width: 100%;
 }
 
 }
