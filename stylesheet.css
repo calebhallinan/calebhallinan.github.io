@@ -18,6 +18,10 @@
     text-align: center;
 }
 
+ul {
+    padding: 10px;
+}
+
 p {
     font-family: 'Montserrat','Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', 'Geneva', Verdana, sans-serif; 
     font-size: 20pt;
@@ -197,6 +201,17 @@ margin-left: auto;
 margin-right: auto;
 max-width: 100%;
 }
+
+  /* Style the links inside the navigation bar */
+  .topnav a {
+    float: right;
+    display: block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 6px 8px;
+    text-decoration: none;
+    font-size: 17px;
+  }
 
 }
 
