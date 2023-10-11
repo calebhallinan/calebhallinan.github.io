@@ -1,0 +1,48 @@
+---
+title: "Talks/Posters"
+format:
+    html:
+        toc: true
+        toc-depth: 3
+---
+
+### 2023
+
+*Posters:*
+
+-   “Phenotyping of Heterogenous Live Cell Motility and Morphology,” Dr. M. Judah Folkman Research Day, Boston Children’s Hospital & Harvard Medical School, Boston, MA, 2023.
+
+<!-- <center> -->
+<!--     <img width="750" height="400" src="images/folkmanday_2023.png"> -->
+<!-- </center> -->
+
+
+### 2022
+
+*Talks:*
+
+-   “Machine Learning Approaches Applied to the Prediction of Covid-19 Spread and Cell Motility Phenotyping,” Vascular Biology Program Work in Progress, Boston Children’s Hospital & Harvard Medical School, Boston, MA, 2022.
+
+<center>
+    <img width="300" height="400" src="images/wip_talk.png">
+</center>
+<br>
+
+
+-   “Deconvolution of Cellular Heterogeneity for Sub-Type Discovery by Analyzing Feature Variation,” Vascular Biology Program Work in Progress, Boston Children’s Hospital & Harvard Medical School, Boston, MA, 2022.
+
+<center>
+    <img width="300" height="400" src="images/wip_102622.png">
+</center>
+<br>
+
+*Posters:*
+
+-   “Deep-Hetero: A Deep Metric Learning with UMAP-based Clustering Approach for Identifying Heterogeneity in Cells,” Dr. M. Judah Folkman Research Day, Boston Children’s Hospital & Harvard Medical School, Boston, MA, 2022.
+
+
+### 2021
+
+*Posters:*
+
+-   “Ultrasound Microbubble Tumor Analysis,” Focused Ultrasound Foundation Summer Intern Presentations, Focused Ultrasound Foundation, Charlottesville, VA, 2021.

@@ -1,0 +1,68 @@
+---
+title: "Caleb Hallinan"
+image: images/prof_pic.jpg
+about:
+  template: trestles
+  links:
+    - text: GitHub
+      icon: github
+      url: "https://github.com/calebhallinan"
+    - text: Twitter
+      icon: twitter
+      url: "https://twitter.com/caleb_hallinan"
+    - text: Email
+      url: "mailto:challin1@jhu.edu"
+    # - text: Blog
+    #   url: "blog.html"
+    - text: CV
+      url: "calebhallinan_cv.html"
+    - text: Google Scholar
+      url: "https://scholar.google.com/citations?user=1ekFTx4AAAAJ&hl=en&authuser=1"
+comments: false
+---
+
+::: column-body
+<font size= "5"> **First Year PhD Student in [Biomedical Engineering](https://www.bme.jhu.edu/) at [Johns Hopkins University](https://www.jhu.edu/)** </font>
+
+At present, my research endeavors are centered on the elucidation of the optimal applications of
+machine learning on live cell imaging, towards gaining deeper insights into the 
+morphological and motility-based heterogeneity exhibited by cells in both physiological and 
+pathological contexts. Moreover, I have recently devised a novel algorithmic framework for 
+unraveling cellular heterogeneity within complex omics datasets for subtype discovery. My proficiencies lie in the 
+domains of data analysis, machine learning, and the development and implementation of high-end 
+computational research tools.
+
+I would like to continue to integrate machine learning and live cell imaging to analyze the complexities of cellular dynamics 
+and/or pathophysiological conditions. I am also interested in exploring novel ways to combine multimodal data via Artificial 
+Intelligence, and would enjoy pursuing more wet lab work!
+
+In my spare time I love to watch and play sports, hang out with friends, and run!
+
+<!-- ```{=html} -->
+<!-- <p align="center"><iframe width="560" height="315" src="https://www.youtube.com/embed/k-0IAFhcLSM" frameborder="0" allowfullscreen></iframe></p> -->
+<!-- ``` -->
+<!-- Github contributions last year -->
+
+<!-- ```{=html} -->
+<!-- <center><img src="http://ghchart.rshah.org/stephaniehicks" alt="Stephanie Hicks's Github chart" /, width = "100%", height = "100%"></a></center> -->
+<!-- ``` -->
+<!-- <br> -->
+
+<!-- ```{=html} -->
+<!-- <center> -->
+<!--     <a href="https://twitter.com/stephaniehicks" target="_blank"><img src="images/twitter-logo.png" alt="Img link to Email" width="35" height="35"></a> -->
+
+<!--     &nbsp; &nbsp; -->
+<!--      <font color="#D3D3D3" size="5">  /  </font> -->
+<!--     &nbsp; &nbsp; -->
+
+<!--     <a href="https://GitHub.com/stephaniehicks" target="_blank"><img src="images/github-logo.png" alt="Img link to GitHub" width="40" height="40"></a> -->
+
+<!--     &nbsp; &nbsp; -->
+<!--     <font color="#D3D3D3" size="5">  /  </font> -->
+<!--     &nbsp; &nbsp; -->
+
+<!--     <a href="mailto:shicks19@jhu.edu" target="_blank"><img src="images/email-logo.png" alt="Img link to Email" width="40" height="40"></a> -->
+<!-- </center>  -->
+<!-- ``` -->
+:::

@@ -1,0 +1,8 @@
+---
+title: "Might try blogging..."
+author: "Caleb Hallinan"
+date: "2023-10-11"
+categories: [announcement]
+---
+
+It's me, hi

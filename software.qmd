@@ -1,0 +1,40 @@
+---
+title: "Software and data packages"
+format:
+    html:
+        toc: true
+---
+
+## Bioconductor
+
+#### Software packages
+
+TBD
+
+
+#### Data packages
+
+TBD
+
+## CRAN
+
+#### Software packages
+
+TBD
+
+
+## Python
+
+#### Software packages
+
+TBD
+
+## GitHub
+
+#### Software packages
+
+TBD
+
+#### Data packages
+
+TBD
