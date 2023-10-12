@@ -1,0 +1,14 @@
+---
+title: "CV"
+format:
+    html:
+        toc: true
+        toc-depth: 4
+---
+
+Here is my updated CV as of 10/11/2023
+
+
+<center>
+    <iframe src="images/calebhallinan_cv.pdf" width="800px" height="800px"></iframe>
+</center>

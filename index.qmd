@@ -3,40 +3,50 @@ title: "Caleb Hallinan"
 image: images/prof_pic.jpg
 about:
   template: trestles
+  image-shape: round
+  image-width: 30em
   links:
-    - text: GitHub
+    - text: github
       icon: github
       url: "https://github.com/calebhallinan"
-    - text: Twitter
+    - text: twitter
       icon: twitter
       url: "https://twitter.com/caleb_hallinan"
-    - text: Email
-      url: "mailto:challin1@jhu.edu"
-    # - text: Blog
-    #   url: "blog.html"
-    - text: CV
-      url: "calebhallinan_cv.html"
-    - text: Google Scholar
+    - text: email
+      icon: email
+      url: "mailto:challin1@jh.edu"
+    - text: linkedin
+      url: "https://www.linkedin.com/in/calebhallinan/"
+    - text: google scholar
       url: "https://scholar.google.com/citations?user=1ekFTx4AAAAJ&hl=en&authuser=1"
+    - text: CV
+      url: "https://docs.google.com/document/d/e/2PACX-1vTSjC5pmxaJqQLdkt6t1VrNDWARMSHXSzl07WKiLPggYqaM9T3X5KjSjFNxcMb0SbecpGsLkDorb2RX/pub"
 comments: false
 ---
 
 ::: column-body
 <font size= "5"> **First Year PhD Student in [Biomedical Engineering](https://www.bme.jhu.edu/) at [Johns Hopkins University](https://www.jhu.edu/)** </font>
 
-At present, my research endeavors are centered on the elucidation of the optimal applications of
-machine learning on live cell imaging, towards gaining deeper insights into the 
-morphological and motility-based heterogeneity exhibited by cells in both physiological and 
-pathological contexts. Moreover, I have recently devised a novel algorithmic framework for 
-unraveling cellular heterogeneity within complex omics datasets for subtype discovery. My proficiencies lie in the 
-domains of data analysis, machine learning, and the development and implementation of high-end 
-computational research tools.
-
-I would like to continue to integrate machine learning and live cell imaging to analyze the complexities of cellular dynamics 
-and/or pathophysiological conditions. I am also interested in exploring novel ways to combine multimodal data via Artificial 
-Intelligence, and would enjoy pursuing more wet lab work!
+My proficiencies lie in the domains of data analysis, machine learning, and the development and implementation of high-end computational research tools. I hope to utilize these skills and more to analyze biomedical data :)
 
 In my spare time I love to watch and play sports, hang out with friends, and run!
+
+
+## Education
+
+**Johns Hopkins University**, Baltimore, MD
+
+PhD in Biomedical Engineering | Aug 2023 - Month in 2028
+
+**University of Virginia** | Charlottesville, VA
+
+B.A in Statistics and Biology | Aug 2017 - May 2021
+
+## Experience
+
+**Boston Children's Hospital** | Research Assistant | Sept 2021 - June 2023
+
+
 
 <!-- ```{=html} -->
 <!-- <p align="center"><iframe width="560" height="315" src="https://www.youtube.com/embed/k-0IAFhcLSM" frameborder="0" allowfullscreen></iframe></p> -->

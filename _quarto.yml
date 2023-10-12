@@ -3,15 +3,17 @@ project:
 
 website:
   title: "Caleb Hallinan"
+  favicon: "images/dice_icon.png"
   navbar:
     right:
       - projects.qmd
       - talks.qmd
       - blog.qmd
+      - cv.qmd
 
 format:
   html:
-    theme: flatly
+    theme: darkly
     css: styles.css
 
 editor: visual

@@ -11,20 +11,36 @@ format:
 I am currently rotating in labs at JHU to determine what I'll work on next!
 
 
-## scRNA-seq and microarray subtype discovery method
+
+## subtype discovery method utilizing scRNA-seq and microarray data
 
 #### Our method, PHet, is able to distinguish multiple subtypes of data given only two labels (control and case)
 
 <center>
     <img width="750" height="400" src="images/phet.png">
 </center>
+<br>
 
 *Summary of Abstract*
 
-In disease diagnosis and targeted therapy, discovering subtypes is crucial as cells or patients can exhibit varied responses to treatments. Hence, understanding the heterogeneity of disease states is vital for comprehending pathological processes. However, selecting features for subtyping from high-dimensional datasets is challenging, with many algorithms focusing on known disease phenotypes and potentially overlooking valuable subtyping information. Our study aimed to address this issue by identifying feature sets that preserve heterogeneity while discriminating known disease states. Through a data-driven approach combining feature clustering and deep metric learning, we developed a statistical method called PHet (Preserving Heterogeneity). This method effectively identifies a minimal set of features that maintain heterogeneity while maximizing the quality of subtype clustering. PHet outperformed previous methods in identifying disease subtypes using microarray and single-cell RNA-seq datasets. Our research provides an innovative feature selection method that facilitates personalized medicine and enhances understanding of disease heterogeneity.
+In disease diagnosis and targeted therapy, discovering subtypes is crucial as cells or patients can exhibit varied responses to treatments. Hence, understanding the heterogeneity of disease states is vital for comprehending pathological processes. However, selecting features for subtyping from high-dimensional datasets is challenging, with many algorithms focusing on known disease phenotypes and potentially overlooking valuable subtyping information. Our study aimed to address this issue by identifying feature sets that preserve heterogeneity while discriminating known disease states. Through a data-driven approach combining feature clustering and deep metric learning, we developed a statistical method called PHet (Preserving Heterogeneity). This method effectively identifies a minimal set of features that maintain heterogeneity while maximizing the quality of subtype clustering. PHet outperformed previous methods in identifying disease subtypes using microarray and single-cell RNA-seq datasets. Our research provides an innovative feature selection method that facilitates personalized medicine and enhances understanding of disease heterogeneity. I am co-first author with my former labmate [Dr. Abdurrahman Abul-Basher](https://arbasher.github.io/).
+
+Check out the preprint [here](https://www.biorxiv.org/content/10.1101/2023.05.14.540686v1.full.pdf).
+
 
 ## image analysis of live-cell imaging
 
-While working for [Dr. Kwonmoo Lee](https://research.childrenshospital.org/kwonmoo-lee/) at Boston Children's Hospital, I developed strong computational tools and skills to analyze images. My work included using various Convolutional Neural Networks (CNNs) for cell segmentation, utilizing cell tracking algorithms, and honing my image analytic stills (Fiji).
+I worked under [Dr. Kwonmoo Lee](https://research.childrenshospital.org/kwonmoo-lee/) at Boston Children's Hospital as a Research Assistant for two years after undergrad. My work included using various Convolutional Neural Networks (CNNs) for cell segmentation, utilizing cell tracking algorithms, honing my image manipulation skills (Fiji), working on my research writing aptitude, and much more! It was an incredible experience that has led me to where I am now :) Below are two papers I had the privilege of working on:
+
+- The Lee Lab developed a deep learning-based pipeline termed [MARS-Net](https://www.cell.com/cell-reports-methods/pdf/S2667-2375(21)00164-8.pdf) . While I did not contribute to it's development, I helped the first author write the protocol for running it [here](https://www.sciencedirect.com/science/article/pii/S2666166722003495).
+
+- I helped in optimizing the hyper parameters for the R-CNN in [FNA-Net](https://www.nature.com/articles/s41598-023-40652-1#author-information), a deep-learning based ensemble model aimed to screen the adequacy of unstained thyroid fine needle aspirations (FNA). Ideally, this will streamline the diagnostic process by eliminating the need for staining and expert interpretation.
 
 
+## github contributions
+
+```{=html}
+<center>
+    <img src="http://ghchart.rshah.org/calebhallinan" alt="Caleb Hallinan's Github chart", width = "100%" height = "100%">
+</center>
+```
