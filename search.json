@@ -1,47 +1,5 @@
 [
   {
-    "objectID": "blog.html",
-    "href": "blog.html",
-    "title": "Blog",
-    "section": "",
-    "text": "Might try blogging…\n\n\n\n\n\n\n\nannouncement\n\n\n\n\n\n\n\n\n\n\n\nOct 11, 2023\n\n\nCaleb Hallinan\n\n\n\n\n\n\nNo matching items"
-  },
-  {
-    "objectID": "blog/might-try-blogging/index.html",
-    "href": "blog/might-try-blogging/index.html",
-    "title": "Might try blogging…",
-    "section": "",
-    "text": "It’s me, hi"
-  },
-  {
-    "objectID": "projects.html",
-    "href": "projects.html",
-    "title": "Projects",
-    "section": "",
-    "text": "I am currently rotating in labs at JHU to determine what I’ll work on next!"
-  },
-  {
-    "objectID": "projects.html#new-projects",
-    "href": "projects.html#new-projects",
-    "title": "Projects",
-    "section": "",
-    "text": "I am currently rotating in labs at JHU to determine what I’ll work on next!"
-  },
-  {
-    "objectID": "projects.html#scrna-seq-and-microarray-subtype-discovery-method",
-    "href": "projects.html#scrna-seq-and-microarray-subtype-discovery-method",
-    "title": "Projects",
-    "section": "scRNA-seq and microarray subtype discovery method",
-    "text": "scRNA-seq and microarray subtype discovery method\n\nOur method, PHet, is able to distinguish multiple subtypes of data given only two labels (control and case)\n\n\n\nSummary of Abstract\nIn disease diagnosis and targeted therapy, discovering subtypes is crucial as cells or patients can exhibit varied responses to treatments. Hence, understanding the heterogeneity of disease states is vital for comprehending pathological processes. However, selecting features for subtyping from high-dimensional datasets is challenging, with many algorithms focusing on known disease phenotypes and potentially overlooking valuable subtyping information. Our study aimed to address this issue by identifying feature sets that preserve heterogeneity while discriminating known disease states. Through a data-driven approach combining feature clustering and deep metric learning, we developed a statistical method called PHet (Preserving Heterogeneity). This method effectively identifies a minimal set of features that maintain heterogeneity while maximizing the quality of subtype clustering. PHet outperformed previous methods in identifying disease subtypes using microarray and single-cell RNA-seq datasets. Our research provides an innovative feature selection method that facilitates personalized medicine and enhances understanding of disease heterogeneity."
-  },
-  {
-    "objectID": "projects.html#image-analysis-of-live-cell-imaging",
-    "href": "projects.html#image-analysis-of-live-cell-imaging",
-    "title": "Projects",
-    "section": "image analysis of live-cell imaging",
-    "text": "image analysis of live-cell imaging\nWhile working for Dr. Kwonmoo Lee at Boston Children’s Hospital, I developed strong computational tools and skills to analyze images. My work included using various Convolutional Neural Networks (CNNs) for cell segmentation, utilizing cell tracking algorithms, and honing my image analytic stills (Fiji)."
-  },
-  {
     "objectID": "teaching.html",
     "href": "teaching.html",
     "title": "Teaching",
@@ -49,18 +7,11 @@
     "text": "TBD"
   },
   {
-    "objectID": "talks.html",
-    "href": "talks.html",
-    "title": "Talks/Posters",
+    "objectID": "cv.html",
+    "href": "cv.html",
+    "title": "CV",
     "section": "",
-    "text": "2023\nPosters:\n\n“Phenotyping of Heterogenous Live Cell Motility and Morphology,” Dr. M. Judah Folkman Research Day, Boston Children’s Hospital & Harvard Medical School, Boston, MA, 2023.\n\n\n\n\n\n\n2022\nTalks:\n\n“Machine Learning Approaches Applied to the Prediction of Covid-19 Spread and Cell Motility Phenotyping,” Vascular Biology Program Work in Progress, Boston Children’s Hospital & Harvard Medical School, Boston, MA, 2022.\n\n\n\n\n\n\n“Deconvolution of Cellular Heterogeneity for Sub-Type Discovery by Analyzing Feature Variation,” Vascular Biology Program Work in Progress, Boston Children’s Hospital & Harvard Medical School, Boston, MA, 2022.\n\n\n\n\n\nPosters:\n\n“Deep-Hetero: A Deep Metric Learning with UMAP-based Clustering Approach for Identifying Heterogeneity in Cells,” Dr. M. Judah Folkman Research Day, Boston Children’s Hospital & Harvard Medical School, Boston, MA, 2022.\n\n\n\n2021\nPosters:\n\n“Ultrasound Microbubble Tumor Analysis,” Focused Ultrasound Foundation Summer Intern Presentations, Focused Ultrasound Foundation, Charlottesville, VA, 2021."
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Caleb Hallinan",
-    "section": "",
-    "text": "First Year PhD Student in Biomedical Engineering at Johns Hopkins University \nAt present, my research endeavors are centered on the elucidation of the optimal applications of machine learning on live cell imaging, towards gaining deeper insights into the morphological and motility-based heterogeneity exhibited by cells in both physiological and pathological contexts. Moreover, I have recently devised a novel algorithmic framework for unraveling cellular heterogeneity within complex omics datasets for subtype discovery. My proficiencies lie in the domains of data analysis, machine learning, and the development and implementation of high-end computational research tools.\nI would like to continue to integrate machine learning and live cell imaging to analyze the complexities of cellular dynamics and/or pathophysiological conditions. I am also interested in exploring novel ways to combine multimodal data via Artificial Intelligence, and would enjoy pursuing more wet lab work!\nIn my spare time I love to watch and play sports, hang out with friends, and run!"
+    "text": "Here is my updated CV as of 10/11/2023"
   },
   {
     "objectID": "software.html",
@@ -96,5 +47,82 @@
     "title": "Software and data packages",
     "section": "GitHub",
     "text": "GitHub\n\nSoftware packages\nTBD\n\n\nData packages\nTBD"
+  },
+  {
+    "objectID": "blog.html",
+    "href": "blog.html",
+    "title": "Blog",
+    "section": "",
+    "text": "Might try blogging…\n\n\n\n\n\n\n\nannouncement\n\n\n\n\n\n\n\n\n\n\n\nOct 11, 2023\n\n\nCaleb Hallinan\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "projects.html",
+    "href": "projects.html",
+    "title": "Projects",
+    "section": "",
+    "text": "I am currently rotating in labs at JHU to determine what I’ll work on next!"
+  },
+  {
+    "objectID": "projects.html#new-projects",
+    "href": "projects.html#new-projects",
+    "title": "Projects",
+    "section": "",
+    "text": "I am currently rotating in labs at JHU to determine what I’ll work on next!"
+  },
+  {
+    "objectID": "projects.html#subtype-discovery-method-utilizing-scrna-seq-and-microarray-data",
+    "href": "projects.html#subtype-discovery-method-utilizing-scrna-seq-and-microarray-data",
+    "title": "Projects",
+    "section": "subtype discovery method utilizing scRNA-seq and microarray data",
+    "text": "subtype discovery method utilizing scRNA-seq and microarray data\n\nOur method, PHet, is able to distinguish multiple subtypes of data given only two labels (control and case)\n\n\n\n\nSummary of Abstract\nIn disease diagnosis and targeted therapy, discovering subtypes is crucial as cells or patients can exhibit varied responses to treatments. Hence, understanding the heterogeneity of disease states is vital for comprehending pathological processes. However, selecting features for subtyping from high-dimensional datasets is challenging, with many algorithms focusing on known disease phenotypes and potentially overlooking valuable subtyping information. Our study aimed to address this issue by identifying feature sets that preserve heterogeneity while discriminating known disease states. Through a data-driven approach combining feature clustering and deep metric learning, we developed a statistical method called PHet (Preserving Heterogeneity). This method effectively identifies a minimal set of features that maintain heterogeneity while maximizing the quality of subtype clustering. PHet outperformed previous methods in identifying disease subtypes using microarray and single-cell RNA-seq datasets. Our research provides an innovative feature selection method that facilitates personalized medicine and enhances understanding of disease heterogeneity. I am co-first author with my former labmate Dr. Abdurrahman Abul-Basher.\nCheck out the preprint here."
+  },
+  {
+    "objectID": "projects.html#image-analysis-of-live-cell-imaging",
+    "href": "projects.html#image-analysis-of-live-cell-imaging",
+    "title": "Projects",
+    "section": "image analysis of live-cell imaging",
+    "text": "image analysis of live-cell imaging\nI worked under Dr. Kwonmoo Lee at Boston Children’s Hospital as a Research Assistant for two years after undergrad. My work included using various Convolutional Neural Networks (CNNs) for cell segmentation, utilizing cell tracking algorithms, honing my image manipulation skills (Fiji), working on my research writing aptitude, and much more! It was an incredible experience that has led me to where I am now :) Below are two papers I had the privilege of working on:\n\nThe Lee Lab developed a deep learning-based pipeline termed MARS-Net . While I did not contribute to it’s development, I helped the first author write the protocol for running it here.\nI helped in optimizing the hyper parameters for the R-CNN in FNA-Net, a deep-learning based ensemble model aimed to screen the adequacy of unstained thyroid fine needle aspirations (FNA). Ideally, this will streamline the diagnostic process by eliminating the need for staining and expert interpretation."
+  },
+  {
+    "objectID": "projects.html#github-contributions",
+    "href": "projects.html#github-contributions",
+    "title": "Projects",
+    "section": "github contributions",
+    "text": "github contributions"
+  },
+  {
+    "objectID": "talks.html",
+    "href": "talks.html",
+    "title": "Talks/Posters",
+    "section": "",
+    "text": "2023\nPosters:\n\n“Phenotyping of Heterogenous Live Cell Motility and Morphology,” Dr. M. Judah Folkman Research Day, Boston Children’s Hospital & Harvard Medical School, Boston, MA, 2023.\n\n\n\n\n\n\n2022\nTalks:\n\n“Machine Learning Approaches Applied to the Prediction of Covid-19 Spread and Cell Motility Phenotyping,” Vascular Biology Program Work in Progress, Boston Children’s Hospital & Harvard Medical School, Boston, MA, 2022.\n\n\n\n\n\n\n“Deconvolution of Cellular Heterogeneity for Sub-Type Discovery by Analyzing Feature Variation,” Vascular Biology Program Work in Progress, Boston Children’s Hospital & Harvard Medical School, Boston, MA, 2022.\n\n\n\n\n\nPosters:\n\n“Deep-Hetero: A Deep Metric Learning with UMAP-based Clustering Approach for Identifying Heterogeneity in Cells,” Dr. M. Judah Folkman Research Day, Boston Children’s Hospital & Harvard Medical School, Boston, MA, 2022.\n\n\n\n2021\nPosters:\n\n“Ultrasound Microbubble Tumor Analysis,” Focused Ultrasound Foundation Summer Intern Presentations, Focused Ultrasound Foundation, Charlottesville, VA, 2021."
+  },
+  {
+    "objectID": "blog/might-try-blogging/index.html",
+    "href": "blog/might-try-blogging/index.html",
+    "title": "Might try blogging…",
+    "section": "",
+    "text": "It’s me, hi"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Caleb Hallinan",
+    "section": "",
+    "text": "First Year PhD Student in Biomedical Engineering at Johns Hopkins University \nMy proficiencies lie in the domains of data analysis, machine learning, and the development and implementation of high-end computational research tools. I hope to utilize these skills and more to analyze biomedical data :)\nIn my spare time I love to watch and play sports, hang out with friends, and run!\n\n\nJohns Hopkins University, Baltimore, MD\nPhD in Biomedical Engineering | Aug 2023 - Month in 2028\nUniversity of Virginia | Charlottesville, VA\nB.A in Statistics and Biology | Aug 2017 - May 2021\n\n\n\nBoston Children’s Hospital | Research Assistant | Sept 2021 - June 2023"
+  },
+  {
+    "objectID": "index.html#education",
+    "href": "index.html#education",
+    "title": "Caleb Hallinan",
+    "section": "",
+    "text": "Johns Hopkins University, Baltimore, MD\nPhD in Biomedical Engineering | Aug 2023 - Month in 2028\nUniversity of Virginia | Charlottesville, VA\nB.A in Statistics and Biology | Aug 2017 - May 2021"
+  },
+  {
+    "objectID": "index.html#experience",
+    "href": "index.html#experience",
+    "title": "Caleb Hallinan",
+    "section": "",
+    "text": "Boston Children’s Hospital | Research Assistant | Sept 2021 - June 2023"
   }
 ]

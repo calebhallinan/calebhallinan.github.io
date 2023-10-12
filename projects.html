@@ -30,15 +30,16 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
+<link href="./images/dice_icon.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -93,6 +94,10 @@ ul.task-list li input[type="checkbox"] {
     <a class="nav-link" href="./blog.html" rel="" target="">
  <span class="menu-text">Blog</span></a>
   </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./cv.html" rel="" target="">
+ <span class="menu-text">CV</span></a>
+  </li>  
 </ul>
             <div class="quarto-navbar-tools">
 </div>
@@ -110,8 +115,9 @@ ul.task-list li input[type="checkbox"] {
    
   <ul class="collapse">
   <li><a href="#new-projects" id="toc-new-projects" class="nav-link active" data-scroll-target="#new-projects">new projects ?</a></li>
-  <li><a href="#scrna-seq-and-microarray-subtype-discovery-method" id="toc-scrna-seq-and-microarray-subtype-discovery-method" class="nav-link" data-scroll-target="#scrna-seq-and-microarray-subtype-discovery-method">scRNA-seq and microarray subtype discovery method</a></li>
+  <li><a href="#subtype-discovery-method-utilizing-scrna-seq-and-microarray-data" id="toc-subtype-discovery-method-utilizing-scrna-seq-and-microarray-data" class="nav-link" data-scroll-target="#subtype-discovery-method-utilizing-scrna-seq-and-microarray-data">subtype discovery method utilizing scRNA-seq and microarray data</a></li>
   <li><a href="#image-analysis-of-live-cell-imaging" id="toc-image-analysis-of-live-cell-imaging" class="nav-link" data-scroll-target="#image-analysis-of-live-cell-imaging">image analysis of live-cell imaging</a></li>
+  <li><a href="#github-contributions" id="toc-github-contributions" class="nav-link" data-scroll-target="#github-contributions">github contributions</a></li>
   </ul>
 </nav>
     </div>
@@ -139,20 +145,32 @@ ul.task-list li input[type="checkbox"] {
 <h2 class="anchored" data-anchor-id="new-projects">new projects ?</h2>
 <p>I am currently rotating in labs at JHU to determine what I’ll work on next!</p>
 </section>
-<section id="scrna-seq-and-microarray-subtype-discovery-method" class="level2">
-<h2 class="anchored" data-anchor-id="scrna-seq-and-microarray-subtype-discovery-method">scRNA-seq and microarray subtype discovery method</h2>
+<section id="subtype-discovery-method-utilizing-scrna-seq-and-microarray-data" class="level2">
+<h2 class="anchored" data-anchor-id="subtype-discovery-method-utilizing-scrna-seq-and-microarray-data">subtype discovery method utilizing scRNA-seq and microarray data</h2>
 <section id="our-method-phet-is-able-to-distinguish-multiple-subtypes-of-data-given-only-two-labels-control-and-case" class="level4">
 <h4 class="anchored" data-anchor-id="our-method-phet-is-able-to-distinguish-multiple-subtypes-of-data-given-only-two-labels-control-and-case">Our method, PHet, is able to distinguish multiple subtypes of data given only two labels (control and case)</h4>
 <center>
 <img width="750" height="400" src="images/phet.png">
 </center>
+<p><br></p>
 <p><em>Summary of Abstract</em></p>
-<p>In disease diagnosis and targeted therapy, discovering subtypes is crucial as cells or patients can exhibit varied responses to treatments. Hence, understanding the heterogeneity of disease states is vital for comprehending pathological processes. However, selecting features for subtyping from high-dimensional datasets is challenging, with many algorithms focusing on known disease phenotypes and potentially overlooking valuable subtyping information. Our study aimed to address this issue by identifying feature sets that preserve heterogeneity while discriminating known disease states. Through a data-driven approach combining feature clustering and deep metric learning, we developed a statistical method called PHet (Preserving Heterogeneity). This method effectively identifies a minimal set of features that maintain heterogeneity while maximizing the quality of subtype clustering. PHet outperformed previous methods in identifying disease subtypes using microarray and single-cell RNA-seq datasets. Our research provides an innovative feature selection method that facilitates personalized medicine and enhances understanding of disease heterogeneity.</p>
+<p>In disease diagnosis and targeted therapy, discovering subtypes is crucial as cells or patients can exhibit varied responses to treatments. Hence, understanding the heterogeneity of disease states is vital for comprehending pathological processes. However, selecting features for subtyping from high-dimensional datasets is challenging, with many algorithms focusing on known disease phenotypes and potentially overlooking valuable subtyping information. Our study aimed to address this issue by identifying feature sets that preserve heterogeneity while discriminating known disease states. Through a data-driven approach combining feature clustering and deep metric learning, we developed a statistical method called PHet (Preserving Heterogeneity). This method effectively identifies a minimal set of features that maintain heterogeneity while maximizing the quality of subtype clustering. PHet outperformed previous methods in identifying disease subtypes using microarray and single-cell RNA-seq datasets. Our research provides an innovative feature selection method that facilitates personalized medicine and enhances understanding of disease heterogeneity. I am co-first author with my former labmate <a href="https://arbasher.github.io/">Dr.&nbsp;Abdurrahman Abul-Basher</a>.</p>
+<p>Check out the preprint <a href="https://www.biorxiv.org/content/10.1101/2023.05.14.540686v1.full.pdf">here</a>.</p>
 </section>
 </section>
 <section id="image-analysis-of-live-cell-imaging" class="level2">
 <h2 class="anchored" data-anchor-id="image-analysis-of-live-cell-imaging">image analysis of live-cell imaging</h2>
-<p>While working for <a href="https://research.childrenshospital.org/kwonmoo-lee/">Dr.&nbsp;Kwonmoo Lee</a> at Boston Children’s Hospital, I developed strong computational tools and skills to analyze images. My work included using various Convolutional Neural Networks (CNNs) for cell segmentation, utilizing cell tracking algorithms, and honing my image analytic stills (Fiji).</p>
+<p>I worked under <a href="https://research.childrenshospital.org/kwonmoo-lee/">Dr.&nbsp;Kwonmoo Lee</a> at Boston Children’s Hospital as a Research Assistant for two years after undergrad. My work included using various Convolutional Neural Networks (CNNs) for cell segmentation, utilizing cell tracking algorithms, honing my image manipulation skills (Fiji), working on my research writing aptitude, and much more! It was an incredible experience that has led me to where I am now :) Below are two papers I had the privilege of working on:</p>
+<ul>
+<li><p>The Lee Lab developed a deep learning-based pipeline termed <a href="https://www.cell.com/cell-reports-methods/pdf/S2667-2375(21)00164-8.pdf">MARS-Net</a> . While I did not contribute to it’s development, I helped the first author write the protocol for running it <a href="https://www.sciencedirect.com/science/article/pii/S2666166722003495">here</a>.</p></li>
+<li><p>I helped in optimizing the hyper parameters for the R-CNN in <a href="https://www.nature.com/articles/s41598-023-40652-1#author-information">FNA-Net</a>, a deep-learning based ensemble model aimed to screen the adequacy of unstained thyroid fine needle aspirations (FNA). Ideally, this will streamline the diagnostic process by eliminating the need for staining and expert interpretation.</p></li>
+</ul>
+</section>
+<section id="github-contributions" class="level2">
+<h2 class="anchored" data-anchor-id="github-contributions">github contributions</h2>
+<center>
+    <img src="http://ghchart.rshah.org/calebhallinan" alt="Caleb Hallinan's Github chart" ,="" width="100%" height="100%">
+</center>
 
 
 </section>
