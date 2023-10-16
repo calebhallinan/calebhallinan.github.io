@@ -6,10 +6,10 @@ format:
         toc-depth: 2
 ---
 
+
 ## new projects ?
 
 I am currently rotating in labs at JHU to determine what I'll work on next!
-
 
 
 ## subtype discovery method utilizing scRNA-seq and microarray data
@@ -26,6 +26,7 @@ I am currently rotating in labs at JHU to determine what I'll work on next!
 In disease diagnosis and targeted therapy, discovering subtypes is crucial as cells or patients can exhibit varied responses to treatments. Hence, understanding the heterogeneity of disease states is vital for comprehending pathological processes. However, selecting features for subtyping from high-dimensional datasets is challenging, with many algorithms focusing on known disease phenotypes and potentially overlooking valuable subtyping information. Our study aimed to address this issue by identifying feature sets that preserve heterogeneity while discriminating known disease states. Through a data-driven approach combining feature clustering and deep metric learning, we developed a statistical method called PHet (Preserving Heterogeneity). This method effectively identifies a minimal set of features that maintain heterogeneity while maximizing the quality of subtype clustering. PHet outperformed previous methods in identifying disease subtypes using microarray and single-cell RNA-seq datasets. Our research provides an innovative feature selection method that facilitates personalized medicine and enhances understanding of disease heterogeneity. I am co-first author with my former labmate [Dr. Abdurrahman Abul-Basher](https://arbasher.github.io/).
 
 Check out the preprint [here](https://www.biorxiv.org/content/10.1101/2023.05.14.540686v1.full.pdf).
+
 
 
 ## image analysis of live-cell imaging
