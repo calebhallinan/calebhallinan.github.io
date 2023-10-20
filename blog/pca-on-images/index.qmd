@@ -2,15 +2,24 @@
 title: "Performing Principal Component Analysis on Flag Images in R"
 author: "Caleb Hallinan"
 date: 10/19/2023
+format:
+  html:
+    code-fold: true
+    code-summary: "Code"
+    code-tools: true
+    embed-resources: true
+fontsize: 12pt
+geometry: margin=1.5in
+fontcolor: black
 categories: [project]
 ---
 
 
 <!-- Global params -->
 
-```{r global options, include = FALSE}
-knitr::opts_chunk$set(echo=TRUE, include = TRUE, warning=FALSE, message=FALSE)
-```
+# ```{r global options, include = FALSE}
+# knitr::opts_chunk$set(echo=TRUE, include = TRUE, warning=FALSE, message=FALSE)
+# ```
 
 In this project, we will embark on an adventure using Principal Component Analysis on images of various flags of countries/regions. Hopefully by the end you will have a better understanding of PCA and how we can utilize it to look at images in R!
 
