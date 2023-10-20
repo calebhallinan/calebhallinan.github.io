@@ -1,35 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://github.com/calebhallinan/calebhallinan.github.io/teaching.html</loc>
-    <lastmod>2023-10-16T15:39:00.191Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/calebhallinan/calebhallinan.github.io/cv.html</loc>
-    <lastmod>2023-10-16T15:38:59.570Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/calebhallinan/calebhallinan.github.io/software.html</loc>
-    <lastmod>2023-10-16T15:38:58.994Z</lastmod>
-  </url>
-  <url>
     <loc>https://github.com/calebhallinan/calebhallinan.github.io/blog.html</loc>
-    <lastmod>2023-10-16T15:38:58.358Z</lastmod>
+    <lastmod>2023-10-20T11:45:41.845Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/calebhallinan/calebhallinan.github.io/projects.html</loc>
-    <lastmod>2023-10-16T15:38:57.610Z</lastmod>
+    <lastmod>2023-10-20T11:45:41.045Z</lastmod>
   </url>
   <url>
-    <loc>https://github.com/calebhallinan/calebhallinan.github.io/talks.html</loc>
-    <lastmod>2023-10-16T15:38:58.686Z</lastmod>
+    <loc>https://github.com/calebhallinan/calebhallinan.github.io/cv.html</loc>
+    <lastmod>2023-10-20T11:45:40.337Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/calebhallinan/calebhallinan.github.io/blog/pca-on-images/index.html</loc>
+    <lastmod>2023-10-20T11:45:39.673Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/calebhallinan/calebhallinan.github.io/teaching.html</loc>
+    <lastmod>2023-10-20T11:45:38.645Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/calebhallinan/calebhallinan.github.io/blog/might-try-blogging/index.html</loc>
-    <lastmod>2023-10-16T15:38:59.290Z</lastmod>
+    <lastmod>2023-10-20T11:45:39.349Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/calebhallinan/calebhallinan.github.io/talks.html</loc>
+    <lastmod>2023-10-20T11:45:40.029Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/calebhallinan/calebhallinan.github.io/software.html</loc>
+    <lastmod>2023-10-20T11:45:40.661Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/calebhallinan/calebhallinan.github.io/index.html</loc>
-    <lastmod>2023-10-16T15:38:59.899Z</lastmod>
+    <lastmod>2023-10-20T11:45:41.393Z</lastmod>
   </url>
 </urlset>
