@@ -125,7 +125,7 @@ for (i in seq_along(resized_images)) {
 
 
 # now grab them with png package
-resized_files = list.files(here("blog/pca-on-images/resized_png250px"), full.names = TRUE)
+resized_files = list.files(here("blog/2023-10-20-pca-on-images/resized_png250px/"), full.names = TRUE)
 
 # use function readPNG
 imgs_final = lapply(resized_files, readPNG)
