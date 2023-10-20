@@ -9,7 +9,8 @@ format:
     embed-resources: true
 fontsize: 12pt
 geometry: margin=1in
-fontcolor: black
+fontcolor: white
+image: preview_image.png
 ---
 
 <!-- Global params -->
@@ -39,12 +40,9 @@ library(tm) # topic model package
 library(topicmodels) # topic model package
 ```
 
-
-
 ## Choosing an Author
 
 Initially, the researcher expressed interest in exploring Charles Darwin's works due to their background in Biology. However, after conducting a sentiment analysis on his works it became evident that they resembled scientific papers more so than books. As a result, the analysis on Darwin yielded less informative and exciting results than anticipated. Consequently, the focus shifted to the works of Alexandre Dumas, a celebrated fiction and fantasy novelist renowned for works such as *The Three Musketeers* and *The Count of Monte Cristo* - a classic the researcher has personally read and thoroughly enjoyed. From the extensive collection the gutenbergr package has to offer of Dumas' books, six books were selected: *The Three Musketeers*, *Ten Years Later*, *Twenty Years After*, *The Black Tulip*, *The Count of Monte Cristo, Illustrated*, and the *The Wolf-Leader*. According to Alexandre Dumas' Wikipedia page, his books are classified into various types of fiction. The first three books belong to The D'Artagnan Romances trilogy, while the *The Count of Monte Cristo, Illustrated* and *The Black Tulip* fall into the adventure genre. *The Wolf-Leader* was the final novel analyzed and was categorized as one of Dumas' fantasy books. With this background knowledge, by performing a sentiment analysis we can not only uncover differences and similarities between individual books but also between different genres within Dumas' literary repertoire.
-
 
 ```{r, download_data}
 ### Getting Dumas, Alexandre Data ###
@@ -91,10 +89,7 @@ dumas = dumas |>
   ungroup()
 ```
 
-
-
 ## Sentiment Analysis
-
 
 After conducting sentiment analysis on five of Alexandre Dumas' well-known books, some interesting trends regarding his overall writing style and book-specific style emerged. Dumas' writing exhibited a predominantly negative tone throughout, as evident by the cumulative sentiment declining constantly across all books. While this is only a small sample of his literary works, this trend is believed to be true based on our existing knowledge about Dumas.
 
@@ -353,10 +348,9 @@ Lastly, a cumulative sentiment was performed on *The Wolf-Leader*, one of Dumas'
 
 It is important to note that certain words such as "majesty," "prisoner," "master," and "excellency" were omitted from the analysis. These words were typically used as titles or names (e.g., "the prisoner" or "your excellency") and did not significantly contribute to the books' content. However, the exclusion of these words and the comparison between analyses with and without them did not lead to a significant deviation in the overall sentiment trend presented.
 
-
 ## Topic Model Analysis
 
-Next, a topic model analysis using Latent Dirichlet allocation (LDA) was conducted. The Dumas' dataset was combined with two new authors, Aristotle and Scott F. Fitzgerald, each contributing five distinct works. Aristotle's selected books were *The Poetics of Aristotle*, *The Categories*, *Politics: A Treatise on Government*, *Aristotle on the art of poetry*, *The Athenian Constitution*. Scott F. Fitzgerald's chosen works included *This Side of Paradise*, *Flappers and Philosophers*, *The Beautiful and Damned*, *The Great Gatsby*, *All the Sad Young Men*. 
+Next, a topic model analysis using Latent Dirichlet allocation (LDA) was conducted. The Dumas' dataset was combined with two new authors, Aristotle and Scott F. Fitzgerald, each contributing five distinct works. Aristotle's selected books were *The Poetics of Aristotle*, *The Categories*, *Politics: A Treatise on Government*, *Aristotle on the art of poetry*, *The Athenian Constitution*. Scott F. Fitzgerald's chosen works included *This Side of Paradise*, *Flappers and Philosophers*, *The Beautiful and Damned*, *The Great Gatsby*, *All the Sad Young Men*.
 
 <!-- Download 2 more author data -->
 
@@ -709,10 +703,7 @@ top_fitzgerald_words = tidy_fitzgerald |>
 #   guides(colour = guide_legend(title = "Book", override.aes = list(linewidth = 2)))
 ```
 
-
-Ultimately, the purpose of this analysis was to:
-1. Differentiate between the three authors using relevant keywords when excluding names and proper nouns
-2. Identify interesting patterns among authors and/or books.
+Ultimately, the purpose of this analysis was to: 1. Differentiate between the three authors using relevant keywords when excluding names and proper nouns 2. Identify interesting patterns among authors and/or books.
 
 For these reasons, certain words identified in earlier analyses were excluded from the current results presented. These excluded words included names within the books such as "anthony," "gatsby," or "dantès," as well as common pronouns like "sir," "madame," and "dear." Additionally, words such as "lord," "queen," and "monk" were removed because within the context of the data they typically functioned more as nouns referring to individuals.
 
@@ -731,7 +722,6 @@ words_i_dont_want = c("anthony", "gloria", "amory", "aramis", "porthos","athos",
                       "malicorne", "poet", "ii", "baisemeaux", "montalais", "bonacieux", "chapter","prisoner")
 
 ```
-
 
 LDA was first performed with three topics, with results and thoughts below.
 
@@ -855,7 +845,6 @@ There are some overlaps of words between topics such as "eyes" or "time." In fut
 
 It is worth noting that a word like "replied" likely differs from the "eye" example, as it is predominantly used when a person is responding to someone else. This common term is used frequently in books, so it was certainly interesting to see how it varies across topic and books as shown in the figure above and below.
 
-
 ```{r, gamma_3topics}
 ### LDA Analysis of all Authors Gamma Plot ###
 
@@ -915,9 +904,7 @@ The figure above expresses how each topic was represented in the various books a
 
 Interestingly, Topic 3 resides almost only in Dumas' *The Count of Monte Cristo, Illustrated*. The unique words of this topic, such as "return" and "heard," differ entirely from the top 15 words of the other topics. This also suggests that words such as "door" and "house" are used more frequently in this specific book compared to others. Additionally, a bit of Topic 3 was located in three other books written by Dumas emphasizing some consistency within his writing.
 
-Upon further examination of the data, it was discovered that Aristotle never mentions the word "cried" in any of his five works analyzed. However, Topic 2, which has the term "cried" as its third highest coefficient, represents a majority of two of Aristotle's books. This suggests that including more topics will likely enhance our understanding of the underlying connections of these authors and their works. For that reason, another LDA was conducted using five topics. 
-Note that Topics 1-3 will not be identical to the previous analysis.
-
+Upon further examination of the data, it was discovered that Aristotle never mentions the word "cried" in any of his five works analyzed. However, Topic 2, which has the term "cried" as its third highest coefficient, represents a majority of two of Aristotle's books. This suggests that including more topics will likely enhance our understanding of the underlying connections of these authors and their works. For that reason, another LDA was conducted using five topics. Note that Topics 1-3 will not be identical to the previous analysis.
 
 <!-- LDA 4 with Dumas, Aristotle, and Fitzgerald -->
 
@@ -993,8 +980,6 @@ The above figure showcases the top 15 words for each of the newly generated topi
 
 To reemphasize, although there are many word overlaps across topics they were retained in hope to better understand the interaction of words within each topic. One interesting word that may pique the readers' curiosity is "ah," which has been retained in the analysis. This word was exclusively found in the works of Alexandre Dumas, as shown in the figures above. It is written in the text as instances like ""Ah! ah!" within twelve hours, you say?" and ""Ah, ah!" said William to his dog, "it's easy to see that she is a"" which are from *The Black Tulip*. The decision was made not to omit this word, as it was used more frequently during this time period and aids in distinguishing between authors.
 
-
-
 ```{r, gamma_4topics}
 ### LDA Analysis of all Authors Gamma Plot ###
 
@@ -1041,7 +1026,6 @@ gamma_author  |>
 
 ```
 
-
 The final figure above illustrates the representation of each topic across the various books while highlighting certain differences among the authors. When the number of topics was increased from three to five there was a complete separation among all authors, with Dumas exhibiting subcategories within his books.
 
 Unsurprisingly, Aristotle was exclusively represented by Topic 1, which was not found in any other novel. This phenomena likely occured because of words within the top 15 of Topic 1 such as "government," "democracy," and "oligarchy," which closely resemble the themes explored in Aristotle's works on politics. It was fascinating that these words primarily relate to Aristotle's *Politics: A Treatise on Government* and *The Athenian Constitution* rather than his poetic works of *The Poetics of Aristotle* and *Aristotle on the art of poetry*. Further exploration may involve identifying distinct keywords that better differentiate these bodies of work from one another.
@@ -1050,10 +1034,6 @@ Fitzgerald was represented solely by Topic 4 in this analysis, which was charact
 
 Most interestingly, despite being compared to Aristotle and Fitzgerald's works, Dumas' five works are divided into three topics. *The Count of Monte Cristo, Illustrated* forms its own distinctive topic, Topic 5, corresponding exactly to Topic 3 in the previous analysis. Topic 3 was mainly found in *The Three Musketeers* and *Ten Years Later*, while Topic 4 was predominately in *The Black Tulip* and *Twenty Years After*. It was expected that the D'Artagnan Romances trilogy would fall under a single topic, and while this was mostly the case, *Twenty Years After* contains a significant portion of Topic 2. Topic 2 was fully associated with *The Black Tulip*, an adventure novel by Dumas characterized with distinguishing words such as "whilst" and "van." Overall, it was satisfying to observe that this analysis successfully achieves its objective of distinguishing between authors and their works, while also revealing aforementioned subcategories within Dumas' books.
 
-
-
 ## Conclusion
 
 In conclusion, the authors' works exhibit notable differences as revealed through this analysis. Specific words unique to each author were successfully identified, indicating distinct writing styles among Dumas, Aristotle, and Fitzgerald. Moreover, the analysis successfully distinguished all three authors and discovered the previously mentioned subcategories within Dumas' works using a five-topic LDA model. Future research could focus on identifying distinguishing words between books authored by Aristotle and Fitzgerald.
-
-
