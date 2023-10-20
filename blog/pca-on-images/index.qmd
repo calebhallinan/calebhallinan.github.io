@@ -14,6 +14,7 @@ fontcolor: black
 categories: [project]
 ---
 
+
 <!-- Global params -->
 
 ```{r global options, include = FALSE}
