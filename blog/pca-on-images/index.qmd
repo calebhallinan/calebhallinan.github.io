@@ -2,15 +2,6 @@
 title: "Performing Principal Component Analysis on Flag Images in R"
 author: "Caleb Hallinan"
 date: 10/19/2023
-format:
-  html:
-    code-fold: true
-    code-summary: "Code"
-    code-tools: true
-    embed-resources: true
-fontsize: 12pt
-geometry: margin=1.5in
-fontcolor: black
 categories: [project]
 ---
 
