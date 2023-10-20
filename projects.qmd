@@ -37,6 +37,7 @@ I worked under [Dr. Kwonmoo Lee](https://research.childrenshospital.org/kwonmoo-
 
 - I helped in optimizing the hyper parameters for the R-CNN in [FNA-Net](https://www.nature.com/articles/s41598-023-40652-1#author-information), a deep-learning based ensemble model aimed to screen the adequacy of unstained thyroid fine needle aspirations (FNA). Ideally, this will streamline the diagnostic process by eliminating the need for staining and expert interpretation.
 
+- My biggest project was a subtype discovery method termed PHet. The abstract and preprint are above!
 
 ## github contributions
 
