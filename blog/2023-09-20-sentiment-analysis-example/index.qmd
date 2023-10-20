@@ -11,6 +11,7 @@ fontsize: 12pt
 geometry: margin=1in
 fontcolor: white
 image: preview_image.png
+categories: [project]
 ---
 
 <!-- Global params -->
