@@ -2,8 +2,9 @@
   {
     "listing": "/blog.html",
     "items": [
-      "/blog/might-try-blogging/index.html",
-      "/blog/2023-09-20-sentiment-analysis-example/index.html"
+      "/blog/2023-10-20-pca-on-images/index.html",
+      "/blog/2023-09-20-sentiment-analysis-example/index.html",
+      "/blog/might-try-blogging/index.html"
     ]
   }
 ]
