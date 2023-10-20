@@ -17,9 +17,9 @@ categories: [project]
 
 <!-- Global params -->
 
-# ```{r global options, include = FALSE}
-# knitr::opts_chunk$set(echo=TRUE, include = TRUE, warning=FALSE, message=FALSE)
-# ```
+```{r global options, include = FALSE}
+knitr::opts_chunk$set(echo=TRUE, include = TRUE, warning=FALSE, message=FALSE)
+```
 
 In this project, we will embark on an adventure using Principal Component Analysis on images of various flags of countries/regions. Hopefully by the end you will have a better understanding of PCA and how we can utilize it to look at images in R!
 
@@ -47,7 +47,9 @@ To begin our exploration, we need to install and load some R packages. These pac
 
 ```{r, read_packages}
 ### install and read in packages
+install.packages("rmarkdown")
 
+library(rmarkdown)
 library(tidyverse) # for dataframes
 library(here) # for use of others if downloaded
 library(png) # for reading png images
