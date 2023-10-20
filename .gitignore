@@ -4,3 +4,5 @@ _site/
 .DS_Store
 .Rhistory
 calebhallinan.github.io.Rproj
+flags.zip
+flags_matrix.RDS
