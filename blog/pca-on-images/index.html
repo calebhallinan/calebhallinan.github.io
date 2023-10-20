@@ -7,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Caleb Hallinan">
-<meta name="dcterms.date" content="2023-10-11">
+<meta name="dcterms.date" content="2023-10-19">
 
-<title>Caleb Hallinan - Might try blogging…</title>
+<title>Caleb Hallinan - Performing Principal Component Analysis on Flag Images in R</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -21,6 +21,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -111,9 +145,9 @@ ul.task-list li input[type="checkbox"] {
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">Might try blogging…</h1>
+      <div class="quarto-title-block"><div><h1 class="title">Performing Principal Component Analysis on Flag Images in R</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
                                 <div class="quarto-categories">
-                <div class="quarto-category">announcement</div>
+                <div class="quarto-category">project</div>
               </div>
                   </div>
   </div>
@@ -131,7 +165,7 @@ ul.task-list li input[type="checkbox"] {
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">October 11, 2023</p>
+        <p class="date">October 19, 2023</p>
       </div>
     </div>
     
@@ -149,9 +183,443 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<p>I am thinking about blogging some things… not really specific topics or thoughts, just notes I want to jot down because why not. 2.0</p>
+<!-- Global params -->
+<section id="r-global-options-include-false-knitropts_chunksetechotrue-include-true-warningfalse-messagefalse" class="level1">
+<h1><code>{r global options, include = FALSE} # knitr::opts_chunk$set(echo=TRUE, include = TRUE, warning=FALSE, message=FALSE) #</code></h1>
+<p>In this project, we will embark on an adventure using Principal Component Analysis on images of various flags of countries/regions. Hopefully by the end you will have a better understanding of PCA and how we can utilize it to look at images in R!</p>
+<p>Note: I condensed the R code to “Code” sections throughout for scrolling purposes. Feel free to click on these sections to look at each step, or change to “Show All Code” in the top right of the webpage!</p>
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p>Principal Components Analysis (PCA) is a well-established technique to reduce the dimensions or features of a dataset while preserving the maximum amount of variation. This technique is widely used for pattern recognition, signal processing, and machine learning. PCA is also a useful tool in denoising, visualization, and classification of large datasets given features are linearly related. For example, imagine you have a genomics dataset with 10000+ genes and 5000+ observations. That’s a lot of data! However, not all of those genes will be important as likely many of them are correlated, or express similar variation, as others. PCA is a great tool to reduce the 10000+ dimensions to a smaller number, eliminating redundancy by reducing the dimensions of the dataset for more downstream analysis.</p>
+<!-- <!-- PCA image -->
+<p>–&gt;</p>
+<!-- ::: {style="text-align: center;"} -->
+<!-- ![[Image Source](https://medium.com/analytics-vidhya/dimensionality-reduction-principal-component-analysis-d1402b58feb1)](pca.gif){width="600"} -->
+<!-- ::: -->
+<!-- PCA is heavily based on linear algebra concepts. Essentially, PCA computes the eigenvectors of the covariance matrix of the data and sorts them by their eigenvalue (which correspond to the explained variance for that individual principal component). The principal components (PC) are then computed as linear combinations of the original variables using the eigenvectors. It sounds complicated, but I promise you it's not as hard to understand as you think. This [article](https://builtin.com/data-science/step-step-explanation-principal-component-analysis) was a great resource for me when I was first trying to figure it out. Unfortunately, I won't go into much of the algebra behind PCA, so I encourage you to research it more! You can see this really cool animation above expressing what PCA is doing in two dimensions. Briefly, it is finding the direction that maximizes the variance of the blue dots which can also be viewed as minimizing the residuals of the blue dots to a line. -->
+<!-- ## Data -->
+<!-- In this project specifically, instead of working with gene expressions or large datasets with numerous features, we are looking at images of flags from different countries. The goal is to apply PCA to these flags to assess its effectiveness in preserving variation and possibly discover interesting patterns or insights in the principal components themselves. -->
+<!-- To begin our exploration, we need to install and load some R packages. These packages will equip us with the necessary tools for working with data frames, functions, file paths, reading images, and image processing. -->
+<!-- <!-- Install/Read packages -->
+<p>–&gt;</p>
+<!-- ```{r, read_packages} -->
+<!-- ### install and read in packages -->
+<!-- library(rmarkdown) -->
+<!-- library(tidyverse) # for dataframes -->
+<!-- library(here) # for use of others if downloaded -->
+<!-- library(png) # for reading png images -->
+<!-- library(magick) # for reading in images -->
+<!-- library(imager) # for plotting -->
+<!-- ``` -->
+<!-- Now that we have the necessary packages, let's grab the flag data from [here](https://github.com/hampusborgos/country-flags). This dataset contains flags of varying sizes within different folders, however we are going to look specifically at the "/png250px/" folder. This folder has 255 flags from various countries and regions. -->
+<!-- <!-- Get the Data -->
+<p>–&gt;</p>
+<!-- ```{r, rawdata, eval=TRUE} -->
+<!-- ### Grabbing the data -->
+<!-- # url to flag data, it is in zip file -->
+<!-- url = "https://github.com/hampusborgos/country-flags/archive/refs/heads/main.zip" -->
+<!-- # specify the file name and location where you want to save the file on your computer -->
+<!-- file_name = "flags.zip" -->
+<!-- file_path = here() -->
+<!-- # use the download.file() function -->
+<!-- download.file(url, paste(file_path, file_name, sep = "/"), mode = "wb") -->
+<!-- # unzip zip file -->
+<!-- unzip(paste0(here(), "/flags.zip"), exdir = here()) -->
+<!-- # get file names -->
+<!-- files = list.files(here("country-flags-main/png250px/"), full.names = TRUE) -->
+<!-- # Read each image file in the folder -->
+<!-- image_list = lapply(files, image_read) -->
+<!-- # image_list = lapply(files, readPNG) -->
+<!-- ``` -->
+<!-- For PCA to work soundly, it is essential that the dataset's dimensions remain consistent. Of course, that's not the case in this dataset where we see all flags have the same height (250px) but very different widths. Hence, we need to resize each flag to be the same height and width. I use the magick R package to read in the images and the "image_scale" along with the "image_convert" functions to transform the images into size 250x250x3 (representing height, width, and color channel). These resized images are then saved in the folder "/resized_png250px/." To enable PCA analysis, the images are converted from matrix to vector format. This involves flattening the 250x250x3 image matrix into a single vector of size 1x187500 (250 x 250 x 3). The individual vectors for each image are then combined into a single matrix of dimensions 255x187500. This variable, "image_matrix" is created and saved as flags_matrix.RDS. Also to note, this matrix is country/region flag image x pixel of flag image. -->
+<!-- ```{r, fig.height = 3, fig.width = 9, fig.align='center'} -->
+<!-- # NOTE: so each image is the same height but very different widths lol. Let's change that -->
+<!-- # Set height and width I want -->
+<!-- max_height = 250 -->
+<!-- max_width = 250 -->
+<!-- # Resize all the images to the specified height and width -->
+<!-- # had to add matte=FALSE to get rid of extra channel -->
+<!-- resized_images = lapply(image_list, function(im) { -->
+<!--   image_convert(image_scale(im, paste0(max_width, "x", max_height, "!")), format = "png", matte=FALSE) -->
+<!-- }) -->
+<!-- # Create the directory to save the resized images -->
+<!-- dir.create("resized_png250px") -->
+<!-- # Save the resized images with the same names as the original files -->
+<!-- for (i in seq_along(resized_images)) { -->
+<!--   # Extract the file name from the full path -->
+<!--   file_name = basename(files[i]) -->
+<!--   # make the file path for saving the resized image -->
+<!--   save_path = file.path("resized_png250px", file_name) -->
+<!--   # Write the resized image to the specified file path -->
+<!--   image_write(resized_images[[i]], save_path) -->
+<!-- } -->
+<!-- # now grab them with png package -->
+<!-- resized_files = list.files(here("resized_png250px/"), full.names = TRUE) -->
+<!-- # use function readPNG -->
+<!-- imgs_final = lapply(resized_files, readPNG) -->
+<!-- # QC: check each image is same dimensions -->
+<!-- # for (i in seq_along(imgs_final)) { -->
+<!-- #   dimensions = dim(imgs_final[[i]]) -->
+<!-- #   cat("Image", i, "Dimensions:", dimensions[1], "x", dimensions[2], "x", dimensions[3], "\n") -->
+<!-- # } -->
+<!-- # great! -->
+<!-- # Get the number of images in the list -->
+<!-- num_images = length(image_list) -->
+<!-- # Create an empty matrix to store the flattened images -->
+<!-- image_matrix = matrix(NA, nrow = num_images, ncol = 250 * 250 * 3) -->
+<!-- # Flatten each image and store it as a column in the matrix -->
+<!-- for (i in 1:num_images) { -->
+<!--   # get the flatten vector -->
+<!--   flattened_image = as.vector(imgs_final[[i]]) -->
+<!--   # add to matrix -->
+<!--   image_matrix[i,] = flattened_image -->
+<!-- } -->
+<!-- # save as .rds file -->
+<!-- saveRDS(image_matrix, file = here("flags_matrix.RDS")) -->
+<!-- # plot images -->
+<!-- # want to add all images to this dataframe for ggplot -->
+<!-- all_images = data.frame() -->
+<!-- # for loop getting 5 examples -->
+<!-- for (i in seq(1,190,20)) { -->
+<!--   # getting image - making cimg from imager package and then df -->
+<!--   img = as.data.frame(as.cimg(imgs_final[[i]]), wide = "c") |>  -->
+<!--     # # get rgb channels -->
+<!--     mutate(rgb_value = rgb(c.1, c.2, c.3)) |> -->
+<!--     # # make class labels -->
+<!--     mutate(img_num = paste("Image",i)) -->
+<!--   all_images = rbind(all_images, img) -->
+<!--   # make the levels of img variable what i want -->
+<!--   all_images$img_num = factor(all_images$img_num, levels = sprintf("Image %d", seq(1, 190, 20))) -->
+<!-- } -->
+<!-- # plot image -->
+<!-- print(ggplot(all_images,aes(y,x))+ -->
+<!--   # getting rgb -->
+<!--   geom_raster(aes(fill=rgb_value))+ -->
+<!--   # fill image -->
+<!--   scale_fill_identity() + -->
+<!--   # facet_wrap -->
+<!--   facet_wrap(.~ img_num, nrow = 2, ncol = 5) + -->
+<!--   # reverse y axis -->
+<!--   scale_y_reverse() +  -->
+<!--   # get rid of theme -->
+<!--   theme_void() + -->
+<!--   # bigger font size -->
+<!--   theme(strip.text = element_text(size = 12))) -->
+<!-- ``` -->
+<!-- Here are ten examples of the flag image data we are using. -->
+<!-- ## PCA on the training data -->
+<!-- Technically our "image_matrix" variable could be input straight into PCA the way it is. However, we are going to split the 255 images into a training and test set. Why do we do this? Well, for one it was part of the project description 😅 But really we do this to see how well PCA will predict, or project, the test data using only information from the training data. Our training set we take to be 75% of the data (191 flags) leaving 25% of data being the test images (64 flags). Finally, we are ready to conduct PCA on the training data! Note that we are setting center=TRUE and scale.=False. Briefly, the center hyperparameter shifts the data to be zero centered (subtracting the mean from each column) while scale will make the data have unit variance (correlation instead of covariance PCA). Centering is crucial for PCA to perform correctly, however scaling is dataset dependent. Take a look at the [prcomp function description](https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/prcomp) for more information. -->
+<!-- <!-- PCA Analysis -->
+<p>–&gt;</p>
+<!-- ```{r} -->
+<!-- ### Do PCA analysis ### -->
+<!-- # Set the seed  -->
+<!-- set.seed(123) -->
+<!-- # Get the number of images in the list - for some reason needed to add this to this code chunk -->
+<!-- num_images = dim(image_matrix)[1] -->
+<!-- # Calculate the number of columns for training data -->
+<!-- train_columns = floor(0.75 * num_images) -->
+<!-- # Randomly select indices for the training data -->
+<!-- train_indices = sample(1:num_images, train_columns) -->
+<!-- # Get the test indices -->
+<!-- test_indices = setdiff(1:num_images, train_indices) -->
+<!-- # Split the image matrix into training and test data -->
+<!-- train_data = image_matrix[train_indices, ] -->
+<!-- test_data = image_matrix[-train_indices, ] -->
+<!-- # Perform PCA on the training data, centering data but NOT scaling -->
+<!-- pca_result = prcomp(train_data, center=TRUE, scale. = FALSE) -->
+<!-- ``` -->
+<!-- Let's extract some key information form the prcomp function. We are able to calculate the proportion of variance explained from each PC by looking at the $sdev$ value, aka the standard deviations of the principal components, by squaring them and dividing by the sum of the squared $sdev$ values. To note, $sdev^2$ is actually equal to the eigenvalues of the dataset! We can then get the cumulative variation as the number of PC components increase, leading to the plot you see below. Here we see that as PCs increase so does the cumulative variance preserved/explained. This is an excellent visualization to check how much each PC contributes to preserving overall variation. In our case we see that with just 67 PCs we can explain 95% of the variation in the dataset! -->
+<!-- ```{r, fig.align='center'} -->
+<!-- # Extract the proportion of variance explained by each principal component -->
+<!-- variance_explained = pca_result$sdev^2 / sum(pca_result$sdev^2) -->
+<!-- # Calculate the cumulative percentage of variance explained -->
+<!-- cumulative_variance = cumsum(variance_explained) * 100 -->
+<!-- # get pcs getting more than 95% of the data -->
+<!-- pcs_for_95 = which(cumsum(variance_explained) >= 0.95)[1] -->
+<!-- # Create a tibble for plotting -->
+<!-- data_plot = tibble( -->
+<!--   # x axis -->
+<!--   num_components = 1:length(cumulative_variance), -->
+<!--   # cumvar -->
+<!--   cumulative_variance = cumulative_variance -->
+<!-- ) -->
+<!-- # plot using ggplot2 -->
+<!-- ggplot(data_plot, aes(x = num_components, y = cumulative_variance)) + -->
+<!--   # make line plot -->
+<!--   geom_line() + -->
+<!--   # add points -->
+<!--   geom_point() + -->
+<!--   # adding line for which PC number we are getting -->
+<!--   geom_vline(xintercept = pcs_for_95, color = "red", linetype = "dashed") + -->
+<!--   # adding text for PC im getting -->
+<!--   annotate("text", x = 70, y = 85, label = paste("95% variation explained\nwith", as.character(pcs_for_95), "PCs"), hjust = 0, vjust = 0, color = "black", size = 4) + -->
+<!--   # x axis every 20 -->
+<!--   scale_x_continuous(breaks = seq(0, max(data_plot$num_components), by = 20)) + -->
+<!--   # y axis every 20 -->
+<!--   scale_y_continuous(breaks = seq(0, 100, by = 20)) + -->
+<!--   # labels -->
+<!--   labs(x = "Number of Principal Components", -->
+<!--        y = "Cumulative Variance Explained (%)", -->
+<!--        title = "Cumulative Variance Explained with Additional Principal Components") + -->
+<!--   # theme -->
+<!--   theme_bw() + -->
+<!--   # change text vars -->
+<!--   theme(plot.title = element_text(hjust = 0.5, face = "bold"), -->
+<!--         axis.text = element_text(size = 10)) -->
+<!-- ``` -->
+<!-- Another popular plot used to visualize PCs and their explained variation is a scree plot. Check out the [wiki page](https://en.wikipedia.org/wiki/Scree_plot) for more information. -->
+<!-- So we were able to successfully perform PCA on our image data... what now? Well, let's see how well we can reconstruct the data using only the first 67 PCs, which contained 95% of the variance. To achieve this, we need to do a bit of matrix multiplication as well as add the mean back to un-center the data. -->
+<!-- The PCA reconstructed data = the PC scores (matrix dimensions 191x191) x the transpose of the eigenvectors (matrix dimensions 191x187500) + mean -->
+<!-- If we wanted to take only the top k PCs, which in our case I wanted the top 67, then we simply subset the PC scores and eigenvectors from 191 to 67. I then reconstruct the image matrix from the single image vector, normalize the values from 0-1, and save all the newly reconstructed image matrices in a single list. -->
+<!-- ```{r} -->
+<!-- ### reconstructing training data ### -->
+<!-- # use pca_results to reconstruct training data fully -->
+<!-- reconstructed_train_data_allpcs = pca_result$x %*% t(pca_result$rotation) -->
+<!-- # scale data back to center -->
+<!-- reconstructed_train_data_allpcs = scale(reconstructed_train_data_allpcs, center = -pca_result$center, scale = FALSE) -->
+<!-- # now use just 95% variation explained pcs -->
+<!-- reconstructed_train_data_95 = pca_result$x[,1:pcs_for_95] %*% t(pca_result$rotation[,1:pcs_for_95]) -->
+<!-- # scale data back to center -->
+<!-- reconstructed_train_data_95 = scale(reconstructed_train_data_95, center = -pca_result$center, scale = FALSE) -->
+<!-- # Create an empty list to store the 250x250x3 matrices -->
+<!-- matrices_250x250x3 = vector("list", length(length(train_indices))) -->
+<!-- # Generate a 250x250x3 matrix for each row in image_matrix -->
+<!-- for (i in 1:length(train_indices)) { -->
+<!--   # flattened_image = as.vector(imgs_final[[i]]) -->
+<!--   matrix_250x250x3 = array(reconstructed_train_data_allpcs[i,], dim = c(250, 250, 3)) -->
+<!--   matrices_250x250x3[[i]] = matrix_250x250x3 -->
+<!-- } -->
+<!-- # Function to normalize the matrix  -->
+<!-- normalize_matrix = function(matrix) { -->
+<!--   min_value = min(matrix) -->
+<!--   max_value = max(matrix) -->
+<!--   normalized_matrix = (matrix - min_value) / (max_value - min_value) -->
+<!--   return(normalized_matrix) -->
+<!-- } -->
+<!-- # Normalize each matrix in the list -->
+<!-- flags_reconstructed_train_data_allpcs = lapply(matrices_250x250x3, normalize_matrix) -->
+<!-- # now do for 95% variation -->
+<!-- # Create an empty list to store the 250x250x3 matrices -->
+<!-- matrices_250x250x3 = vector("list", length(length(train_indices))) -->
+<!-- # Generate a 250x250x3 matrix for each row in image_matrix -->
+<!-- for (i in 1:length(train_indices)) { -->
+<!--   # flattened_image = as.vector(imgs_final[[i]]) -->
+<!--   matrix_250x250x3 = array(reconstructed_train_data_95[i,], dim = c(250, 250, 3)) -->
+<!--   matrices_250x250x3[[i]] = matrix_250x250x3 -->
+<!-- } -->
+<!-- # Normalize each matrix in the list -->
+<!-- flags_reconstructed_train_data_95 = lapply(matrices_250x250x3, normalize_matrix) -->
+<!-- ``` -->
+<!-- Now let's view how well PCA reconstructed the data! I utilized ggplot to plot three versions of five different flags: the original resized training image, the reconstructed resized training image with all PCs, the reconstructed resized training image with 67 PCs. -->
+<!-- ```{r, fig.height = 2, fig.width = 9, fig.align='center'} -->
+<!-- # for loop getting 5 examples -->
+<!-- for (i in 1:5) { -->
+<!--   # getting image - making cimg from imager package and then df -->
+<!--   img1 = as.data.frame(as.cimg(imgs_final[[train_indices[i]]]), wide = "c")  |>  -->
+<!--     # get rgb channels -->
+<!--     mutate(rgb_value = rgb(c.1, c.2, c.3)) |> -->
+<!--     # make class for facet_wrap -->
+<!--     mutate(image_type = "Original Image") -->
+<!--   # getting image - making cimg from imager package and then df -->
+<!--   img2 = as.data.frame(as.cimg(flags_reconstructed_train_data_allpcs[[i]]), wide = "c") |> -->
+<!--     # get rgb channels -->
+<!--     mutate(rgb_value = rgb(c.1, c.2, c.3)) |> -->
+<!--     # make class for facet_wrap -->
+<!--     mutate(image_type = "Fully Reconstructed Image") -->
+<!--   # getting image 1 - making cimg from imager package and then df -->
+<!--   img3 = as.data.frame(as.cimg(flags_reconstructed_train_data_95[[i]]), wide = "c") |> -->
+<!--     # get rgb channels -->
+<!--     mutate(rgb_value = rgb(c.1, c.2, c.3)) |> -->
+<!--     # make class for facet_wrap -->
+<!--     mutate(image_type = "67 PCs Reconstructed Image") -->
+<!--   # combining to all images -->
+<!--   all_images = rbind(img1, img2, img3) -->
+<!--   # make the levels of img variable what i want -->
+<!--   all_images$image_type = factor(all_images$image_type, levels = c("Original Image", "Fully Reconstructed Image","67 PCs Reconstructed Image")) -->
+<!--   # plot image -->
+<!--   print(ggplot(all_images,aes(y,x))+ -->
+<!--     # getting rgb -->
+<!--     geom_raster(aes(fill=rgb_value))+ -->
+<!--     # fill image -->
+<!--     scale_fill_identity() + -->
+<!--     # reverse y axis -->
+<!--     scale_y_reverse() +  -->
+<!--     # wrap by image -->
+<!--     facet_wrap(.~image_type) + -->
+<!--     # get rid of theme -->
+<!--     theme_void() + -->
+<!--     # bigger font size -->
+<!--     theme(strip.text = element_text(size = 12))) -->
+<!-- } -->
+<!-- ``` -->
+<!-- What do you think? Is 67 PCs enough to reconstruct the data? Since all 191 PCs were used to reconstruct the flags in the middle, we expect it to look identical to the original image as it preserves 100% of the variation. However, using only 67 PCs, or 95% of the variation of the flag images, we see more grainy images with artifacts from other flags. A lot of the reconstructed flags seems to have X's on them along with a symbol from another flag within the dataset. If my goal was to compress these images by reducing the dimensions using PCA, I personally would use more PCs to do so. However, these reconstructed flags might be enough if one were trying to do classification or another machine learning task. So it really depends on what the goal of your project is to determine how many PCs to keep. -->
+<!-- ## PCA on the test data -->
+<!-- Now let's see how well the PCA on the training data performs on the testing data! To reconstruct the test data, we first use the "predict" function in R to obtain the PC scores for the training data using the PCA results from the training data. We can then use the same formula we used for training set to get the reconstructed data for the testing set. Finally, we can plot these flags using ggplot to visualize the reconstructed data. -->
+<!-- ```{r, fig.height = 2, fig.width = 9, eval=TRUE, fig.align='center'} -->
+<!-- ### Project testing data ### -->
+<!-- # first predict the testing data -->
+<!-- test_data_projected = predict(pca_result, newdata = test_data) -->
+<!-- # Reconstruct the test_data from the projected data using all pcs -->
+<!-- reconstructed_test_data_allpcs = test_data_projected %*% t(pca_result$rotation) -->
+<!-- # reconstruct using 95% -->
+<!-- reconstructed_test_data_95 = test_data_projected[,1:pcs_for_95] %*% t(pca_result$rotation[,1:pcs_for_95]) -->
+<!-- # Create an empty list to store the 250x250x3 matrices -->
+<!-- matrices_250x250x3 = vector("list", length(length(test_indices))) -->
+<!-- # Generate a 250x250x3 matrix for each row in image_matrix -->
+<!-- for (i in 1:length(test_indices)) { -->
+<!--   # flattened_image = as.vector(imgs_final[[i]]) -->
+<!--   matrix_250x250x3 = array(reconstructed_test_data_allpcs[i,], dim = c(250, 250, 3)) -->
+<!--   matrices_250x250x3[[i]] = matrix_250x250x3 -->
+<!-- } -->
+<!-- # Normalize each matrix in the list -->
+<!-- flags_reconstructed_test_data_allpcs = lapply(matrices_250x250x3, normalize_matrix) -->
+<!-- # now with 95% -->
+<!-- # Create an empty list to store the 250x250x3 matrices -->
+<!-- matrices_250x250x3 = vector("list", length(length(test_indices))) -->
+<!-- # Generate a 250x250x3 matrix for each row in image_matrix -->
+<!-- for (i in 1:length(test_indices)) { -->
+<!--   # flattened_image = as.vector(imgs_final[[i]]) -->
+<!--   matrix_250x250x3 = array(reconstructed_test_data_95[i,], dim = c(250, 250, 3)) -->
+<!--   matrices_250x250x3[[i]] = matrix_250x250x3 -->
+<!-- } -->
+<!-- # Normalize each matrix in the list -->
+<!-- flags_reconstructed_test_data_95 = lapply(matrices_250x250x3, normalize_matrix) -->
+<!-- # for loop getting 5 examples -->
+<!-- for (i in 1:5) { -->
+<!--   # getting image - making cimg from imager package and then df -->
+<!--   img1 = as.data.frame(as.cimg(imgs_final[[test_indices[i]]]), wide = "c")  |>  -->
+<!--     # get rgb channels -->
+<!--     mutate(rgb_value = rgb(c.1, c.2, c.3)) |> -->
+<!--     # make class for facet_wrap -->
+<!--     mutate(image_type = "Original Image") -->
+<!--   # getting image - making cimg from imager package and then df -->
+<!--   img2 = as.data.frame(as.cimg(flags_reconstructed_test_data_allpcs[[i]]), wide = "c") |> -->
+<!--     # get rgb channels -->
+<!--     mutate(rgb_value = rgb(c.1, c.2, c.3)) |> -->
+<!--     # make class for facet_wrap -->
+<!--     mutate(image_type = "Fully Reconstructed Image") -->
+<!--   # getting image 1 - making cimg from imager package and then df -->
+<!--   img3 = as.data.frame(as.cimg(flags_reconstructed_test_data_95[[i]]), wide = "c") |> -->
+<!--     # get rgb channels -->
+<!--     mutate(rgb_value = rgb(c.1, c.2, c.3)) |> -->
+<!--     # make class for facet_wrap -->
+<!--     mutate(image_type = "67 PCs Reconstructed Image") -->
+<!--   # combining to all images -->
+<!--   all_images = rbind(img1, img2, img3) -->
+<!--   # make the levels of img variable what i want -->
+<!--   all_images$image_type = factor(all_images$image_type, levels = c("Original Image", "Fully Reconstructed Image","67 PCs Reconstructed Image")) -->
+<!--   # plot image -->
+<!--   print(ggplot(all_images,aes(y,x))+ -->
+<!--     # getting rgb -->
+<!--     geom_raster(aes(fill=rgb_value))+ -->
+<!--     # fill image -->
+<!--     scale_fill_identity() + -->
+<!--     # reverse y axis -->
+<!--     scale_y_reverse() +  -->
+<!--     # wrap by image -->
+<!--     facet_wrap(.~image_type) + -->
+<!--     # get rid of theme -->
+<!--     theme_void() + -->
+<!--     # bigger font size -->
+<!--     theme(strip.text = element_text(size = 12))) -->
+<!-- } -->
+<!-- ``` -->
+<!-- Now you can observe that even when using all 191 PCs to reconstruct the test data, the result isn't perfect. However, this makes sense! Since PCA was not performed on the testing data it likely contains new and unseen information for the algorithm. In other words, there exists variation within this new test dataset that was not present in the training dataset. Therefore, achieving a perfectly reconstructed image is not possible. -->
+
+<!-- I would argue that the difference between using 191 PCs or 67 PCs in the test case isn't very significant. Particularly when comparing it to the notable differences in the training dataset, the reconstruction quality doesn't appear to be too bad. There is one interesting observation we can make regarding the last image featuring the trident in the center. It's clear that the reconstructed data was unable to accurately recreate this symbol. Instead, we see a depiction of a star in the middle image and a distinct-ish symbol in the far-right image. This suggests that there likely wasn't a similar symbol present in the training dataset, causing PCA to struggle in reconstructing it. -->
+<!-- ## Visualizing the principal components -->
+<!-- To finish up, lets take a look at the top 10 PCs in image form. To do this, we simply look at the transpose of the *rotation* variable within *pca_results*. We transform this single vector into image form via the same process as before, and visualize using ggplot. -->
+<!-- <!-- looking at the Principal Components -->
+<p>–&gt;</p>
+<!-- ```{r, fig.height = 3, fig.width = 9,  eval=TRUE, fig.align='center'} -->
+<!-- ### Plot PCs ### -->
+<!-- # get pcs -->
+<!-- principal_components = t(pca_result$rotation) -->
+<!-- # Create an empty list to store the 250x250x3 matrices -->
+<!-- matrices_250x250x3 = vector("list", dim(principal_components)[1]) -->
+<!-- # Generate a 250x250x3 matrix for each row in image_matrix -->
+<!-- for (i in 1:dim(principal_components)[1]) { -->
+<!--   # flattened_image = as.vector(imgs_final[[i]]) -->
+<!--   matrix_250x250x3 = array(principal_components[i,], dim = c(250, 250, 3)) -->
+<!--   matrices_250x250x3[[i]] = matrix_250x250x3 -->
+<!-- } -->
+<!-- # Normalize each matrix in the list -->
+<!-- flags_principal_components = lapply(matrices_250x250x3, normalize_matrix) -->
+<!-- # want to add all images to this dataframe for ggplot -->
+<!-- all_images = data.frame() -->
+<!-- # for loop getting 5 examples -->
+<!-- for (i in 1:10) { -->
+<!--   # getting image - making cimg from imager package and then df -->
+<!--   img = as.data.frame(as.cimg(flags_principal_components[[i]]), wide = "c")  |>  -->
+<!--     # get rgb channels -->
+<!--     mutate(rgb_value = rgb(c.1, c.2, c.3)) |>  -->
+<!--     # make class labels -->
+<!--     mutate(img_num = paste("PC",i)) -->
+<!--   all_images = rbind(all_images, img) -->
+<!--   # make the levels of img variable what i want -->
+<!--   all_images$img_num = factor(all_images$img_num, levels = c("PC 1","PC 2","PC 3","PC 4","PC 5", -->
+<!--                                                                    "PC 6","PC 7","PC 8","PC 9","PC 10")) -->
+<!-- } -->
+<!-- # plot image -->
+<!-- print(ggplot(all_images,aes(y,x))+ -->
+<!--   # getting rgb -->
+<!--   geom_raster(aes(fill=rgb_value))+ -->
+<!--   # fill image -->
+<!--   scale_fill_identity() + -->
+<!--   # facet_wrap -->
+<!--   facet_wrap(.~ img_num, nrow = 2, ncol = 5) + -->
+<!--   # reverse y axis -->
+<!--   scale_y_reverse() +  -->
+<!--   # get rid of theme -->
+<!--   theme_void() + -->
+<!--   # bigger font size -->
+<!--   theme(strip.text = element_text(size = 12))) -->
+<!-- ``` -->
+<!-- Personally, I think this is the coolest part! It's amazing to visually observe the variations captured by each PC. One of the most compelling examples that caught my attention is the comparison between PC6 and PC9. Both PCs capture the flag symbol in the top left corner and exhibit similar colors. However, PC6 splits its colors horizontally, while PC9 splits them vertically. They complement each other in a nice way, showcasing the diverse ways information is reflected across the PCs! Some other PCs, such as PC3 and PC4, have a striking resemblance to specific flag images they were trained on. On the other hand, PCs like PC7 and PC10 seem to combine elements from two or more flags in the dataset, creating cool hybrid representations. -->
+<!-- These results actually made me curious about what the appearance of the PCs beyond the top 10 would look like. So let's plot ten of them side by side and compare! This will hopefully provide further insights into the patterns and variations captured by these additional PCs. -->
+<!-- ```{r, fig.height = 3, fig.width = 9,  eval=TRUE, fig.align='center'} -->
+<!-- ### Plot PCs ### -->
+<!-- # want to add all images to this dataframe for ggplot -->
+<!-- all_images = data.frame() -->
+<!-- # for loop getting 5 examples -->
+<!-- for (i in seq(11,191,20)) { -->
+<!--   # getting image - making cimg from imager package and then df -->
+<!--   img = as.data.frame(as.cimg(flags_principal_components[[i]]), wide = "c")  |>  -->
+<!--     # get rgb channels -->
+<!--     mutate(rgb_value = rgb(c.1, c.2, c.3)) |>  -->
+<!--     # make class labels -->
+<!--     mutate(img_num = paste("PC",i)) -->
+<!--   all_images = rbind(all_images, img) -->
+<!--   # make the levels of img variable what i want -->
+<!--   all_images$img_num = factor(all_images$img_num, levels = sprintf("PC %d", seq(11, 191, 20))) -->
+<!-- } -->
+<!-- # plot image -->
+<!-- print(ggplot(all_images,aes(y,x))+ -->
+<!--   # getting rgb -->
+<!--   geom_raster(aes(fill=rgb_value))+ -->
+<!--   # fill image -->
+<!--   scale_fill_identity() + -->
+<!--   # facet_wrap -->
+<!--   facet_wrap(.~ img_num, nrow = 2, ncol = 5) + -->
+<!--   # reverse y axis -->
+<!--   scale_y_reverse() +  -->
+<!--   # get rid of theme -->
+<!--   theme_void() + -->
+<!--   # bigger font size -->
+<!--   theme(strip.text = element_text(size = 12))) -->
+<!-- ``` -->
+<!-- Except for PC11, which is only one rank away from the top 10, these PCs exhibit distinct characteristics when compared to the top PCs. Rather than focusing on the overall color of the flag images, they appear to emphasize patterns within the dataset. Interestingly, the final PC essentially corresponds to a completely black image. Checking our *variance_explained* variable, we find it accounts for 7.620894e-35, which is approximately 0% of the dataset highlighting its lack of information. Additionally, many of the later PCs feature specific symbols like stars and shields, which may explain why our reconstructed test data failed to capture the trident but instead exhibited various other symbols such as a star. This serves as an important reminder that predicting new data can be challenging, particularly when it introduces novel variations or, in our case, flag symbols in images that were previously unseen by PCA. This concept holds true across most (if not all) machine learning applications, especially deep learning where the availability of comprehensive training datasets can be a major constraint. -->
+<!-- ## Final thoughts -->
+<!-- Honestly, this was a really fun project to do! It really helped me understand PCA better and how it can be utilized with images. I also was able to work on my R skills using matrix multiplication, imaging packages, and ggplot! I hope this project will help if you are struggling to understand how to do PCA on images in R. I did some searching and it was hard to find a good resource that went through step-by-step of the process... so hopefully this helped and my code is commented well enough for anyone to understand 😊 Let me know if you have any questions about the process or why I did what I did! -->
+<!-- Thanks for reading 🥳🥳 -->
+<!-- Caleb 🎲 -->
 
 
+<!-- -->
+
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -233,6 +701,57 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
+  const viewSource = window.document.getElementById('quarto-view-source') ||
+                     window.document.getElementById('quarto-code-tools-source');
+  if (viewSource) {
+    const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+    viewSource.addEventListener("click", function(e) {
+      if (sourceUrl) {
+        // rstudio viewer pane
+        if (/\bcapabilities=\b/.test(window.location)) {
+          window.open(sourceUrl);
+        } else {
+          window.location.href = sourceUrl;
+        }
+      } else {
+        const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+        modal.show();
+      }
+      return false;
+    });
+  }
+  function toggleCodeHandler(show) {
+    return function(e) {
+      const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+      for (let i=0; i<detailsSrc.length; i++) {
+        const details = detailsSrc[i].parentElement;
+        if (show) {
+          details.open = true;
+        } else {
+          details.removeAttribute("open");
+        }
+      }
+      const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+      const fromCls = show ? "hidden" : "unhidden";
+      const toCls = show ? "unhidden" : "hidden";
+      for (let i=0; i<cellCodeDivs.length; i++) {
+        const codeDiv = cellCodeDivs[i];
+        if (codeDiv.classList.contains(fromCls)) {
+          codeDiv.classList.remove(fromCls);
+          codeDiv.classList.add(toCls);
+        } 
+      }
+      return false;
+    }
+  }
+  const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+  if (hideAllCode) {
+    hideAllCode.addEventListener("click", toggleCodeHandler(false));
+  }
+  const showAllCode = window.document.getElementById("quarto-show-all-code");
+  if (showAllCode) {
+    showAllCode.addEventListener("click", toggleCodeHandler(true));
+  }
   function tippyHover(el, contentFn) {
     const config = {
       allowHTML: true,
@@ -386,7 +905,592 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
 });
-</script>
+</script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Performing Principal Component Analysis on Flag Images in R"</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> "Caleb Hallinan"</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> 10/19/2023</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co">    code-fold: true</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co">    code-summary: "Code"</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="an">fontsize:</span><span class="co"> 12pt</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="an">geometry:</span><span class="co"> margin=1.5in</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="an">fontcolor:</span><span class="co"> black</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="an">categories:</span><span class="co"> [project]</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- Global params --&gt;</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="fu"># ```{r global options, include = FALSE}</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="fu"># knitr::opts_chunk$set(echo=TRUE, include = TRUE, warning=FALSE, message=FALSE)</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="fu"># ```</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>In this project, we will embark on an adventure using Principal Component Analysis on images of various flags of countries/regions. Hopefully by the end you will have a better understanding of PCA and how we can utilize it to look at images in R!</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>Note: I condensed the R code to "Code" sections throughout for scrolling purposes. Feel free to click on these sections to look at each step, or change to "Show All Code" in the top right of the webpage!</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="fu">## Introduction</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>Principal Components Analysis (PCA) is a well-established technique to reduce the dimensions or features of a dataset while preserving the maximum amount of variation. This technique is widely used for pattern recognition, signal processing, and machine learning. PCA is also a useful tool in denoising, visualization, and classification of large datasets given features are linearly related. For example, imagine you have a genomics dataset with 10000+ genes and 5000+ observations. That's a lot of data! However, not all of those genes will be important as likely many of them are correlated, or express similar variation, as others. PCA is a great tool to reduce the 10000+ dimensions to a smaller number, eliminating redundancy by reducing the dimensions of the dataset for more downstream analysis.</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- &lt;!-- PCA image --&gt;</span> --&gt;</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- ::: {style="text-align: center;"} --&gt;</span></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- ![[Image Source](https://medium.com/analytics-vidhya/dimensionality-reduction-principal-component-analysis-d1402b58feb1)](pca.gif){width="600"} --&gt;</span></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- ::: --&gt;</span></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- PCA is heavily based on linear algebra concepts. Essentially, PCA computes the eigenvectors of the covariance matrix of the data and sorts them by their eigenvalue (which correspond to the explained variance for that individual principal component). The principal components (PC) are then computed as linear combinations of the original variables using the eigenvectors. It sounds complicated, but I promise you it's not as hard to understand as you think. This [article](https://builtin.com/data-science/step-step-explanation-principal-component-analysis) was a great resource for me when I was first trying to figure it out. Unfortunately, I won't go into much of the algebra behind PCA, so I encourage you to research it more! You can see this really cool animation above expressing what PCA is doing in two dimensions. Briefly, it is finding the direction that maximizes the variance of the blue dots which can also be viewed as minimizing the residuals of the blue dots to a line. --&gt;</span></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- ## Data --&gt;</span></span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- In this project specifically, instead of working with gene expressions or large datasets with numerous features, we are looking at images of flags from different countries. The goal is to apply PCA to these flags to assess its effectiveness in preserving variation and possibly discover interesting patterns or insights in the principal components themselves. --&gt;</span></span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- To begin our exploration, we need to install and load some R packages. These packages will equip us with the necessary tools for working with data frames, functions, file paths, reading images, and image processing. --&gt;</span></span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- &lt;!-- Install/Read packages --&gt;</span> --&gt;</span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- ```{r, read_packages} --&gt;</span></span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- </span><span class="al">###</span><span class="co"> install and read in packages --&gt;</span></span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- library(rmarkdown) --&gt;</span></span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- library(tidyverse) # for dataframes --&gt;</span></span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- library(here) # for use of others if downloaded --&gt;</span></span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- library(png) # for reading png images --&gt;</span></span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- library(magick) # for reading in images --&gt;</span></span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- library(imager) # for plotting --&gt;</span></span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- ``` --&gt;</span></span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- Now that we have the necessary packages, let's grab the flag data from [here](https://github.com/hampusborgos/country-flags). This dataset contains flags of varying sizes within different folders, however we are going to look specifically at the "/png250px/" folder. This folder has 255 flags from various countries and regions. --&gt;</span></span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- &lt;!-- Get the Data --&gt;</span> --&gt;</span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- ```{r, rawdata, eval=TRUE} --&gt;</span></span>
+<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- </span><span class="al">###</span><span class="co"> Grabbing the data --&gt;</span></span>
+<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- # url to flag data, it is in zip file --&gt;</span></span>
+<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- url = "https://github.com/hampusborgos/country-flags/archive/refs/heads/main.zip" --&gt;</span></span>
+<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- # specify the file name and location where you want to save the file on your computer --&gt;</span></span>
+<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- file_name = "flags.zip" --&gt;</span></span>
+<span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- file_path = here() --&gt;</span></span>
+<span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- # use the download.file() function --&gt;</span></span>
+<span id="cb1-73"><a href="#cb1-73" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- download.file(url, paste(file_path, file_name, sep = "/"), mode = "wb") --&gt;</span></span>
+<span id="cb1-74"><a href="#cb1-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-75"><a href="#cb1-75" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- # unzip zip file --&gt;</span></span>
+<span id="cb1-76"><a href="#cb1-76" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- unzip(paste0(here(), "/flags.zip"), exdir = here()) --&gt;</span></span>
+<span id="cb1-77"><a href="#cb1-77" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-78"><a href="#cb1-78" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- # get file names --&gt;</span></span>
+<span id="cb1-79"><a href="#cb1-79" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- files = list.files(here("country-flags-main/png250px/"), full.names = TRUE) --&gt;</span></span>
+<span id="cb1-80"><a href="#cb1-80" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-81"><a href="#cb1-81" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- # Read each image file in the folder --&gt;</span></span>
+<span id="cb1-82"><a href="#cb1-82" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- image_list = lapply(files, image_read) --&gt;</span></span>
+<span id="cb1-83"><a href="#cb1-83" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- # image_list = lapply(files, readPNG) --&gt;</span></span>
+<span id="cb1-84"><a href="#cb1-84" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- ``` --&gt;</span></span>
+<span id="cb1-85"><a href="#cb1-85" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-86"><a href="#cb1-86" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- For PCA to work soundly, it is essential that the dataset's dimensions remain consistent. Of course, that's not the case in this dataset where we see all flags have the same height (250px) but very different widths. Hence, we need to resize each flag to be the same height and width. I use the magick R package to read in the images and the "image_scale" along with the "image_convert" functions to transform the images into size 250x250x3 (representing height, width, and color channel). These resized images are then saved in the folder "/resized_png250px/." To enable PCA analysis, the images are converted from matrix to vector format. This involves flattening the 250x250x3 image matrix into a single vector of size 1x187500 (250 x 250 x 3). The individual vectors for each image are then combined into a single matrix of dimensions 255x187500. This variable, "image_matrix" is created and saved as flags_matrix.RDS. Also to note, this matrix is country/region flag image x pixel of flag image. --&gt;</span></span>
+<span id="cb1-87"><a href="#cb1-87" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-88"><a href="#cb1-88" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- ```{r, fig.height = 3, fig.width = 9, fig.align='center'} --&gt;</span></span>
+<span id="cb1-89"><a href="#cb1-89" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-90"><a href="#cb1-90" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- # </span><span class="al">NOTE</span><span class="co">: so each image is the same height but very different widths lol. Let's change that --&gt;</span></span>
+<span id="cb1-91"><a href="#cb1-91" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-92"><a href="#cb1-92" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- # Set height and width I want --&gt;</span></span>
+<span id="cb1-93"><a href="#cb1-93" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- max_height = 250 --&gt;</span></span>
+<span id="cb1-94"><a href="#cb1-94" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- max_width = 250 --&gt;</span></span>
+<span id="cb1-95"><a href="#cb1-95" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-96"><a href="#cb1-96" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- # Resize all the images to the specified height and width --&gt;</span></span>
+<span id="cb1-97"><a href="#cb1-97" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- # had to add matte=FALSE to get rid of extra channel --&gt;</span></span>
+<span id="cb1-98"><a href="#cb1-98" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- resized_images = lapply(image_list, function(im) { --&gt;</span></span>
+<span id="cb1-99"><a href="#cb1-99" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--   image_convert(image_scale(im, paste0(max_width, "x", max_height, "!")), format = "png", matte=FALSE) --&gt;</span></span>
+<span id="cb1-100"><a href="#cb1-100" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- }) --&gt;</span></span>
+<span id="cb1-101"><a href="#cb1-101" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-102"><a href="#cb1-102" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-103"><a href="#cb1-103" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- # Create the directory to save the resized images --&gt;</span></span>
+<span id="cb1-104"><a href="#cb1-104" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- dir.create("resized_png250px") --&gt;</span></span>
+<span id="cb1-105"><a href="#cb1-105" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-106"><a href="#cb1-106" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- # Save the resized images with the same names as the original files --&gt;</span></span>
+<span id="cb1-107"><a href="#cb1-107" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- for (i in seq_along(resized_images)) { --&gt;</span></span>
+<span id="cb1-108"><a href="#cb1-108" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--   # Extract the file name from the full path --&gt;</span></span>
+<span id="cb1-109"><a href="#cb1-109" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--   file_name = basename(files[i]) --&gt;</span></span>
+<span id="cb1-110"><a href="#cb1-110" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--   # make the file path for saving the resized image --&gt;</span></span>
+<span id="cb1-111"><a href="#cb1-111" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--   save_path = file.path("resized_png250px", file_name) --&gt;</span></span>
+<span id="cb1-112"><a href="#cb1-112" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--   # Write the resized image to the specified file path --&gt;</span></span>
+<span id="cb1-113"><a href="#cb1-113" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--   image_write(resized_images[[i]], save_path) --&gt;</span></span>
+<span id="cb1-114"><a href="#cb1-114" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- } --&gt;</span></span>
+<span id="cb1-115"><a href="#cb1-115" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-116"><a href="#cb1-116" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-117"><a href="#cb1-117" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- # now grab them with png package --&gt;</span></span>
+<span id="cb1-118"><a href="#cb1-118" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- resized_files = list.files(here("resized_png250px/"), full.names = TRUE) --&gt;</span></span>
+<span id="cb1-119"><a href="#cb1-119" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-120"><a href="#cb1-120" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- # use function readPNG --&gt;</span></span>
+<span id="cb1-121"><a href="#cb1-121" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- imgs_final = lapply(resized_files, readPNG) --&gt;</span></span>
+<span id="cb1-122"><a href="#cb1-122" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-123"><a href="#cb1-123" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- # QC: check each image is same dimensions --&gt;</span></span>
+<span id="cb1-124"><a href="#cb1-124" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- # for (i in seq_along(imgs_final)) { --&gt;</span></span>
+<span id="cb1-125"><a href="#cb1-125" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- #   dimensions = dim(imgs_final[[i]]) --&gt;</span></span>
+<span id="cb1-126"><a href="#cb1-126" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- #   cat("Image", i, "Dimensions:", dimensions[1], "x", dimensions[2], "x", dimensions[3], "\n") --&gt;</span></span>
+<span id="cb1-127"><a href="#cb1-127" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- # } --&gt;</span></span>
+<span id="cb1-128"><a href="#cb1-128" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-129"><a href="#cb1-129" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- # great! --&gt;</span></span>
+<span id="cb1-130"><a href="#cb1-130" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-131"><a href="#cb1-131" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- # Get the number of images in the list --&gt;</span></span>
+<span id="cb1-132"><a href="#cb1-132" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- num_images = length(image_list) --&gt;</span></span>
+<span id="cb1-133"><a href="#cb1-133" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-134"><a href="#cb1-134" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- # Create an empty matrix to store the flattened images --&gt;</span></span>
+<span id="cb1-135"><a href="#cb1-135" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- image_matrix = matrix(NA, nrow = num_images, ncol = 250 * 250 * 3) --&gt;</span></span>
+<span id="cb1-136"><a href="#cb1-136" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-137"><a href="#cb1-137" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- # Flatten each image and store it as a column in the matrix --&gt;</span></span>
+<span id="cb1-138"><a href="#cb1-138" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- for (i in 1:num_images) { --&gt;</span></span>
+<span id="cb1-139"><a href="#cb1-139" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--   # get the flatten vector --&gt;</span></span>
+<span id="cb1-140"><a href="#cb1-140" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--   flattened_image = as.vector(imgs_final[[i]]) --&gt;</span></span>
+<span id="cb1-141"><a href="#cb1-141" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--   # add to matrix --&gt;</span></span>
+<span id="cb1-142"><a href="#cb1-142" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--   image_matrix[i,] = flattened_image --&gt;</span></span>
+<span id="cb1-143"><a href="#cb1-143" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- } --&gt;</span></span>
+<span id="cb1-144"><a href="#cb1-144" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-145"><a href="#cb1-145" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- # save as .rds file --&gt;</span></span>
+<span id="cb1-146"><a href="#cb1-146" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- saveRDS(image_matrix, file = here("flags_matrix.RDS")) --&gt;</span></span>
+<span id="cb1-147"><a href="#cb1-147" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-148"><a href="#cb1-148" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-149"><a href="#cb1-149" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- # plot images --&gt;</span></span>
+<span id="cb1-150"><a href="#cb1-150" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-151"><a href="#cb1-151" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- # want to add all images to this dataframe for ggplot --&gt;</span></span>
+<span id="cb1-152"><a href="#cb1-152" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- all_images = data.frame() --&gt;</span></span>
+<span id="cb1-153"><a href="#cb1-153" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-154"><a href="#cb1-154" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- # for loop getting 5 examples --&gt;</span></span>
+<span id="cb1-155"><a href="#cb1-155" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- for (i in seq(1,190,20)) { --&gt;</span></span>
+<span id="cb1-156"><a href="#cb1-156" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--   # getting image - making cimg from imager package and then df --&gt;</span></span>
+<span id="cb1-157"><a href="#cb1-157" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--   img = as.data.frame(as.cimg(imgs_final[[i]]), wide = "c") |&gt;  --&gt;</span></span>
+<span id="cb1-158"><a href="#cb1-158" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     # # get rgb channels --&gt;</span></span>
+<span id="cb1-159"><a href="#cb1-159" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     mutate(rgb_value = rgb(c.1, c.2, c.3)) |&gt; --&gt;</span></span>
+<span id="cb1-160"><a href="#cb1-160" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     # # make class labels --&gt;</span></span>
+<span id="cb1-161"><a href="#cb1-161" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     mutate(img_num = paste("Image",i)) --&gt;</span></span>
+<span id="cb1-162"><a href="#cb1-162" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-163"><a href="#cb1-163" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--   all_images = rbind(all_images, img) --&gt;</span></span>
+<span id="cb1-164"><a href="#cb1-164" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-165"><a href="#cb1-165" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--   # make the levels of img variable what i want --&gt;</span></span>
+<span id="cb1-166"><a href="#cb1-166" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--   all_images$img_num = factor(all_images$img_num, levels = sprintf("Image %d", seq(1, 190, 20))) --&gt;</span></span>
+<span id="cb1-167"><a href="#cb1-167" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-168"><a href="#cb1-168" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- } --&gt;</span></span>
+<span id="cb1-169"><a href="#cb1-169" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-170"><a href="#cb1-170" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- # plot image --&gt;</span></span>
+<span id="cb1-171"><a href="#cb1-171" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- print(ggplot(all_images,aes(y,x))+ --&gt;</span></span>
+<span id="cb1-172"><a href="#cb1-172" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--   # getting rgb --&gt;</span></span>
+<span id="cb1-173"><a href="#cb1-173" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--   geom_raster(aes(fill=rgb_value))+ --&gt;</span></span>
+<span id="cb1-174"><a href="#cb1-174" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--   # fill image --&gt;</span></span>
+<span id="cb1-175"><a href="#cb1-175" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--   scale_fill_identity() + --&gt;</span></span>
+<span id="cb1-176"><a href="#cb1-176" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--   # facet_wrap --&gt;</span></span>
+<span id="cb1-177"><a href="#cb1-177" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--   facet_wrap(.~ img_num, nrow = 2, ncol = 5) + --&gt;</span></span>
+<span id="cb1-178"><a href="#cb1-178" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--   # reverse y axis --&gt;</span></span>
+<span id="cb1-179"><a href="#cb1-179" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--   scale_y_reverse() +  --&gt;</span></span>
+<span id="cb1-180"><a href="#cb1-180" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--   # get rid of theme --&gt;</span></span>
+<span id="cb1-181"><a href="#cb1-181" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--   theme_void() + --&gt;</span></span>
+<span id="cb1-182"><a href="#cb1-182" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--   # bigger font size --&gt;</span></span>
+<span id="cb1-183"><a href="#cb1-183" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--   theme(strip.text = element_text(size = 12))) --&gt;</span></span>
+<span id="cb1-184"><a href="#cb1-184" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- ``` --&gt;</span></span>
+<span id="cb1-185"><a href="#cb1-185" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-186"><a href="#cb1-186" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- Here are ten examples of the flag image data we are using. --&gt;</span></span>
+<span id="cb1-187"><a href="#cb1-187" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-188"><a href="#cb1-188" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- ## PCA on the training data --&gt;</span></span>
+<span id="cb1-189"><a href="#cb1-189" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-190"><a href="#cb1-190" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- Technically our "image_matrix" variable could be input straight into PCA the way it is. However, we are going to split the 255 images into a training and test set. Why do we do this? Well, for one it was part of the project description 😅 But really we do this to see how well PCA will predict, or project, the test data using only information from the training data. Our training set we take to be 75% of the data (191 flags) leaving 25% of data being the test images (64 flags). Finally, we are ready to conduct PCA on the training data! Note that we are setting center=TRUE and scale.=False. Briefly, the center hyperparameter shifts the data to be zero centered (subtracting the mean from each column) while scale will make the data have unit variance (correlation instead of covariance PCA). Centering is crucial for PCA to perform correctly, however scaling is dataset dependent. Take a look at the [prcomp function description](https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/prcomp) for more information. --&gt;</span></span>
+<span id="cb1-191"><a href="#cb1-191" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-192"><a href="#cb1-192" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- &lt;!-- PCA Analysis --&gt;</span> --&gt;</span>
+<span id="cb1-193"><a href="#cb1-193" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-194"><a href="#cb1-194" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- ```{r} --&gt;</span></span>
+<span id="cb1-195"><a href="#cb1-195" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- </span><span class="al">###</span><span class="co"> Do PCA analysis </span><span class="al">###</span><span class="co"> --&gt;</span></span>
+<span id="cb1-196"><a href="#cb1-196" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-197"><a href="#cb1-197" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- # Set the seed  --&gt;</span></span>
+<span id="cb1-198"><a href="#cb1-198" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- set.seed(123) --&gt;</span></span>
+<span id="cb1-199"><a href="#cb1-199" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-200"><a href="#cb1-200" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- # Get the number of images in the list - for some reason needed to add this to this code chunk --&gt;</span></span>
+<span id="cb1-201"><a href="#cb1-201" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- num_images = dim(image_matrix)[1] --&gt;</span></span>
+<span id="cb1-202"><a href="#cb1-202" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-203"><a href="#cb1-203" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- # Calculate the number of columns for training data --&gt;</span></span>
+<span id="cb1-204"><a href="#cb1-204" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- train_columns = floor(0.75 * num_images) --&gt;</span></span>
+<span id="cb1-205"><a href="#cb1-205" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-206"><a href="#cb1-206" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- # Randomly select indices for the training data --&gt;</span></span>
+<span id="cb1-207"><a href="#cb1-207" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- train_indices = sample(1:num_images, train_columns) --&gt;</span></span>
+<span id="cb1-208"><a href="#cb1-208" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-209"><a href="#cb1-209" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- # Get the test indices --&gt;</span></span>
+<span id="cb1-210"><a href="#cb1-210" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- test_indices = setdiff(1:num_images, train_indices) --&gt;</span></span>
+<span id="cb1-211"><a href="#cb1-211" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-212"><a href="#cb1-212" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- # Split the image matrix into training and test data --&gt;</span></span>
+<span id="cb1-213"><a href="#cb1-213" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- train_data = image_matrix[train_indices, ] --&gt;</span></span>
+<span id="cb1-214"><a href="#cb1-214" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- test_data = image_matrix[-train_indices, ] --&gt;</span></span>
+<span id="cb1-215"><a href="#cb1-215" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-216"><a href="#cb1-216" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- # Perform PCA on the training data, centering data but NOT scaling --&gt;</span></span>
+<span id="cb1-217"><a href="#cb1-217" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- pca_result = prcomp(train_data, center=TRUE, scale. = FALSE) --&gt;</span></span>
+<span id="cb1-218"><a href="#cb1-218" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- ``` --&gt;</span></span>
+<span id="cb1-219"><a href="#cb1-219" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-220"><a href="#cb1-220" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- Let's extract some key information form the prcomp function. We are able to calculate the proportion of variance explained from each PC by looking at the $sdev$ value, aka the standard deviations of the principal components, by squaring them and dividing by the sum of the squared $sdev$ values. To note, $sdev^2$ is actually equal to the eigenvalues of the dataset! We can then get the cumulative variation as the number of PC components increase, leading to the plot you see below. Here we see that as PCs increase so does the cumulative variance preserved/explained. This is an excellent visualization to check how much each PC contributes to preserving overall variation. In our case we see that with just 67 PCs we can explain 95% of the variation in the dataset! --&gt;</span></span>
+<span id="cb1-221"><a href="#cb1-221" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-222"><a href="#cb1-222" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- ```{r, fig.align='center'} --&gt;</span></span>
+<span id="cb1-223"><a href="#cb1-223" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- # Extract the proportion of variance explained by each principal component --&gt;</span></span>
+<span id="cb1-224"><a href="#cb1-224" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- variance_explained = pca_result$sdev^2 / sum(pca_result$sdev^2) --&gt;</span></span>
+<span id="cb1-225"><a href="#cb1-225" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-226"><a href="#cb1-226" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- # Calculate the cumulative percentage of variance explained --&gt;</span></span>
+<span id="cb1-227"><a href="#cb1-227" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- cumulative_variance = cumsum(variance_explained) * 100 --&gt;</span></span>
+<span id="cb1-228"><a href="#cb1-228" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-229"><a href="#cb1-229" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- # get pcs getting more than 95% of the data --&gt;</span></span>
+<span id="cb1-230"><a href="#cb1-230" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- pcs_for_95 = which(cumsum(variance_explained) &gt;= 0.95)[1] --&gt;</span></span>
+<span id="cb1-231"><a href="#cb1-231" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-232"><a href="#cb1-232" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- # Create a tibble for plotting --&gt;</span></span>
+<span id="cb1-233"><a href="#cb1-233" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- data_plot = tibble( --&gt;</span></span>
+<span id="cb1-234"><a href="#cb1-234" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--   # x axis --&gt;</span></span>
+<span id="cb1-235"><a href="#cb1-235" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--   num_components = 1:length(cumulative_variance), --&gt;</span></span>
+<span id="cb1-236"><a href="#cb1-236" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--   # cumvar --&gt;</span></span>
+<span id="cb1-237"><a href="#cb1-237" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--   cumulative_variance = cumulative_variance --&gt;</span></span>
+<span id="cb1-238"><a href="#cb1-238" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- ) --&gt;</span></span>
+<span id="cb1-239"><a href="#cb1-239" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-240"><a href="#cb1-240" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- # plot using ggplot2 --&gt;</span></span>
+<span id="cb1-241"><a href="#cb1-241" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- ggplot(data_plot, aes(x = num_components, y = cumulative_variance)) + --&gt;</span></span>
+<span id="cb1-242"><a href="#cb1-242" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--   # make line plot --&gt;</span></span>
+<span id="cb1-243"><a href="#cb1-243" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--   geom_line() + --&gt;</span></span>
+<span id="cb1-244"><a href="#cb1-244" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--   # add points --&gt;</span></span>
+<span id="cb1-245"><a href="#cb1-245" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--   geom_point() + --&gt;</span></span>
+<span id="cb1-246"><a href="#cb1-246" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--   # adding line for which PC number we are getting --&gt;</span></span>
+<span id="cb1-247"><a href="#cb1-247" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--   geom_vline(xintercept = pcs_for_95, color = "red", linetype = "dashed") + --&gt;</span></span>
+<span id="cb1-248"><a href="#cb1-248" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--   # adding text for PC im getting --&gt;</span></span>
+<span id="cb1-249"><a href="#cb1-249" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--   annotate("text", x = 70, y = 85, label = paste("95% variation explained\nwith", as.character(pcs_for_95), "PCs"), hjust = 0, vjust = 0, color = "black", size = 4) + --&gt;</span></span>
+<span id="cb1-250"><a href="#cb1-250" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--   # x axis every 20 --&gt;</span></span>
+<span id="cb1-251"><a href="#cb1-251" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--   scale_x_continuous(breaks = seq(0, max(data_plot$num_components), by = 20)) + --&gt;</span></span>
+<span id="cb1-252"><a href="#cb1-252" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--   # y axis every 20 --&gt;</span></span>
+<span id="cb1-253"><a href="#cb1-253" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--   scale_y_continuous(breaks = seq(0, 100, by = 20)) + --&gt;</span></span>
+<span id="cb1-254"><a href="#cb1-254" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--   # labels --&gt;</span></span>
+<span id="cb1-255"><a href="#cb1-255" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--   labs(x = "Number of Principal Components", --&gt;</span></span>
+<span id="cb1-256"><a href="#cb1-256" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--        y = "Cumulative Variance Explained (%)", --&gt;</span></span>
+<span id="cb1-257"><a href="#cb1-257" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--        title = "Cumulative Variance Explained with Additional Principal Components") + --&gt;</span></span>
+<span id="cb1-258"><a href="#cb1-258" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--   # theme --&gt;</span></span>
+<span id="cb1-259"><a href="#cb1-259" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--   theme_bw() + --&gt;</span></span>
+<span id="cb1-260"><a href="#cb1-260" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--   # change text vars --&gt;</span></span>
+<span id="cb1-261"><a href="#cb1-261" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--   theme(plot.title = element_text(hjust = 0.5, face = "bold"), --&gt;</span></span>
+<span id="cb1-262"><a href="#cb1-262" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--         axis.text = element_text(size = 10)) --&gt;</span></span>
+<span id="cb1-263"><a href="#cb1-263" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-264"><a href="#cb1-264" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- ``` --&gt;</span></span>
+<span id="cb1-265"><a href="#cb1-265" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-266"><a href="#cb1-266" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- Another popular plot used to visualize PCs and their explained variation is a scree plot. Check out the [wiki page](https://en.wikipedia.org/wiki/Scree_plot) for more information. --&gt;</span></span>
+<span id="cb1-267"><a href="#cb1-267" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-268"><a href="#cb1-268" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- So we were able to successfully perform PCA on our image data... what now? Well, let's see how well we can reconstruct the data using only the first 67 PCs, which contained 95% of the variance. To achieve this, we need to do a bit of matrix multiplication as well as add the mean back to un-center the data. --&gt;</span></span>
+<span id="cb1-269"><a href="#cb1-269" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-270"><a href="#cb1-270" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- The PCA reconstructed data = the PC scores (matrix dimensions 191x191) x the transpose of the eigenvectors (matrix dimensions 191x187500) + mean --&gt;</span></span>
+<span id="cb1-271"><a href="#cb1-271" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-272"><a href="#cb1-272" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- If we wanted to take only the top k PCs, which in our case I wanted the top 67, then we simply subset the PC scores and eigenvectors from 191 to 67. I then reconstruct the image matrix from the single image vector, normalize the values from 0-1, and save all the newly reconstructed image matrices in a single list. --&gt;</span></span>
+<span id="cb1-273"><a href="#cb1-273" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-274"><a href="#cb1-274" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- ```{r} --&gt;</span></span>
+<span id="cb1-275"><a href="#cb1-275" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- </span><span class="al">###</span><span class="co"> reconstructing training data </span><span class="al">###</span><span class="co"> --&gt;</span></span>
+<span id="cb1-276"><a href="#cb1-276" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-277"><a href="#cb1-277" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- # use pca_results to reconstruct training data fully --&gt;</span></span>
+<span id="cb1-278"><a href="#cb1-278" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- reconstructed_train_data_allpcs = pca_result$x %*% t(pca_result$rotation) --&gt;</span></span>
+<span id="cb1-279"><a href="#cb1-279" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- # scale data back to center --&gt;</span></span>
+<span id="cb1-280"><a href="#cb1-280" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- reconstructed_train_data_allpcs = scale(reconstructed_train_data_allpcs, center = -pca_result$center, scale = FALSE) --&gt;</span></span>
+<span id="cb1-281"><a href="#cb1-281" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-282"><a href="#cb1-282" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- # now use just 95% variation explained pcs --&gt;</span></span>
+<span id="cb1-283"><a href="#cb1-283" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- reconstructed_train_data_95 = pca_result$x[,1:pcs_for_95] %*% t(pca_result$rotation[,1:pcs_for_95]) --&gt;</span></span>
+<span id="cb1-284"><a href="#cb1-284" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- # scale data back to center --&gt;</span></span>
+<span id="cb1-285"><a href="#cb1-285" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- reconstructed_train_data_95 = scale(reconstructed_train_data_95, center = -pca_result$center, scale = FALSE) --&gt;</span></span>
+<span id="cb1-286"><a href="#cb1-286" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-287"><a href="#cb1-287" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- # Create an empty list to store the 250x250x3 matrices --&gt;</span></span>
+<span id="cb1-288"><a href="#cb1-288" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- matrices_250x250x3 = vector("list", length(length(train_indices))) --&gt;</span></span>
+<span id="cb1-289"><a href="#cb1-289" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-290"><a href="#cb1-290" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- # Generate a 250x250x3 matrix for each row in image_matrix --&gt;</span></span>
+<span id="cb1-291"><a href="#cb1-291" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- for (i in 1:length(train_indices)) { --&gt;</span></span>
+<span id="cb1-292"><a href="#cb1-292" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--   # flattened_image = as.vector(imgs_final[[i]]) --&gt;</span></span>
+<span id="cb1-293"><a href="#cb1-293" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--   matrix_250x250x3 = array(reconstructed_train_data_allpcs[i,], dim = c(250, 250, 3)) --&gt;</span></span>
+<span id="cb1-294"><a href="#cb1-294" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--   matrices_250x250x3[[i]] = matrix_250x250x3 --&gt;</span></span>
+<span id="cb1-295"><a href="#cb1-295" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- } --&gt;</span></span>
+<span id="cb1-296"><a href="#cb1-296" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-297"><a href="#cb1-297" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- # Function to normalize the matrix  --&gt;</span></span>
+<span id="cb1-298"><a href="#cb1-298" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- normalize_matrix = function(matrix) { --&gt;</span></span>
+<span id="cb1-299"><a href="#cb1-299" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--   min_value = min(matrix) --&gt;</span></span>
+<span id="cb1-300"><a href="#cb1-300" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--   max_value = max(matrix) --&gt;</span></span>
+<span id="cb1-301"><a href="#cb1-301" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--   normalized_matrix = (matrix - min_value) / (max_value - min_value) --&gt;</span></span>
+<span id="cb1-302"><a href="#cb1-302" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--   return(normalized_matrix) --&gt;</span></span>
+<span id="cb1-303"><a href="#cb1-303" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- } --&gt;</span></span>
+<span id="cb1-304"><a href="#cb1-304" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-305"><a href="#cb1-305" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- # Normalize each matrix in the list --&gt;</span></span>
+<span id="cb1-306"><a href="#cb1-306" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- flags_reconstructed_train_data_allpcs = lapply(matrices_250x250x3, normalize_matrix) --&gt;</span></span>
+<span id="cb1-307"><a href="#cb1-307" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-308"><a href="#cb1-308" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- # now do for 95% variation --&gt;</span></span>
+<span id="cb1-309"><a href="#cb1-309" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-310"><a href="#cb1-310" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- # Create an empty list to store the 250x250x3 matrices --&gt;</span></span>
+<span id="cb1-311"><a href="#cb1-311" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- matrices_250x250x3 = vector("list", length(length(train_indices))) --&gt;</span></span>
+<span id="cb1-312"><a href="#cb1-312" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-313"><a href="#cb1-313" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- # Generate a 250x250x3 matrix for each row in image_matrix --&gt;</span></span>
+<span id="cb1-314"><a href="#cb1-314" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- for (i in 1:length(train_indices)) { --&gt;</span></span>
+<span id="cb1-315"><a href="#cb1-315" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--   # flattened_image = as.vector(imgs_final[[i]]) --&gt;</span></span>
+<span id="cb1-316"><a href="#cb1-316" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--   matrix_250x250x3 = array(reconstructed_train_data_95[i,], dim = c(250, 250, 3)) --&gt;</span></span>
+<span id="cb1-317"><a href="#cb1-317" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--   matrices_250x250x3[[i]] = matrix_250x250x3 --&gt;</span></span>
+<span id="cb1-318"><a href="#cb1-318" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- } --&gt;</span></span>
+<span id="cb1-319"><a href="#cb1-319" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-320"><a href="#cb1-320" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- # Normalize each matrix in the list --&gt;</span></span>
+<span id="cb1-321"><a href="#cb1-321" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- flags_reconstructed_train_data_95 = lapply(matrices_250x250x3, normalize_matrix) --&gt;</span></span>
+<span id="cb1-322"><a href="#cb1-322" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- ``` --&gt;</span></span>
+<span id="cb1-323"><a href="#cb1-323" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-324"><a href="#cb1-324" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- Now let's view how well PCA reconstructed the data! I utilized ggplot to plot three versions of five different flags: the original resized training image, the reconstructed resized training image with all PCs, the reconstructed resized training image with 67 PCs. --&gt;</span></span>
+<span id="cb1-325"><a href="#cb1-325" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-326"><a href="#cb1-326" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- ```{r, fig.height = 2, fig.width = 9, fig.align='center'} --&gt;</span></span>
+<span id="cb1-327"><a href="#cb1-327" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-328"><a href="#cb1-328" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- # for loop getting 5 examples --&gt;</span></span>
+<span id="cb1-329"><a href="#cb1-329" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- for (i in 1:5) { --&gt;</span></span>
+<span id="cb1-330"><a href="#cb1-330" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-331"><a href="#cb1-331" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--   # getting image - making cimg from imager package and then df --&gt;</span></span>
+<span id="cb1-332"><a href="#cb1-332" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--   img1 = as.data.frame(as.cimg(imgs_final[[train_indices[i]]]), wide = "c")  |&gt;  --&gt;</span></span>
+<span id="cb1-333"><a href="#cb1-333" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     # get rgb channels --&gt;</span></span>
+<span id="cb1-334"><a href="#cb1-334" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     mutate(rgb_value = rgb(c.1, c.2, c.3)) |&gt; --&gt;</span></span>
+<span id="cb1-335"><a href="#cb1-335" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     # make class for facet_wrap --&gt;</span></span>
+<span id="cb1-336"><a href="#cb1-336" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     mutate(image_type = "Original Image") --&gt;</span></span>
+<span id="cb1-337"><a href="#cb1-337" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-338"><a href="#cb1-338" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--   # getting image - making cimg from imager package and then df --&gt;</span></span>
+<span id="cb1-339"><a href="#cb1-339" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--   img2 = as.data.frame(as.cimg(flags_reconstructed_train_data_allpcs[[i]]), wide = "c") |&gt; --&gt;</span></span>
+<span id="cb1-340"><a href="#cb1-340" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     # get rgb channels --&gt;</span></span>
+<span id="cb1-341"><a href="#cb1-341" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     mutate(rgb_value = rgb(c.1, c.2, c.3)) |&gt; --&gt;</span></span>
+<span id="cb1-342"><a href="#cb1-342" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     # make class for facet_wrap --&gt;</span></span>
+<span id="cb1-343"><a href="#cb1-343" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     mutate(image_type = "Fully Reconstructed Image") --&gt;</span></span>
+<span id="cb1-344"><a href="#cb1-344" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-345"><a href="#cb1-345" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--   # getting image 1 - making cimg from imager package and then df --&gt;</span></span>
+<span id="cb1-346"><a href="#cb1-346" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--   img3 = as.data.frame(as.cimg(flags_reconstructed_train_data_95[[i]]), wide = "c") |&gt; --&gt;</span></span>
+<span id="cb1-347"><a href="#cb1-347" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     # get rgb channels --&gt;</span></span>
+<span id="cb1-348"><a href="#cb1-348" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     mutate(rgb_value = rgb(c.1, c.2, c.3)) |&gt; --&gt;</span></span>
+<span id="cb1-349"><a href="#cb1-349" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     # make class for facet_wrap --&gt;</span></span>
+<span id="cb1-350"><a href="#cb1-350" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     mutate(image_type = "67 PCs Reconstructed Image") --&gt;</span></span>
+<span id="cb1-351"><a href="#cb1-351" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-352"><a href="#cb1-352" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--   # combining to all images --&gt;</span></span>
+<span id="cb1-353"><a href="#cb1-353" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--   all_images = rbind(img1, img2, img3) --&gt;</span></span>
+<span id="cb1-354"><a href="#cb1-354" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-355"><a href="#cb1-355" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--   # make the levels of img variable what i want --&gt;</span></span>
+<span id="cb1-356"><a href="#cb1-356" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--   all_images$image_type = factor(all_images$image_type, levels = c("Original Image", "Fully Reconstructed Image","67 PCs Reconstructed Image")) --&gt;</span></span>
+<span id="cb1-357"><a href="#cb1-357" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-358"><a href="#cb1-358" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--   # plot image --&gt;</span></span>
+<span id="cb1-359"><a href="#cb1-359" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--   print(ggplot(all_images,aes(y,x))+ --&gt;</span></span>
+<span id="cb1-360"><a href="#cb1-360" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     # getting rgb --&gt;</span></span>
+<span id="cb1-361"><a href="#cb1-361" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     geom_raster(aes(fill=rgb_value))+ --&gt;</span></span>
+<span id="cb1-362"><a href="#cb1-362" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     # fill image --&gt;</span></span>
+<span id="cb1-363"><a href="#cb1-363" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     scale_fill_identity() + --&gt;</span></span>
+<span id="cb1-364"><a href="#cb1-364" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     # reverse y axis --&gt;</span></span>
+<span id="cb1-365"><a href="#cb1-365" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     scale_y_reverse() +  --&gt;</span></span>
+<span id="cb1-366"><a href="#cb1-366" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     # wrap by image --&gt;</span></span>
+<span id="cb1-367"><a href="#cb1-367" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     facet_wrap(.~image_type) + --&gt;</span></span>
+<span id="cb1-368"><a href="#cb1-368" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     # get rid of theme --&gt;</span></span>
+<span id="cb1-369"><a href="#cb1-369" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     theme_void() + --&gt;</span></span>
+<span id="cb1-370"><a href="#cb1-370" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     # bigger font size --&gt;</span></span>
+<span id="cb1-371"><a href="#cb1-371" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     theme(strip.text = element_text(size = 12))) --&gt;</span></span>
+<span id="cb1-372"><a href="#cb1-372" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- } --&gt;</span></span>
+<span id="cb1-373"><a href="#cb1-373" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- ``` --&gt;</span></span>
+<span id="cb1-374"><a href="#cb1-374" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-375"><a href="#cb1-375" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- What do you think? Is 67 PCs enough to reconstruct the data? Since all 191 PCs were used to reconstruct the flags in the middle, we expect it to look identical to the original image as it preserves 100% of the variation. However, using only 67 PCs, or 95% of the variation of the flag images, we see more grainy images with artifacts from other flags. A lot of the reconstructed flags seems to have X's on them along with a symbol from another flag within the dataset. If my goal was to compress these images by reducing the dimensions using PCA, I personally would use more PCs to do so. However, these reconstructed flags might be enough if one were trying to do classification or another machine learning task. So it really depends on what the goal of your project is to determine how many PCs to keep. --&gt;</span></span>
+<span id="cb1-376"><a href="#cb1-376" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-377"><a href="#cb1-377" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- ## PCA on the test data --&gt;</span></span>
+<span id="cb1-378"><a href="#cb1-378" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-379"><a href="#cb1-379" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- Now let's see how well the PCA on the training data performs on the testing data! To reconstruct the test data, we first use the "predict" function in R to obtain the PC scores for the training data using the PCA results from the training data. We can then use the same formula we used for training set to get the reconstructed data for the testing set. Finally, we can plot these flags using ggplot to visualize the reconstructed data. --&gt;</span></span>
+<span id="cb1-380"><a href="#cb1-380" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-381"><a href="#cb1-381" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- ```{r, fig.height = 2, fig.width = 9, eval=TRUE, fig.align='center'} --&gt;</span></span>
+<span id="cb1-382"><a href="#cb1-382" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- </span><span class="al">###</span><span class="co"> Project testing data </span><span class="al">###</span><span class="co"> --&gt;</span></span>
+<span id="cb1-383"><a href="#cb1-383" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-384"><a href="#cb1-384" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- # first predict the testing data --&gt;</span></span>
+<span id="cb1-385"><a href="#cb1-385" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- test_data_projected = predict(pca_result, newdata = test_data) --&gt;</span></span>
+<span id="cb1-386"><a href="#cb1-386" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-387"><a href="#cb1-387" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- # Reconstruct the test_data from the projected data using all pcs --&gt;</span></span>
+<span id="cb1-388"><a href="#cb1-388" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- reconstructed_test_data_allpcs = test_data_projected %*% t(pca_result$rotation) --&gt;</span></span>
+<span id="cb1-389"><a href="#cb1-389" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-390"><a href="#cb1-390" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- # reconstruct using 95% --&gt;</span></span>
+<span id="cb1-391"><a href="#cb1-391" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- reconstructed_test_data_95 = test_data_projected[,1:pcs_for_95] %*% t(pca_result$rotation[,1:pcs_for_95]) --&gt;</span></span>
+<span id="cb1-392"><a href="#cb1-392" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-393"><a href="#cb1-393" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- # Create an empty list to store the 250x250x3 matrices --&gt;</span></span>
+<span id="cb1-394"><a href="#cb1-394" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- matrices_250x250x3 = vector("list", length(length(test_indices))) --&gt;</span></span>
+<span id="cb1-395"><a href="#cb1-395" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-396"><a href="#cb1-396" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- # Generate a 250x250x3 matrix for each row in image_matrix --&gt;</span></span>
+<span id="cb1-397"><a href="#cb1-397" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- for (i in 1:length(test_indices)) { --&gt;</span></span>
+<span id="cb1-398"><a href="#cb1-398" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--   # flattened_image = as.vector(imgs_final[[i]]) --&gt;</span></span>
+<span id="cb1-399"><a href="#cb1-399" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--   matrix_250x250x3 = array(reconstructed_test_data_allpcs[i,], dim = c(250, 250, 3)) --&gt;</span></span>
+<span id="cb1-400"><a href="#cb1-400" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--   matrices_250x250x3[[i]] = matrix_250x250x3 --&gt;</span></span>
+<span id="cb1-401"><a href="#cb1-401" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- } --&gt;</span></span>
+<span id="cb1-402"><a href="#cb1-402" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-403"><a href="#cb1-403" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- # Normalize each matrix in the list --&gt;</span></span>
+<span id="cb1-404"><a href="#cb1-404" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- flags_reconstructed_test_data_allpcs = lapply(matrices_250x250x3, normalize_matrix) --&gt;</span></span>
+<span id="cb1-405"><a href="#cb1-405" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-406"><a href="#cb1-406" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-407"><a href="#cb1-407" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- # now with 95% --&gt;</span></span>
+<span id="cb1-408"><a href="#cb1-408" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-409"><a href="#cb1-409" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-410"><a href="#cb1-410" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- # Create an empty list to store the 250x250x3 matrices --&gt;</span></span>
+<span id="cb1-411"><a href="#cb1-411" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- matrices_250x250x3 = vector("list", length(length(test_indices))) --&gt;</span></span>
+<span id="cb1-412"><a href="#cb1-412" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-413"><a href="#cb1-413" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- # Generate a 250x250x3 matrix for each row in image_matrix --&gt;</span></span>
+<span id="cb1-414"><a href="#cb1-414" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- for (i in 1:length(test_indices)) { --&gt;</span></span>
+<span id="cb1-415"><a href="#cb1-415" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--   # flattened_image = as.vector(imgs_final[[i]]) --&gt;</span></span>
+<span id="cb1-416"><a href="#cb1-416" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--   matrix_250x250x3 = array(reconstructed_test_data_95[i,], dim = c(250, 250, 3)) --&gt;</span></span>
+<span id="cb1-417"><a href="#cb1-417" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--   matrices_250x250x3[[i]] = matrix_250x250x3 --&gt;</span></span>
+<span id="cb1-418"><a href="#cb1-418" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- } --&gt;</span></span>
+<span id="cb1-419"><a href="#cb1-419" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-420"><a href="#cb1-420" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- # Normalize each matrix in the list --&gt;</span></span>
+<span id="cb1-421"><a href="#cb1-421" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- flags_reconstructed_test_data_95 = lapply(matrices_250x250x3, normalize_matrix) --&gt;</span></span>
+<span id="cb1-422"><a href="#cb1-422" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-423"><a href="#cb1-423" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- # for loop getting 5 examples --&gt;</span></span>
+<span id="cb1-424"><a href="#cb1-424" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- for (i in 1:5) { --&gt;</span></span>
+<span id="cb1-425"><a href="#cb1-425" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-426"><a href="#cb1-426" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--   # getting image - making cimg from imager package and then df --&gt;</span></span>
+<span id="cb1-427"><a href="#cb1-427" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--   img1 = as.data.frame(as.cimg(imgs_final[[test_indices[i]]]), wide = "c")  |&gt;  --&gt;</span></span>
+<span id="cb1-428"><a href="#cb1-428" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     # get rgb channels --&gt;</span></span>
+<span id="cb1-429"><a href="#cb1-429" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     mutate(rgb_value = rgb(c.1, c.2, c.3)) |&gt; --&gt;</span></span>
+<span id="cb1-430"><a href="#cb1-430" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     # make class for facet_wrap --&gt;</span></span>
+<span id="cb1-431"><a href="#cb1-431" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     mutate(image_type = "Original Image") --&gt;</span></span>
+<span id="cb1-432"><a href="#cb1-432" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-433"><a href="#cb1-433" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--   # getting image - making cimg from imager package and then df --&gt;</span></span>
+<span id="cb1-434"><a href="#cb1-434" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--   img2 = as.data.frame(as.cimg(flags_reconstructed_test_data_allpcs[[i]]), wide = "c") |&gt; --&gt;</span></span>
+<span id="cb1-435"><a href="#cb1-435" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     # get rgb channels --&gt;</span></span>
+<span id="cb1-436"><a href="#cb1-436" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     mutate(rgb_value = rgb(c.1, c.2, c.3)) |&gt; --&gt;</span></span>
+<span id="cb1-437"><a href="#cb1-437" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     # make class for facet_wrap --&gt;</span></span>
+<span id="cb1-438"><a href="#cb1-438" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     mutate(image_type = "Fully Reconstructed Image") --&gt;</span></span>
+<span id="cb1-439"><a href="#cb1-439" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-440"><a href="#cb1-440" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--   # getting image 1 - making cimg from imager package and then df --&gt;</span></span>
+<span id="cb1-441"><a href="#cb1-441" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--   img3 = as.data.frame(as.cimg(flags_reconstructed_test_data_95[[i]]), wide = "c") |&gt; --&gt;</span></span>
+<span id="cb1-442"><a href="#cb1-442" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     # get rgb channels --&gt;</span></span>
+<span id="cb1-443"><a href="#cb1-443" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     mutate(rgb_value = rgb(c.1, c.2, c.3)) |&gt; --&gt;</span></span>
+<span id="cb1-444"><a href="#cb1-444" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     # make class for facet_wrap --&gt;</span></span>
+<span id="cb1-445"><a href="#cb1-445" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     mutate(image_type = "67 PCs Reconstructed Image") --&gt;</span></span>
+<span id="cb1-446"><a href="#cb1-446" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-447"><a href="#cb1-447" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--   # combining to all images --&gt;</span></span>
+<span id="cb1-448"><a href="#cb1-448" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--   all_images = rbind(img1, img2, img3) --&gt;</span></span>
+<span id="cb1-449"><a href="#cb1-449" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-450"><a href="#cb1-450" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--   # make the levels of img variable what i want --&gt;</span></span>
+<span id="cb1-451"><a href="#cb1-451" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--   all_images$image_type = factor(all_images$image_type, levels = c("Original Image", "Fully Reconstructed Image","67 PCs Reconstructed Image")) --&gt;</span></span>
+<span id="cb1-452"><a href="#cb1-452" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-453"><a href="#cb1-453" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--   # plot image --&gt;</span></span>
+<span id="cb1-454"><a href="#cb1-454" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--   print(ggplot(all_images,aes(y,x))+ --&gt;</span></span>
+<span id="cb1-455"><a href="#cb1-455" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     # getting rgb --&gt;</span></span>
+<span id="cb1-456"><a href="#cb1-456" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     geom_raster(aes(fill=rgb_value))+ --&gt;</span></span>
+<span id="cb1-457"><a href="#cb1-457" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     # fill image --&gt;</span></span>
+<span id="cb1-458"><a href="#cb1-458" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     scale_fill_identity() + --&gt;</span></span>
+<span id="cb1-459"><a href="#cb1-459" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     # reverse y axis --&gt;</span></span>
+<span id="cb1-460"><a href="#cb1-460" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     scale_y_reverse() +  --&gt;</span></span>
+<span id="cb1-461"><a href="#cb1-461" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     # wrap by image --&gt;</span></span>
+<span id="cb1-462"><a href="#cb1-462" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     facet_wrap(.~image_type) + --&gt;</span></span>
+<span id="cb1-463"><a href="#cb1-463" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     # get rid of theme --&gt;</span></span>
+<span id="cb1-464"><a href="#cb1-464" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     theme_void() + --&gt;</span></span>
+<span id="cb1-465"><a href="#cb1-465" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     # bigger font size --&gt;</span></span>
+<span id="cb1-466"><a href="#cb1-466" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     theme(strip.text = element_text(size = 12))) --&gt;</span></span>
+<span id="cb1-467"><a href="#cb1-467" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- } --&gt;</span></span>
+<span id="cb1-468"><a href="#cb1-468" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- ``` --&gt;</span></span>
+<span id="cb1-469"><a href="#cb1-469" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-470"><a href="#cb1-470" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- Now you can observe that even when using all 191 PCs to reconstruct the test data, the result isn't perfect. However, this makes sense! Since PCA was not performed on the testing data it likely contains new and unseen information for the algorithm. In other words, there exists variation within this new test dataset that was not present in the training dataset. Therefore, achieving a perfectly reconstructed image is not possible. --&gt;</span></span>
+<span id="cb1-471"><a href="#cb1-471" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-472"><a href="#cb1-472" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- I would argue that the difference between using 191 PCs or 67 PCs in the test case isn't very significant. Particularly when comparing it to the notable differences in the training dataset, the reconstruction quality doesn't appear to be too bad. There is one interesting observation we can make regarding the last image featuring the trident in the center. It's clear that the reconstructed data was unable to accurately recreate this symbol. Instead, we see a depiction of a star in the middle image and a distinct-ish symbol in the far-right image. This suggests that there likely wasn't a similar symbol present in the training dataset, causing PCA to struggle in reconstructing it. --&gt;</span></span>
+<span id="cb1-473"><a href="#cb1-473" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-474"><a href="#cb1-474" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- ## Visualizing the principal components --&gt;</span></span>
+<span id="cb1-475"><a href="#cb1-475" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-476"><a href="#cb1-476" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- To finish up, lets take a look at the top 10 PCs in image form. To do this, we simply look at the transpose of the *rotation* variable within *pca_results*. We transform this single vector into image form via the same process as before, and visualize using ggplot. --&gt;</span></span>
+<span id="cb1-477"><a href="#cb1-477" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-478"><a href="#cb1-478" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- &lt;!-- looking at the Principal Components --&gt;</span> --&gt;</span>
+<span id="cb1-479"><a href="#cb1-479" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-480"><a href="#cb1-480" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- ```{r, fig.height = 3, fig.width = 9,  eval=TRUE, fig.align='center'} --&gt;</span></span>
+<span id="cb1-481"><a href="#cb1-481" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- </span><span class="al">###</span><span class="co"> Plot PCs </span><span class="al">###</span><span class="co"> --&gt;</span></span>
+<span id="cb1-482"><a href="#cb1-482" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-483"><a href="#cb1-483" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- # get pcs --&gt;</span></span>
+<span id="cb1-484"><a href="#cb1-484" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- principal_components = t(pca_result$rotation) --&gt;</span></span>
+<span id="cb1-485"><a href="#cb1-485" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-486"><a href="#cb1-486" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- # Create an empty list to store the 250x250x3 matrices --&gt;</span></span>
+<span id="cb1-487"><a href="#cb1-487" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- matrices_250x250x3 = vector("list", dim(principal_components)[1]) --&gt;</span></span>
+<span id="cb1-488"><a href="#cb1-488" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-489"><a href="#cb1-489" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- # Generate a 250x250x3 matrix for each row in image_matrix --&gt;</span></span>
+<span id="cb1-490"><a href="#cb1-490" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- for (i in 1:dim(principal_components)[1]) { --&gt;</span></span>
+<span id="cb1-491"><a href="#cb1-491" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--   # flattened_image = as.vector(imgs_final[[i]]) --&gt;</span></span>
+<span id="cb1-492"><a href="#cb1-492" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--   matrix_250x250x3 = array(principal_components[i,], dim = c(250, 250, 3)) --&gt;</span></span>
+<span id="cb1-493"><a href="#cb1-493" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--   matrices_250x250x3[[i]] = matrix_250x250x3 --&gt;</span></span>
+<span id="cb1-494"><a href="#cb1-494" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- } --&gt;</span></span>
+<span id="cb1-495"><a href="#cb1-495" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-496"><a href="#cb1-496" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- # Normalize each matrix in the list --&gt;</span></span>
+<span id="cb1-497"><a href="#cb1-497" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- flags_principal_components = lapply(matrices_250x250x3, normalize_matrix) --&gt;</span></span>
+<span id="cb1-498"><a href="#cb1-498" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-499"><a href="#cb1-499" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- # want to add all images to this dataframe for ggplot --&gt;</span></span>
+<span id="cb1-500"><a href="#cb1-500" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- all_images = data.frame() --&gt;</span></span>
+<span id="cb1-501"><a href="#cb1-501" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-502"><a href="#cb1-502" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- # for loop getting 5 examples --&gt;</span></span>
+<span id="cb1-503"><a href="#cb1-503" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- for (i in 1:10) { --&gt;</span></span>
+<span id="cb1-504"><a href="#cb1-504" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--   # getting image - making cimg from imager package and then df --&gt;</span></span>
+<span id="cb1-505"><a href="#cb1-505" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--   img = as.data.frame(as.cimg(flags_principal_components[[i]]), wide = "c")  |&gt;  --&gt;</span></span>
+<span id="cb1-506"><a href="#cb1-506" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     # get rgb channels --&gt;</span></span>
+<span id="cb1-507"><a href="#cb1-507" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     mutate(rgb_value = rgb(c.1, c.2, c.3)) |&gt;  --&gt;</span></span>
+<span id="cb1-508"><a href="#cb1-508" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     # make class labels --&gt;</span></span>
+<span id="cb1-509"><a href="#cb1-509" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     mutate(img_num = paste("PC",i)) --&gt;</span></span>
+<span id="cb1-510"><a href="#cb1-510" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-511"><a href="#cb1-511" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--   all_images = rbind(all_images, img) --&gt;</span></span>
+<span id="cb1-512"><a href="#cb1-512" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-513"><a href="#cb1-513" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--   # make the levels of img variable what i want --&gt;</span></span>
+<span id="cb1-514"><a href="#cb1-514" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--   all_images$img_num = factor(all_images$img_num, levels = c("PC 1","PC 2","PC 3","PC 4","PC 5", --&gt;</span></span>
+<span id="cb1-515"><a href="#cb1-515" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--                                                                    "PC 6","PC 7","PC 8","PC 9","PC 10")) --&gt;</span></span>
+<span id="cb1-516"><a href="#cb1-516" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- } --&gt;</span></span>
+<span id="cb1-517"><a href="#cb1-517" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-518"><a href="#cb1-518" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- # plot image --&gt;</span></span>
+<span id="cb1-519"><a href="#cb1-519" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- print(ggplot(all_images,aes(y,x))+ --&gt;</span></span>
+<span id="cb1-520"><a href="#cb1-520" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--   # getting rgb --&gt;</span></span>
+<span id="cb1-521"><a href="#cb1-521" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--   geom_raster(aes(fill=rgb_value))+ --&gt;</span></span>
+<span id="cb1-522"><a href="#cb1-522" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--   # fill image --&gt;</span></span>
+<span id="cb1-523"><a href="#cb1-523" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--   scale_fill_identity() + --&gt;</span></span>
+<span id="cb1-524"><a href="#cb1-524" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--   # facet_wrap --&gt;</span></span>
+<span id="cb1-525"><a href="#cb1-525" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--   facet_wrap(.~ img_num, nrow = 2, ncol = 5) + --&gt;</span></span>
+<span id="cb1-526"><a href="#cb1-526" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--   # reverse y axis --&gt;</span></span>
+<span id="cb1-527"><a href="#cb1-527" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--   scale_y_reverse() +  --&gt;</span></span>
+<span id="cb1-528"><a href="#cb1-528" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--   # get rid of theme --&gt;</span></span>
+<span id="cb1-529"><a href="#cb1-529" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--   theme_void() + --&gt;</span></span>
+<span id="cb1-530"><a href="#cb1-530" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--   # bigger font size --&gt;</span></span>
+<span id="cb1-531"><a href="#cb1-531" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--   theme(strip.text = element_text(size = 12))) --&gt;</span></span>
+<span id="cb1-532"><a href="#cb1-532" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-533"><a href="#cb1-533" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- ``` --&gt;</span></span>
+<span id="cb1-534"><a href="#cb1-534" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-535"><a href="#cb1-535" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- Personally, I think this is the coolest part! It's amazing to visually observe the variations captured by each PC. One of the most compelling examples that caught my attention is the comparison between PC6 and PC9. Both PCs capture the flag symbol in the top left corner and exhibit similar colors. However, PC6 splits its colors horizontally, while PC9 splits them vertically. They complement each other in a nice way, showcasing the diverse ways information is reflected across the PCs! Some other PCs, such as PC3 and PC4, have a striking resemblance to specific flag images they were trained on. On the other hand, PCs like PC7 and PC10 seem to combine elements from two or more flags in the dataset, creating cool hybrid representations. --&gt;</span></span>
+<span id="cb1-536"><a href="#cb1-536" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-537"><a href="#cb1-537" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- These results actually made me curious about what the appearance of the PCs beyond the top 10 would look like. So let's plot ten of them side by side and compare! This will hopefully provide further insights into the patterns and variations captured by these additional PCs. --&gt;</span></span>
+<span id="cb1-538"><a href="#cb1-538" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-539"><a href="#cb1-539" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- ```{r, fig.height = 3, fig.width = 9,  eval=TRUE, fig.align='center'} --&gt;</span></span>
+<span id="cb1-540"><a href="#cb1-540" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- </span><span class="al">###</span><span class="co"> Plot PCs </span><span class="al">###</span><span class="co"> --&gt;</span></span>
+<span id="cb1-541"><a href="#cb1-541" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-542"><a href="#cb1-542" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- # want to add all images to this dataframe for ggplot --&gt;</span></span>
+<span id="cb1-543"><a href="#cb1-543" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- all_images = data.frame() --&gt;</span></span>
+<span id="cb1-544"><a href="#cb1-544" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-545"><a href="#cb1-545" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- # for loop getting 5 examples --&gt;</span></span>
+<span id="cb1-546"><a href="#cb1-546" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- for (i in seq(11,191,20)) { --&gt;</span></span>
+<span id="cb1-547"><a href="#cb1-547" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--   # getting image - making cimg from imager package and then df --&gt;</span></span>
+<span id="cb1-548"><a href="#cb1-548" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--   img = as.data.frame(as.cimg(flags_principal_components[[i]]), wide = "c")  |&gt;  --&gt;</span></span>
+<span id="cb1-549"><a href="#cb1-549" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     # get rgb channels --&gt;</span></span>
+<span id="cb1-550"><a href="#cb1-550" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     mutate(rgb_value = rgb(c.1, c.2, c.3)) |&gt;  --&gt;</span></span>
+<span id="cb1-551"><a href="#cb1-551" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     # make class labels --&gt;</span></span>
+<span id="cb1-552"><a href="#cb1-552" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--     mutate(img_num = paste("PC",i)) --&gt;</span></span>
+<span id="cb1-553"><a href="#cb1-553" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-554"><a href="#cb1-554" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--   all_images = rbind(all_images, img) --&gt;</span></span>
+<span id="cb1-555"><a href="#cb1-555" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-556"><a href="#cb1-556" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--   # make the levels of img variable what i want --&gt;</span></span>
+<span id="cb1-557"><a href="#cb1-557" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--   all_images$img_num = factor(all_images$img_num, levels = sprintf("PC %d", seq(11, 191, 20))) --&gt;</span></span>
+<span id="cb1-558"><a href="#cb1-558" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- } --&gt;</span></span>
+<span id="cb1-559"><a href="#cb1-559" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-560"><a href="#cb1-560" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- # plot image --&gt;</span></span>
+<span id="cb1-561"><a href="#cb1-561" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- print(ggplot(all_images,aes(y,x))+ --&gt;</span></span>
+<span id="cb1-562"><a href="#cb1-562" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--   # getting rgb --&gt;</span></span>
+<span id="cb1-563"><a href="#cb1-563" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--   geom_raster(aes(fill=rgb_value))+ --&gt;</span></span>
+<span id="cb1-564"><a href="#cb1-564" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--   # fill image --&gt;</span></span>
+<span id="cb1-565"><a href="#cb1-565" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--   scale_fill_identity() + --&gt;</span></span>
+<span id="cb1-566"><a href="#cb1-566" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--   # facet_wrap --&gt;</span></span>
+<span id="cb1-567"><a href="#cb1-567" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--   facet_wrap(.~ img_num, nrow = 2, ncol = 5) + --&gt;</span></span>
+<span id="cb1-568"><a href="#cb1-568" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--   # reverse y axis --&gt;</span></span>
+<span id="cb1-569"><a href="#cb1-569" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--   scale_y_reverse() +  --&gt;</span></span>
+<span id="cb1-570"><a href="#cb1-570" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--   # get rid of theme --&gt;</span></span>
+<span id="cb1-571"><a href="#cb1-571" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--   theme_void() + --&gt;</span></span>
+<span id="cb1-572"><a href="#cb1-572" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--   # bigger font size --&gt;</span></span>
+<span id="cb1-573"><a href="#cb1-573" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--   theme(strip.text = element_text(size = 12))) --&gt;</span></span>
+<span id="cb1-574"><a href="#cb1-574" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- ``` --&gt;</span></span>
+<span id="cb1-575"><a href="#cb1-575" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-576"><a href="#cb1-576" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- Except for PC11, which is only one rank away from the top 10, these PCs exhibit distinct characteristics when compared to the top PCs. Rather than focusing on the overall color of the flag images, they appear to emphasize patterns within the dataset. Interestingly, the final PC essentially corresponds to a completely black image. Checking our *variance_explained* variable, we find it accounts for 7.620894e-35, which is approximately 0% of the dataset highlighting its lack of information. Additionally, many of the later PCs feature specific symbols like stars and shields, which may explain why our reconstructed test data failed to capture the trident but instead exhibited various other symbols such as a star. This serves as an important reminder that predicting new data can be challenging, particularly when it introduces novel variations or, in our case, flag symbols in images that were previously unseen by PCA. This concept holds true across most (if not all) machine learning applications, especially deep learning where the availability of comprehensive training datasets can be a major constraint. --&gt;</span></span>
+<span id="cb1-577"><a href="#cb1-577" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-578"><a href="#cb1-578" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- ## Final thoughts --&gt;</span></span>
+<span id="cb1-579"><a href="#cb1-579" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-580"><a href="#cb1-580" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- Honestly, this was a really fun project to do! It really helped me understand PCA better and how it can be utilized with images. I also was able to work on my R skills using matrix multiplication, imaging packages, and ggplot! I hope this project will help if you are struggling to understand how to do PCA on images in R. I did some searching and it was hard to find a good resource that went through step-by-step of the process... so hopefully this helped and my code is commented well enough for anyone to understand 😊 Let me know if you have any questions about the process or why I did what I did! --&gt;</span></span>
+<span id="cb1-581"><a href="#cb1-581" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-582"><a href="#cb1-582" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- Thanks for reading 🥳🥳 --&gt;</span></span>
+<span id="cb1-583"><a href="#cb1-583" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-584"><a href="#cb1-584" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- Caleb 🎲 --&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></div></div></div></div>
 </div> <!-- /content -->
 
 
