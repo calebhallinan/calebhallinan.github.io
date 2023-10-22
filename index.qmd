@@ -12,12 +12,11 @@ about:
     - text: twitter
       icon: twitter
       url: "https://twitter.com/caleb_hallinan"
-    - text: email
-      icon: email
+    - text: "{{< fa envelope >}} email"
       url: "mailto:challin1@jh.edu"
-    - text: linkedin
+    - text: "{{< fa brands linkedin >}} linkedin"
       url: "https://www.linkedin.com/in/calebhallinan/"
-    - text: google scholar
+    - text: "{{< ai google-scholar >}} google scholar"
       url: "https://scholar.google.com/citations?user=1ekFTx4AAAAJ&hl=en&authuser=1"
     - text: CV
       url: "https://docs.google.com/document/d/e/2PACX-1vTSjC5pmxaJqQLdkt6t1VrNDWARMSHXSzl07WKiLPggYqaM9T3X5KjSjFNxcMb0SbecpGsLkDorb2RX/pub"
@@ -31,21 +30,19 @@ My proficiencies lie in the domains of data analysis, machine learning, and the 
 
 In my spare time I love to watch and play sports, hang out with friends, and run!
 
-
 ## Education
 
 **Johns Hopkins University**, Baltimore, MD
 
-PhD in Biomedical Engineering | Aug 2023 - TBD 2028
+PhD in Biomedical Engineering \| Aug 2023 - TBD 2028
 
-**University of Virginia** | Charlottesville, VA
+**University of Virginia** \| Charlottesville, VA
 
-B.A. in Statistics and Biology | Aug 2017 - May 2021
+B.A. in Statistics and Biology \| Aug 2017 - May 2021
 
 ## Experience
 
-**Boston Children's Hospital** | Boston, MA
+**Boston Children's Hospital** \| Boston, MA
 
-Research Assistant | Sept 2021 - June 2023
-
+Research Assistant \| Sept 2021 - June 2023
 :::
