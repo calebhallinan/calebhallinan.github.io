@@ -23,6 +23,8 @@ about:
 comments: false
 ---
 
+<!-- NOTE: Use fontawesome for icons above -->
+
 ::: column-body
 <font size= "5"> **First Year PhD Student in [Biomedical Engineering](https://www.bme.jhu.edu/) at [Johns Hopkins University](https://www.jhu.edu/)** </font>
 
