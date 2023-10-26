@@ -13,7 +13,9 @@ website:
 
 format:
   html:
-    theme: darkly
+    theme:
+      dark: darkly
+      light: flatly
     css: styles.css
 
 editor: visual
