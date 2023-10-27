@@ -28,7 +28,7 @@ comments: false
 ::: column-body
 <font size= "5"> **First Year PhD Student in [Biomedical Engineering](https://www.bme.jhu.edu/) at [Johns Hopkins University](https://www.jhu.edu/)** </font>
 
-Ultimately, my hope is to develop user-friendly computational software specifically tailored for biologists who may not be as tech-savvy. I was recently introduced to spatial transcriptomics (ST) and immediately captivated, so I am thrilled to explore this field during my rotation with Dr. Fan! My proficiencies lie in the domains of data analysis, machine learning, and the development and implementation of high-end computational research tools.
+Ultimately, my hope is to develop user-friendly computational software specifically tailored for biologists who may not be as tech-savvy. I was recently introduced to spatial transcriptomics (ST) and immediately captivated, so I am thrilled to explore this field during my rotation with Dr. Fan in the [JEFworks Lab](https://jef.works/)! My proficiencies lie in the domains of data analysis, machine learning, and the development and implementation of high-end computational research tools.
 
 When I'm not busy with research, you'll find me playing/watching sports, hanging out with friends, or watching movies :) I also have a passion for teaching and mentoring, so I am looking forward to pursing this further at Hopkins as well!
 
