@@ -123,14 +123,21 @@
     "href": "projects.html",
     "title": "Projects",
     "section": "",
-    "text": "I am currently rotating in labs at JHU to determine what I’ll work on next!"
+    "text": "Check out my google scholar or ORCID for a list of my publications! Note: it’s pretty short rn :)"
+  },
+  {
+    "objectID": "projects.html#publications",
+    "href": "projects.html#publications",
+    "title": "Projects",
+    "section": "",
+    "text": "Check out my google scholar or ORCID for a list of my publications! Note: it’s pretty short rn :)"
   },
   {
     "objectID": "projects.html#new-projects",
     "href": "projects.html#new-projects",
     "title": "Projects",
-    "section": "",
-    "text": "I am currently rotating in labs at JHU to determine what I’ll work on next!"
+    "section": "new projects ?",
+    "text": "new projects ?\nI am currently rotating in labs at JHU to determine what I’ll work on next!"
   },
   {
     "objectID": "projects.html#subtype-discovery-method-utilizing-scrna-seq-and-microarray-data",
