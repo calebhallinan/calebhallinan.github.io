@@ -6,6 +6,11 @@ format:
         toc-depth: 2
 ---
 
+## publications
+
+Check out my [google scholar](https://scholar.google.com/citations?user=1ekFTx4AAAAJ&hl=en&authuser=1) or [ORCID](https://orcid.org/0009-0000-9137-1293) for a list of my publications! Note: it's pretty short rn :)
+
+
 ## new projects ?
 
 I am currently rotating in labs at JHU to determine what I'll work on next!

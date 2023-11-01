@@ -12,12 +12,12 @@ about:
     - text: twitter
       icon: twitter
       url: "https://twitter.com/caleb_hallinan"
-    - text: "{{< fa envelope >}} email"
-      url: "mailto:challin1@jh.edu"
     - text: "{{< fa brands linkedin >}} linkedin"
       url: "https://www.linkedin.com/in/calebhallinan/"
-    - text: "{{< ai google-scholar >}} google scholar"
-      url: "https://scholar.google.com/citations?user=1ekFTx4AAAAJ&hl=en&authuser=1"
+    - text: "{{< fa envelope >}} email"
+      url: "mailto:challin1@jh.edu"
+    # - text: "{{< ai google-scholar >}} google scholar"
+    #   url: "https://scholar.google.com/citations?user=1ekFTx4AAAAJ&hl=en&authuser=1"
     - text: CV
       url: "https://docs.google.com/document/d/e/2PACX-1vTSjC5pmxaJqQLdkt6t1VrNDWARMSHXSzl07WKiLPggYqaM9T3X5KjSjFNxcMb0SbecpGsLkDorb2RX/pub"
 comments: false
