@@ -26,14 +26,25 @@ comments: false
 <!-- NOTE: Use fontawesome for icons above -->
 
 ::: column-body
-<font size= "5"> **First Year PhD Student in [Biomedical Engineering](https://www.bme.jhu.edu/) at [Johns Hopkins University](https://www.jhu.edu/)** </font>
+<!-- <font size= "5"> **First Year PhD Student in [Biomedical Engineering](https://www.bme.jhu.edu/) at [Johns Hopkins University](https://www.jhu.edu/)** </font> -->
 
-Ultimately, my hope is to develop user-friendly computational software specifically tailored for biologists who may not be as tech-savvy. I was recently introduced to spatial transcriptomics (ST) and immediately captivated, so I am thrilled to explore this field during my rotation with Dr. Fan in the [JEFworks Lab](https://jef.works/)! My proficiencies lie in the domains of data analysis, machine learning, and the development and implementation of high-end computational research tools.
+### First Year PhD Student in [Biomedical Engineering](https://www.bme.jhu.edu/) at [Johns Hopkins University](https://www.jhu.edu/)
 
-When I'm not busy with research, you'll find me playing/watching sports, hanging out with friends, or watching movies :) I also have a passion for teaching and mentoring, so I am looking forward to pursing this further at Hopkins as well!
+<br>
 
 
-## Education
+### [Previous & Current Research Interests:]{.underline}
+
+Morphodynamic analysis of live cell imaging
+
+Predicting gene expression from H&E images using spatial transcriptomics data
+
+Developing user-friendly computational software
+
+Best practices in teaching and mentorship
+
+
+### [Education:]{.underline}
 
 **Johns Hopkins University**, Baltimore, MD
 
@@ -43,9 +54,9 @@ PhD in Biomedical Engineering \| Aug 2023 - TBD 2028
 
 B.A. in Statistics and Biology \| Aug 2017 - May 2021
 
-## Experience
+### [Experience:]{.underline}
 
-**Boston Children's Hospital** \| Boston, MA
+**Boston Children's Hospital & Harvard Medical School** \| Boston, MA
 
-Research Assistant \| Sept 2021 - June 2023
+Research Assistant II \| Sept 2021 - June 2023
 :::

@@ -6,6 +6,7 @@ website:
   favicon: "images/dice_icon.png"
   navbar:
     right:
+      - aboutme.qmd
       - projects.qmd
       - talks.qmd
       - blog.qmd
