@@ -18,8 +18,8 @@ about:
       url: "mailto:challin1@jh.edu"
     # - text: "{{< ai google-scholar >}} google scholar"
     #   url: "https://scholar.google.com/citations?user=1ekFTx4AAAAJ&hl=en&authuser=1"
-    - text: CV
-      url: "https://docs.google.com/document/d/e/2PACX-1vTSjC5pmxaJqQLdkt6t1VrNDWARMSHXSzl07WKiLPggYqaM9T3X5KjSjFNxcMb0SbecpGsLkDorb2RX/pub"
+    # - text: CV
+    #   url: "https://docs.google.com/document/d/e/2PACX-1vTSjC5pmxaJqQLdkt6t1VrNDWARMSHXSzl07WKiLPggYqaM9T3X5KjSjFNxcMb0SbecpGsLkDorb2RX/pub"
 comments: false
 ---
 
@@ -28,7 +28,7 @@ comments: false
 ::: column-body
 <!-- <font size= "5"> **First Year PhD Student in [Biomedical Engineering](https://www.bme.jhu.edu/) at [Johns Hopkins University](https://www.jhu.edu/)** </font> -->
 
-### First Year PhD Student in [Biomedical Engineering](https://www.bme.jhu.edu/) at [Johns Hopkins University](https://www.jhu.edu/)
+### First-Year PhD Student in [Biomedical Engineering](https://www.bme.jhu.edu/) at [Johns Hopkins University](https://www.jhu.edu/)
 
 <br>
 
