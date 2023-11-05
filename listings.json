@@ -2,6 +2,7 @@
   {
     "listing": "/blog.html",
     "items": [
+      "/blog/2023-11-05-fantasy-football-analysis/index.html",
       "/blog/2023-10-20-pca-on-images/index.html",
       "/blog/2023-09-20-sentiment-analysis-example/index.html",
       "/blog/might-try-blogging/index.html"
