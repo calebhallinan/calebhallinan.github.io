@@ -32,7 +32,6 @@ comments: false
 
 <br>
 
-
 ### [Previous & Current Research Interests:]{.underline}
 
 Morphodynamic analysis of live cell imaging
@@ -40,9 +39,6 @@ Morphodynamic analysis of live cell imaging
 Predicting gene expression from H&E images using spatial transcriptomics data
 
 Developing user-friendly computational software
-
-Best practices in teaching and mentorship
-
 
 ### [Education:]{.underline}
 
