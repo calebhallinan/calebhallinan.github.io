@@ -129,13 +129,13 @@ matchups = matchups[1:65,]
 # NOTE: edit WEEK based on current week
 data = data |> 
   # get rid of weeks 9-17
-  filter(!Week %in% c(9:17)) |> 
+  filter(!Week %in% c(10:17)) |> 
   # drop playerfantasyteam
   select(-PlayerFantasyTeam)
 
 matchups = matchups |> 
   # get rid of weeks 9-17
-  filter(!Week %in% c(9:17))
+  filter(!Week %in% c(10:17))
 ```
 
 ## The Analysis
@@ -191,7 +191,9 @@ data|>
   theme(axis.text.x = element_text(size = 12),
   axis.text.y = element_text(size = 12),
   plot.title = element_text(face= "bold", hjust = 0.5),
-  legend.position = c(.98, -0.12), legend.justification = c(1, 0))
+  legend.position = c(.98, -0.12), legend.justification = c(1, 0)) +
+  scale_x_continuous(breaks = c(2, 4, 6, 8))
+
 ```
 
 Well, I think I was right in thinking they aren't ideal but honestly a couple teams seem to follow it fairly well. Team BD is pretty consistent across the board so far, as with Team JN. However, there are some teams with large outlier weeks like Team GM who has had some insane weeks or Team TP who has had some not so great weeks. Overall, it is pretty interesting to see the actual points scored that week compared to the projected!
@@ -263,11 +265,13 @@ ggplot(pts_against, aes(x = Week, color = TeamName)) +
   theme(axis.text.x = element_text(size = 12),
   axis.text.y = element_text(size = 12),
   plot.title = element_text(face= "bold", hjust = 0.5),
-  legend.position = c(.98, -.09), legend.justification = c(1, 0))
+  legend.position = c(.98, -.09), legend.justification = c(1, 0)) +
+  scale_x_continuous(breaks = c(2, 4, 6, 8))
+
 
 ```
 
-We see two teams, Team BD and JN, are both pretty "average" teams. However, what's interesting about that is they are currently at the top of the league in wins (Through Week 8) therefore implying consistency may be the best in winning fantasy football. Team RW has fairly low scoring weeks, besides their one breakout week 5 against Team TP. Interestingly, Team TP started off strong but had a tough middle of the season and unlucky past two weeks getting just barely beat by their opponent.
+We see two teams, Team BD and JN, are both pretty "average" teams. However, what's interesting about that is they are currently at the top of the league in wins (Through Week 9) therefore implying consistency may be the best in winning fantasy football. Team RW has fairly low scoring weeks, besides their one breakout week 5 against Team TP. Interestingly, Team TP started off strong but had a tough middle of the season and unlucky past two weeks getting just barely beat by their opponent.
 
 A lot of these trends can be explained more by BYE weeks (weeks that a NFL team has off), injuries, or injuries that affect other players (for example, QB Matt Stafford was out Week 9 and so WR Puka Nacua didn't even score 5 points when he was projected 12). I think that is certainly the case for Team TP who has had a tough go at injuries this season. I personally have had a decent amount, like the number one overall pick Justin Jefferson being on IR and missing the past 4 weeks (note the drop in my score four weeks ago) 🙃.
 
@@ -300,7 +304,7 @@ data |>
   # labels
   labs(
       x = "Team Name",
-      y = "Total Scores (Through Week 8)",
+      y = "Total Scores (Through Week 9)",
       fill = "Positions",
       title = "Total Score of Each Position For All Teams",
       caption = "Data Source: ESPN Fantasy Website",
@@ -370,7 +374,7 @@ matchups_diff |>
   labs(
     x = "Team Name",
     y = "Total Loss Differential",
-    title = "Total Loss Differential For Each Team (Through Week 8)",
+    title = "Total Loss Differential For Each Team (Through Week 9)",
     fill = "Team Name",
     caption = "Data Source: ESPN Fantasy Website",
     subtitle = str_wrap("It appears that there are four distinct tiers of total loss differential observed thus far in the
