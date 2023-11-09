@@ -333,6 +333,50 @@ I usually never draft a QB high, with my theory being in a 10 man league there a
 ![[Joe Burrow](https://www.nfl.com/players/joe-burrow/stats/career)](joe.png){width="200" style="text-align: center;"}
 :::
 
+
+I added this plot later in the analysis because I found it pretty interesting. Take a look below!
+
+```{r, fig.align='center'}
+# boxplot of scores for my team
+
+data |> 
+  # remove players
+  filter(!PlayerRosterSlot %in% c("Bench", "IR")) |> 
+  # groupby team
+  group_by(TeamName) |> 
+  # init plot
+  ggplot(aes(x = TeamName, y = PlayerScoreActual, fill = TeamName)) +
+  # geom violin
+  geom_violin() +
+  geom_boxplot(width=.1, color="white",outlier.shape = NA) +
+   # add colors
+  scale_fill_manual(values = paletteer_d("ggprism::colors", 12)) +
+  # change to linedraw
+  theme_linedraw() + 
+  # add theme
+  theme(axis.text.x = element_text(angle = 45, hjust = 1), 
+    text = element_text(size = 12),
+    plot.title = element_text(face = "bold", hjust = 0.5),
+    plot.subtitle = element_text(size = 11)) +
+  # add labels
+  labs(
+    x = "Team Name",
+    y = "Player's Scores (All Weeks)",
+    title = "Distribution of Player Scores for Each Team (Through Week 9)",
+    fill = "Team Name",
+    caption = "Data Source: ESPN Fantasy Website",
+    subtitle = str_wrap("The violin plots display the distribution of all player scores for each team. The boxplots 
+    within expresses the median, interquartile range, and estimated min/max based on the interquartile range. 
+    Notably, Team DH and Team RW have had the best weeks by a player so far this season, while Team WR has had the 
+    worst scores. Most teams exhibit a similar median score, however, Team GM stands out with a noticeably higher
+    median comparatively.", width = 90)) +
+  # get rid of legend
+  guides(fill = "none", color = "none")
+```
+
+We see Team DH and Team RW have had some of the best weeks by a single player so far this season. Since we have such a tight leader board so far, meaning everyone has a fairly similar record, it makes sense that the median of each team is fairly similar. Also, we see some teams like Team WN has less variation within their player scores compared to Team GM and others with a large variation.I'm looking forward to seeing this distribution at the end of the season! Also I should note, this plot is excluding bench players.
+
+
 Finally, this last graph was made solely for my friends and I so that we can laugh at the thought of who is getting wrecked this year in fantasy. Take a look below for more details 😄
 
 ::: callout-warning
@@ -380,7 +424,7 @@ matchups_diff |>
     subtitle = str_wrap("It appears that there are four distinct tiers of total loss differential observed thus far in the
                          season. Noteworthy outliers include Team BD, whose minimal loss differential suggests consistent
                         performance despite losing games, and Team TP, who consistently experiences significant deficits
-                        in each loss they have.", width = 90)) +
+                        in each loss they have.", width = 85)) +
   # get rid of legend
   guides(fill = "none")
 
@@ -413,6 +457,8 @@ ggplot2:
 2.  geom_point: points on line plot
 3.  geom_bar: bar plot
 4.  geom_col: column plot
+5.  geom_violin: violin plot
+6.  geom_boxplot: boxplot within violin plot
 
 ## References
 
