@@ -129,13 +129,13 @@ matchups = matchups[1:65,]
 # NOTE: edit WEEK based on current week
 data = data |> 
   # get rid of weeks 9-17
-  filter(!Week %in% c(13:17)) |> 
+  filter(!Week %in% c(14:17)) |> 
   # drop playerfantasyteam
   select(-PlayerFantasyTeam)
 
 matchups = matchups |> 
   # get rid of weeks 9-17
-  filter(!Week %in% c(13:17))
+  filter(!Week %in% c(14:17))
 ```
 
 ## The Analysis
@@ -265,7 +265,7 @@ ggplot(pts_against, aes(x = Week, color = TeamName)) +
   theme(axis.text.x = element_text(size = 12),
   axis.text.y = element_text(size = 12),
   plot.title = element_text(face= "bold", hjust = 0.5),
-  legend.position = c(.98, -.09), legend.justification = c(1, 0)) +
+  legend.position = c(.98, -.16), legend.justification = c(1, 0)) +
   scale_x_continuous(breaks = c(2, 4, 6, 8, 10,12))
 
 
@@ -304,7 +304,7 @@ data |>
   # labels
   labs(
       x = "Team Name",
-      y = "Total Scores (Through Week 12)",
+      y = "Total Scores (Through Week 13)",
       fill = "Positions",
       title = "Total Score of Each Position For All Teams",
       caption = "Data Source: ESPN Fantasy Website",
@@ -416,7 +416,7 @@ matchups_diff |>
   labs(
     x = "Team Name",
     y = "Total Loss Differential",
-    title = "Total Loss Differential For Each Team (Through Week 12)",
+    title = "Total Loss Differential For Each Team (Through Week 13)",
     fill = "Team Name",
     caption = "Data Source: ESPN Fantasy Website",
     subtitle = str_wrap("It appears that there are four distinct tiers of total loss differential observed thus far in the
