@@ -9,7 +9,7 @@
 <meta name="author" content="Caleb Hallinan">
 <meta name="dcterms.date" content="2023-11-05">
 
-<title>Caleb Hallinan - Example Analysis (An Analysis on my 2023 Fantasy Football League (So Far))</title>
+<title>Caleb Hallinan - An Analysis on my 2023 Fantasy Football League (So Far)</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -4551,7 +4551,7 @@ vertical-align: -.125em;
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <div class="quarto-title-block"><div><h1 class="title">Example Analysis (An Analysis on my 2023 Fantasy Football League (So Far))</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
+      <div class="quarto-title-block"><div><h1 class="title">An Analysis on my 2023 Fantasy Football League (So Far)</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
                                 <div class="quarto-categories">
                 <div class="quarto-category">project</div>
               </div>
@@ -5594,7 +5594,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class>
 <div class="sourceCode" id="cb8" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> &quot;Example Analysis (An Analysis on my 2023 Fantasy Football League (So Far))&quot;</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> &quot;An Analysis on my 2023 Fantasy Football League (So Far)&quot;</span></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> &quot;Caleb Hallinan&quot;</span></span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> 11/05/2023</span></span>
 <span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
@@ -6162,6 +6162,40 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb8-571"><a href="#cb8-571" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(sum_diff)</span>
 <span id="cb8-572"><a href="#cb8-572" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-573"><a href="#cb8-573" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb8-574"><a href="#cb8-574" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-575"><a href="#cb8-575" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-576"><a href="#cb8-576" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-577"><a href="#cb8-577" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, include=FALSE}</span></span>
+<span id="cb8-578"><a href="#cb8-578" aria-hidden="true" tabindex="-1"></a><span class="co"># Dans trade situation</span></span>
+<span id="cb8-579"><a href="#cb8-579" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-580"><a href="#cb8-580" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-581"><a href="#cb8-581" aria-hidden="true" tabindex="-1"></a>data <span class="sc">|&gt;</span> </span>
+<span id="cb8-582"><a href="#cb8-582" aria-hidden="true" tabindex="-1"></a>  <span class="co"># remove players</span></span>
+<span id="cb8-583"><a href="#cb8-583" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span>PlayerRosterSlot <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;Bench&quot;</span>, <span class="st">&quot;IR&quot;</span>)) <span class="sc">|&gt;</span> </span>
+<span id="cb8-584"><a href="#cb8-584" aria-hidden="true" tabindex="-1"></a>  <span class="co"># groupby team</span></span>
+<span id="cb8-585"><a href="#cb8-585" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(TeamName <span class="sc">==</span> <span class="st">&quot;Team DH&quot;</span>)</span>
+<span id="cb8-586"><a href="#cb8-586" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-587"><a href="#cb8-587" aria-hidden="true" tabindex="-1"></a>dh1 <span class="ot">=</span> matchups <span class="sc">|&gt;</span> </span>
+<span id="cb8-588"><a href="#cb8-588" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Name1 <span class="sc">==</span> <span class="st">&quot;Team DH&quot;</span>)</span>
+<span id="cb8-589"><a href="#cb8-589" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-590"><a href="#cb8-590" aria-hidden="true" tabindex="-1"></a>dh2 <span class="ot">=</span> matchups <span class="sc">|&gt;</span> </span>
+<span id="cb8-591"><a href="#cb8-591" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Name2 <span class="sc">==</span> <span class="st">&quot;Team DH&quot;</span>)</span>
+<span id="cb8-592"><a href="#cb8-592" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-593"><a href="#cb8-593" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(dh1<span class="sc">$</span>Score1) <span class="sc">+</span> <span class="fu">sum</span>(dh2<span class="sc">$</span>Score2)</span>
+<span id="cb8-594"><a href="#cb8-594" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-595"><a href="#cb8-595" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-596"><a href="#cb8-596" aria-hidden="true" tabindex="-1"></a>data <span class="sc">|&gt;</span> </span>
+<span id="cb8-597"><a href="#cb8-597" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(PlayerName <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;Lamar Jackson&quot;</span>,<span class="st">&quot;Christian McCaffrey&quot;</span>, <span class="st">&quot;Josh Jacobs&quot;</span>, <span class="st">&quot;Jaylen Waddle&quot;</span>, <span class="st">&quot;Michael Pittman Jr.&quot;</span>, <span class="st">&quot;D&#39;Andre Swift&quot;</span>, <span class="st">&quot;George Kittle&quot;</span>, <span class="st">&quot;Patriots D/ST&quot;</span>, <span class="st">&quot;Younghoe Koo&quot;</span>)) <span class="sc">|&gt;</span> </span>
+<span id="cb8-598"><a href="#cb8-598" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">summ =</span> <span class="fu">sum</span>(PlayerScoreActual))</span>
+<span id="cb8-599"><a href="#cb8-599" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-600"><a href="#cb8-600" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-601"><a href="#cb8-601" aria-hidden="true" tabindex="-1"></a>data <span class="sc">|&gt;</span> </span>
+<span id="cb8-602"><a href="#cb8-602" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(TeamName <span class="sc">==</span> <span class="st">&quot;Team DH&quot;</span>)</span>
+<span id="cb8-603"><a href="#cb8-603" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-604"><a href="#cb8-604" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-605"><a href="#cb8-605" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb8-606"><a href="#cb8-606" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-607"><a href="#cb8-607" aria-hidden="true" tabindex="-1"></a></span>
 </code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
