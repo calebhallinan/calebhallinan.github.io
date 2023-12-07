@@ -1,5 +1,5 @@
 ---
-title: "Example Analysis (An Analysis on my 2023 Fantasy Football League (So Far))"
+title: "An Analysis on my 2023 Fantasy Football League (So Far)"
 author: "Caleb Hallinan"
 date: 11/05/2023
 format:
@@ -567,3 +567,38 @@ data |>
   arrange(sum_diff)
 
 ```
+
+
+
+```{r, include=FALSE}
+# Dans trade situation
+
+
+data |> 
+  # remove players
+  filter(!PlayerRosterSlot %in% c("Bench", "IR")) |> 
+  # groupby team
+  filter(TeamName == "Team DH")
+
+dh1 = matchups |> 
+  filter(Name1 == "Team DH")
+
+dh2 = matchups |> 
+  filter(Name2 == "Team DH")
+
+sum(dh1$Score1) + sum(dh2$Score2)
+
+
+data |> 
+  filter(PlayerName %in% c("Lamar Jackson","Christian McCaffrey", "Josh Jacobs", "Jaylen Waddle", "Michael Pittman Jr.", "D'Andre Swift", "George Kittle", "Patriots D/ST", "Younghoe Koo")) |> 
+  summarize(summ = sum(PlayerScoreActual))
+
+
+data |> 
+  filter(TeamName == "Team DH")
+
+
+```
+
+
+
