@@ -36,7 +36,7 @@ comments: false
 
 Morphodynamic analysis of live cell imaging
 
-Predicting gene expression from H&E images using spatial transcriptomics data
+Computational analysis of spatial transcriptomics data
 
 Developing user-friendly computational software
 
