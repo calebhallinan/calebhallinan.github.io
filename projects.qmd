@@ -13,7 +13,7 @@ Check out my [google scholar](https://scholar.google.com/citations?user=1ekFTx4A
 
 ## new projects ?
 
-I am currently rotating in labs at JHU to determine what I'll work on next!
+I just began my work in Dr. Jean Fan's lab in Spatial Transcriptomics, so I look forward to what the future has in store!
 
 ## subtype discovery method utilizing scRNA-seq and microarray data
 

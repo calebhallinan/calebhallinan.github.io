@@ -28,7 +28,7 @@ comments: false
 ::: column-body
 <!-- <font size= "5"> **First Year PhD Student in [Biomedical Engineering](https://www.bme.jhu.edu/) at [Johns Hopkins University](https://www.jhu.edu/)** </font> -->
 
-### First-Year PhD Student in [Biomedical Engineering](https://www.bme.jhu.edu/) at [Johns Hopkins University](https://www.jhu.edu/)
+### First-Year PhD Student in [Biomedical Engineering](https://www.bme.jhu.edu/) at [Johns Hopkins University](https://www.jhu.edu/) in the [JEFworks Lab](https://jef.works/)
 
 <br>
 
