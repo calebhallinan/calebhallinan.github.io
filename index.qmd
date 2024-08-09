@@ -28,7 +28,7 @@ comments: false
 ::: column-body
 <!-- <font size= "5"> **First Year PhD Student in [Biomedical Engineering](https://www.bme.jhu.edu/) at [Johns Hopkins University](https://www.jhu.edu/)** </font> -->
 
-### First-Year PhD Student in [Biomedical Engineering](https://www.bme.jhu.edu/) at [Johns Hopkins University](https://www.jhu.edu/) in the [JEFworks Lab](https://jef.works/)
+### Second-Year PhD Student in [Biomedical Engineering](https://www.bme.jhu.edu/) at [Johns Hopkins University](https://www.jhu.edu/) in the [JEFworks Lab](https://jef.works/)
 
 <br>
 
@@ -56,3 +56,7 @@ B.A. in Statistics and Biology \| Aug 2017 - May 2021
 
 Research Assistant II \| Sept 2021 - June 2023
 :::
+
+<p style="text-align: center; font-size: small; color: gray; margin: 0 auto; position: absolute; bottom: 10px; left: 0; right: 0;">
+  Website last updated on: August 9, 2024
+</p>

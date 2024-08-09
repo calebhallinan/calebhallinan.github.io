@@ -6,9 +6,12 @@ format:
         toc-depth: 4
 ---
 
-Here is my updated CV as of 10/11/2023
-
+Here is my updated CV as of 08/09/2024
 
 <center>
-    <iframe src="images/calebhallinan_cv.pdf" width="800px" height="800px"></iframe>
+
+<iframe src="images/calebhallinan_cv.pdf" width="800px" height="800px">
+
+</iframe>
+
 </center>
