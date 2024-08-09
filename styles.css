@@ -1,1 +1,42 @@
 /* css styles */
+
+/* Change the background color of the navbar */
+.navbar {
+    background-color: #C45F01; /* Your desired background color */
+}
+
+/* Change the text color of the navbar items */
+.navbar .nav-link {
+    color: #ffffff; /* Your desired text color */
+}
+
+/* Change the color of the navbar items on hover */
+.navbar .nav-link:hover {
+    color: #FF6F00; /* Your desired hover color */
+}
+
+/* Optionally, change the color of the active navbar item */
+.navbar .nav-link.active {
+    color: #934E01; /* Your desired active color */
+}
+
+/* Change the main background color to dark gray */
+body {
+    background-color: #3B3B3B; /* Your desired dark gray background color */
+    color: #ffffff; /* Ensure the text is still visible */
+}
+
+/* Adjust background color for other elements if needed */
+.main-content, .quarto-title-block, .quarto-footer {
+    background-color: #3B3B3B; /* Match the main background */
+}
+
+/* Adjust background color for code blocks, tables, etc. */
+pre, code, table {
+    background-color: #1c1c1c; /* Slightly darker gray for contrast */
+}
+
+/* Optional: adjust text color if needed */
+p, li, h1, h2, h3, h4, h5, h6 {
+    color: #ffffff; /* Ensure text is visible against the dark gray background */
+}
