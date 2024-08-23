@@ -57,6 +57,6 @@ B.A. in Statistics and Biology \| Aug 2017 - May 2021
 Research Assistant II \| Sept 2021 - June 2023
 :::
 
-<p style="text-align: center; font-size: small; color: gray; margin: 0 auto; position: absolute; bottom: 10px; left: 0; right: 0;">
+<div style="text-align: center; font-size: small; color: gray; margin: 0 auto; padding: 10px; position: fixed; bottom: 0; left: 0; right: 0;">
   Website last updated on: August 9, 2024
-</p>
+</div>
