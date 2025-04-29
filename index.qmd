@@ -50,15 +50,15 @@ comments: false
 ::: column-body
 <!-- <font size= "5"> **First Year PhD Student in [Biomedical Engineering](https://www.bme.jhu.edu/) at [Johns Hopkins University](https://www.jhu.edu/)** </font> -->
 
-### Second-Year PhD Student in [Biomedical Engineering](https://www.bme.jhu.edu/) at [Johns Hopkins University](https://www.jhu.edu/) in the [JEFworks Lab](https://jef.works/)
+### Second-Year PhD Candidate in [Biomedical Engineering](https://www.bme.jhu.edu/) at [Johns Hopkins University](https://www.jhu.edu/) in the [JEFworks Lab](https://jef.works/)
 
 <br>
 
 ### [Previous & Current Research Interests:]{.underline}
 
-Morphodynamic analysis of live cell imaging
-
 Computational analysis of spatial transcriptomics data
+
+Morphodynamic analysis of live cell imaging
 
 Developing user-friendly computational software
 
@@ -66,7 +66,7 @@ Developing user-friendly computational software
 
 **Johns Hopkins University**, Baltimore, MD
 
-PhD in Biomedical Engineering \| Aug 2023 - TBD 2028
+PhD in Biomedical Engineering \| Aug 2023 - Present
 
 **University of Virginia** \| Charlottesville, VA
 
