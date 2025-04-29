@@ -1,51 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://calebhallinan.github.io/blog.html</loc>
-    <lastmod>2025-04-04T22:12:54.493Z</lastmod>
-  </url>
-  <url>
-    <loc>https://calebhallinan.github.io/cv.html</loc>
-    <lastmod>2025-04-04T22:12:54.500Z</lastmod>
-  </url>
-  <url>
-    <loc>https://calebhallinan.github.io/blog/2023-10-20-pca-on-images/index.html</loc>
-    <lastmod>2025-04-04T22:12:54.494Z</lastmod>
-  </url>
-  <url>
-    <loc>https://calebhallinan.github.io/blog/2023-09-20-sentiment-analysis-example/index.html</loc>
-    <lastmod>2025-04-04T22:12:54.493Z</lastmod>
-  </url>
-  <url>
-    <loc>https://calebhallinan.github.io/talks.html</loc>
-    <lastmod>2025-04-04T22:12:54.614Z</lastmod>
-  </url>
-  <url>
     <loc>https://calebhallinan.github.io/software.html</loc>
-    <lastmod>2025-04-04T22:12:54.614Z</lastmod>
-  </url>
-  <url>
-    <loc>https://calebhallinan.github.io/index.html</loc>
-    <lastmod>2025-04-04T22:12:54.614Z</lastmod>
-  </url>
-  <url>
-    <loc>https://calebhallinan.github.io/teaching.html</loc>
-    <lastmod>2025-04-04T22:12:54.614Z</lastmod>
-  </url>
-  <url>
-    <loc>https://calebhallinan.github.io/aboutme.html</loc>
-    <lastmod>2025-04-04T22:12:54.493Z</lastmod>
-  </url>
-  <url>
-    <loc>https://calebhallinan.github.io/blog/might-try-blogging/index.html</loc>
-    <lastmod>2025-04-04T22:12:54.500Z</lastmod>
-  </url>
-  <url>
-    <loc>https://calebhallinan.github.io/blog/2023-11-05-fantasy-football-analysis/index.html</loc>
-    <lastmod>2025-04-04T22:12:54.499Z</lastmod>
+    <lastmod>2025-04-29T15:13:38.628Z</lastmod>
   </url>
   <url>
     <loc>https://calebhallinan.github.io/projects.html</loc>
-    <lastmod>2025-04-04T22:12:54.614Z</lastmod>
+    <lastmod>2025-04-29T15:13:38.628Z</lastmod>
+  </url>
+  <url>
+    <loc>https://calebhallinan.github.io/cv.html</loc>
+    <lastmod>2025-04-29T15:13:38.516Z</lastmod>
+  </url>
+  <url>
+    <loc>https://calebhallinan.github.io/blog/2023-11-05-fantasy-football-analysis/index.html</loc>
+    <lastmod>2025-04-29T15:13:38.516Z</lastmod>
+  </url>
+  <url>
+    <loc>https://calebhallinan.github.io/blog/might-try-blogging/index.html</loc>
+    <lastmod>2025-04-29T15:13:38.516Z</lastmod>
+  </url>
+  <url>
+    <loc>https://calebhallinan.github.io/aboutme.html</loc>
+    <lastmod>2025-04-29T15:13:38.509Z</lastmod>
+  </url>
+  <url>
+    <loc>https://calebhallinan.github.io/teaching.html</loc>
+    <lastmod>2025-04-29T15:13:38.628Z</lastmod>
+  </url>
+  <url>
+    <loc>https://calebhallinan.github.io/blog/2023-09-20-sentiment-analysis-example/index.html</loc>
+    <lastmod>2025-04-29T15:13:38.510Z</lastmod>
+  </url>
+  <url>
+    <loc>https://calebhallinan.github.io/blog/2023-10-20-pca-on-images/index.html</loc>
+    <lastmod>2025-04-29T15:13:38.510Z</lastmod>
+  </url>
+  <url>
+    <loc>https://calebhallinan.github.io/talks.html</loc>
+    <lastmod>2025-04-29T15:13:38.628Z</lastmod>
+  </url>
+  <url>
+    <loc>https://calebhallinan.github.io/index.html</loc>
+    <lastmod>2025-04-29T15:13:38.628Z</lastmod>
+  </url>
+  <url>
+    <loc>https://calebhallinan.github.io/blog.html</loc>
+    <lastmod>2025-04-29T15:13:38.510Z</lastmod>
   </url>
 </urlset>
