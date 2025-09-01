@@ -6,7 +6,7 @@ format:
         toc-depth: 4
 ---
 
-Here is my updated CV as of 04/29/2025
+Here is my updated CV as of 09/01/2025
 
 <center>
 
