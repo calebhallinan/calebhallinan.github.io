@@ -6,14 +6,25 @@ format:
         toc-depth: 3
 ---
 
+### 2025
+
+*Posters:*
+
+-   “Impact of Data Quality on Deep Learning Prediction of Spatial Transcriptomics from Histology Images,” AI in Molecular Biology Keystone Symposia, Eldorado Hotel & Spa, Santa Fe, NM, 2025.
+
+(Will add image soon!)
+
+
 ### 2023
 
 *Posters:*
 
--   “Phenotyping of Heterogenous Live Cell Motility and Morphology,” Dr. M. Judah Folkman Research Day, Boston Children’s Hospital & Harvard Medical School, Boston, MA, 2023.
+-   “Phenotyping of Heterogeneous Live Cell Motility and Morphology,” Dr. M. Judah Folkman Research Day, Boston Children’s Hospital & Harvard Medical School, Boston, MA, 2023.
 
 <!-- <center> -->
+
 <!--     <img width="750" height="400" src="images/folkmanday_2023.png"> -->
+
 <!-- </center> -->
 
 
@@ -23,23 +34,19 @@ format:
 
 -   “Machine Learning Approaches Applied to the Prediction of Covid-19 Spread and Cell Motility Phenotyping,” Vascular Biology Program Work in Progress, Boston Children’s Hospital & Harvard Medical School, Boston, MA, 2022.
 
-<center>
-    <img width="300" height="400" src="images/wip_talk.png">
-</center>
-<br>
+<center><img src="images/wip_talk.png" width="300" height="400"/></center>
 
+<br>
 
 -   “Deconvolution of Cellular Heterogeneity for Sub-Type Discovery by Analyzing Feature Variation,” Vascular Biology Program Work in Progress, Boston Children’s Hospital & Harvard Medical School, Boston, MA, 2022.
 
-<center>
-    <img width="300" height="400" src="images/wip_102622.png">
-</center>
+<center><img src="images/wip_102622.png" width="300" height="400"/></center>
+
 <br>
 
 *Posters:*
 
 -   “Deep-Hetero: A Deep Metric Learning with UMAP-based Clustering Approach for Identifying Heterogeneity in Cells,” Dr. M. Judah Folkman Research Day, Boston Children’s Hospital & Harvard Medical School, Boston, MA, 2022.
-
 
 ### 2021
 
