@@ -23,34 +23,12 @@ about:
 comments: false
 ---
 
-<style>
-.footer {
-  text-align: center;
-  font-size: small;
-  color: gray;
-  margin: 0 auto;
-  padding: 10px;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  z-index: 100;
-  padding-bottom: env(safe-area-inset-bottom);
-}
-
-@media only screen and (max-width: 600px) {
-  .footer {
-    position: static;
-  }
-}
-</style>
-
 <!-- NOTE: Use fontawesome for icons above -->
 
 ::: column-body
 <!-- <font size= "5"> **First Year PhD Student in [Biomedical Engineering](https://www.bme.jhu.edu/) at [Johns Hopkins University](https://www.jhu.edu/)** </font> -->
 
-### Second-Year PhD Candidate in [Biomedical Engineering](https://www.bme.jhu.edu/) at [Johns Hopkins University](https://www.jhu.edu/) in the [JEFworks Lab](https://jef.works/)
+### Third-Year PhD Candidate in [Biomedical Engineering](https://www.bme.jhu.edu/) at [Johns Hopkins University](https://www.jhu.edu/) in the [JEFworks Lab](https://jef.works/)
 
 <br>
 
@@ -78,7 +56,3 @@ B.A. in Statistics and Biology \| Aug 2017 - May 2021
 
 Research Assistant II \| Sept 2021 - June 2023
 :::
-
-<div class="footer">
-  Website last updated on: September 01, 2025
-</div>

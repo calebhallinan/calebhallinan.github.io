@@ -12,7 +12,11 @@ format:
 
 -   “Impact of Data Quality on Deep Learning Prediction of Spatial Transcriptomics from Histology Images,” AI in Molecular Biology Keystone Symposia, Eldorado Hotel & Spa, Santa Fe, NM, 2025.
 
-(Will add image soon!)
+<center>
+
+<img width="750" height="600" src="images/poster_improvedgenepred.png">
+
+ </center>
 
 
 ### 2023
