@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.34">
+<meta name="generator" content="quarto-1.8.27">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -35,14 +35,15 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-listing/quarto-listing.js"></script>
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-befe23ebd2f54d8af2c8a89d1a1611f1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-4d9afe2b8d18ee9fa5d0d57b5ed4214d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-98d7d9710456612fc4454c02b7e6ee72.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-fadc7197feb5b0cc1514f5252acd9486.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -114,7 +115,7 @@ const typesetMath = (el) => {
     var macros = [];
     for (var i = 0; i < mathElements.length; i++) {
       var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
         window.katex.render(texText.data, mathElements[i], {
           displayMode: mathElements[i].classList.contains('display'),
           throwOnError: false,
@@ -163,10 +164,6 @@ window.Quarto = {
 <span class="menu-text">Talks/Posters</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./blog.html" aria-current="page"> 
-<span class="menu-text">Blog</span></a>
-  </li>  
-  <li class="nav-item">
     <a class="nav-link" href="./cv.html"> 
 <span class="menu-text">CV</span></a>
   </li>  
@@ -212,7 +209,7 @@ window.Quarto = {
 
 <div class="quarto-listing quarto-listing-container-default" id="listing-listing">
 <div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="cHJvamVjdA==" data-listing-date-sort="1699142400000" data-listing-file-modified-sort="1756737565139" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="28" data-listing-word-count-sort="5503">
+<div class="quarto-post image-right" data-index="0" data-categories="cHJvamVjdA==" data-listing-date-sort="1699142400000" data-listing-file-modified-sort="1771005586452" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="28" data-listing-word-count-sort="5503">
 <div class="thumbnail"><a href="./blog/2023-11-05-fantasy-football-analysis/index.html" class="no-external">
 
 <img loading="lazy" src="./blog/2023-11-05-fantasy-football-analysis/fantasy_football.webp" class="thumbnail-image">
@@ -242,7 +239,7 @@ Caleb Hallinan
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="1" data-categories="cHJvamVjdA==" data-listing-date-sort="1697673600000" data-listing-file-modified-sort="1756737565133" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="22" data-listing-word-count-sort="4399">
+<div class="quarto-post image-right" data-index="1" data-categories="cHJvamVjdA==" data-listing-date-sort="1697673600000" data-listing-file-modified-sort="1771005586447" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="22" data-listing-word-count-sort="4399">
 <div class="thumbnail"><a href="./blog/2023-10-20-pca-on-images/index.html" class="no-external">
 
 <img loading="lazy" src="./blog/2023-10-20-pca-on-images/preview_image.png" class="thumbnail-image">
@@ -272,7 +269,7 @@ Caleb Hallinan
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="2" data-categories="cHJvamVjdA==" data-listing-date-sort="1696464000000" data-listing-file-modified-sort="1756737565133" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="37" data-listing-word-count-sort="7373">
+<div class="quarto-post image-right" data-index="2" data-categories="cHJvamVjdA==" data-listing-date-sort="1696464000000" data-listing-file-modified-sort="1771005586446" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="37" data-listing-word-count-sort="7373">
 <div class="thumbnail"><a href="./blog/2023-09-20-sentiment-analysis-example/index.html" class="no-external">
 
 <img loading="lazy" src="./blog/2023-09-20-sentiment-analysis-example/preview_image.png" class="thumbnail-image">
@@ -302,7 +299,7 @@ Caleb Hallinan
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="3" data-categories="YW5ub3VuY2VtZW50" data-listing-date-sort="1696118400000" data-listing-file-modified-sort="1756737565139" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="23">
+<div class="quarto-post image-right" data-index="3" data-categories="YW5ub3VuY2VtZW50" data-listing-date-sort="1696118400000" data-listing-file-modified-sort="1771005586452" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="23">
 <div class="thumbnail"><a href="./blog/might-try-blogging/index.html" class="no-external">
 
 <div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
@@ -386,13 +383,14 @@ Caleb Hallinan
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy
@@ -735,6 +733,19 @@ Caleb Hallinan
   });
   </script>
 </div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>Website last updated on: February 13, 2026</p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
 
 
 

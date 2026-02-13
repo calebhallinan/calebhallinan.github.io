@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.34">
+<meta name="generator" content="quarto-1.8.27">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -33,13 +33,14 @@ ul.task-list li input[type="checkbox"] {
 <link href="./images/dice_icon.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-befe23ebd2f54d8af2c8a89d1a1611f1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-4d9afe2b8d18ee9fa5d0d57b5ed4214d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-98d7d9710456612fc4454c02b7e6ee72.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-fadc7197feb5b0cc1514f5252acd9486.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
 <link href="site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
 <link href="site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
@@ -104,10 +105,6 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">Talks/Posters</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./blog.html"> 
-<span class="menu-text">Blog</span></a>
-  </li>  
-  <li class="nav-item">
     <a class="nav-link" href="./cv.html"> 
 <span class="menu-text">CV</span></a>
   </li>  
@@ -153,31 +150,11 @@ ul.task-list li input[type="checkbox"] {
 </div>
   </div>
   <div class="about-contents page-columns page-full"><main class="content page-columns page-full" id="quarto-document-content">
-<style>
-.footer {
-  text-align: center;
-  font-size: small;
-  color: gray;
-  margin: 0 auto;
-  padding: 10px;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  z-index: 100;
-  padding-bottom: env(safe-area-inset-bottom);
-}
-@media only screen and (max-width: 600px) {
-  .footer {
-    position: static;
-  }
-}
-</style>
 <!-- NOTE: Use fontawesome for icons above -->
 <div class="column-body">
 <!-- <font size= "5"> **First Year PhD Student in [Biomedical Engineering](https://www.bme.jhu.edu/) at [Johns Hopkins University](https://www.jhu.edu/)** </font> -->
-<section id="second-year-phd-candidate-in-biomedical-engineering-at-johns-hopkins-university-in-the-jefworks-lab" class="level3">
-<h3 data-anchor-id="second-year-phd-candidate-in-biomedical-engineering-at-johns-hopkins-university-in-the-jefworks-lab">Second-Year PhD Candidate in <a href="https://www.bme.jhu.edu/">Biomedical Engineering</a> at <a href="https://www.jhu.edu/">Johns Hopkins University</a> in the <a href="https://jef.works/">JEFworks Lab</a></h3>
+<section id="third-year-phd-candidate-in-biomedical-engineering-at-johns-hopkins-university-in-the-jefworks-lab" class="level3">
+<h3 data-anchor-id="third-year-phd-candidate-in-biomedical-engineering-at-johns-hopkins-university-in-the-jefworks-lab">Third-Year PhD Candidate in <a href="https://www.bme.jhu.edu/">Biomedical Engineering</a> at <a href="https://www.jhu.edu/">Johns Hopkins University</a> in the <a href="https://jef.works/">JEFworks Lab</a></h3>
 <p><br></p>
 </section>
 <section id="previous-current-research-interests" class="level3">
@@ -198,9 +175,6 @@ ul.task-list li input[type="checkbox"] {
 <p><strong>Boston Children’s Hospital &amp; Harvard Medical School</strong> | Boston, MA</p>
 <p>Research Assistant II | Sept 2021 - June 2023</p>
 </section>
-</div>
-<div class="footer">
-<p>Website last updated on: September 01, 2025</p>
 </div>
 
 
@@ -251,13 +225,14 @@ ul.task-list li input[type="checkbox"] {
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy
@@ -600,6 +575,19 @@ ul.task-list li input[type="checkbox"] {
   });
   </script>
 </div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>Website last updated on: February 13, 2026</p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
 
 
 
