@@ -1,17 +1,16 @@
 ---
-title: "CV"
+title: "Curriculum Vitae"
 format:
     html:
-        toc: true
-        toc-depth: 4
+        toc: false
 ---
 
-Here is my updated CV as of 09/01/2025
+Full academic CV. View inline below or download the PDF.
+<!-- TODO: add a one-page résumé PDF and link it here once available. -->
 
-<center>
+[{{< fa file-arrow-down >}} Download CV (PDF)](images/calebhallinan_cv.pdf){.btn-accent}
 
-<iframe src="images/calebhallinan_cv.pdf" width="800px" height="800px">
+<br><br>
 
+<iframe src="images/calebhallinan_cv.pdf" width="100%" height="1000px" style="border: 1px solid var(--border); border-radius: 8px;" title="Caleb Hallinan CV">
 </iframe>
-
-</center>

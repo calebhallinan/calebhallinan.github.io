@@ -1,8 +1,160 @@
 ---
-title: "Teaching"
+title: "Teaching & Mentorship"
 format:
     html:
-        toc: true
+        toc: false
 ---
 
-# TBD
+::: {.section-intro}
+I care deeply about teaching and mentorship, and my long-term goal is to become a teaching
+professor — training the next generation of scientists in computational biology, machine learning,
+and reproducible research. Below is my teaching and mentorship history, most recent first.
+:::
+
+::: {.teaching-list}
+::: {.teaching-item}
+::: {.teaching-date}
+Jun 2026 – Present
+:::
+::: {.teaching-role}
+Research Mentor, High School Student
+:::
+::: {.teaching-org}
+Whiting School of Engineering Summer Internship Program (WISE), Johns Hopkins University
+:::
+::: {.teaching-desc}
+Mentor a high school student interested in biomedical engineering, computational biology, and
+data-driven biomedical research, introducing core concepts in Python programming, biomedical image
+analysis, and spatial omics.
+:::
+:::
+
+::: {.teaching-item}
+::: {.teaching-date}
+May 2025 – Present
+:::
+::: {.teaching-role}
+Research Mentor, Undergraduate Student
+:::
+::: {.teaching-org}
+Biomedical Engineering Department, Johns Hopkins University
+:::
+::: {.teaching-desc}
+Mentor an undergraduate student in computational biology, spatial transcriptomics, histopathology
+image analysis, and Python-based research workflows.
+:::
+:::
+
+::: {.teaching-item}
+::: {.teaching-date}
+Jan 2026
+:::
+::: {.teaching-role}
+Course Instructor, Neural Networks from Scratch
+:::
+::: {.teaching-org}
+Biomedical Engineering Department, Johns Hopkins University
+:::
+::: {.teaching-desc}
+Designed and taught a hands-on course on building neural networks from first principles, covering
+backpropagation, convolutional neural networks, Transformers, and PyTorch implementations.
+:::
+:::
+
+::: {.teaching-item}
+::: {.teaching-date}
+Aug 2025 – Nov 2025
+:::
+::: {.teaching-role}
+Course Instructor, Deep Learning for Spatial Transcriptomics
+:::
+::: {.teaching-org}
+Biomedical Engineering Department, Johns Hopkins University
+:::
+::: {.teaching-desc}
+Designed and taught an original course on deep learning methods for spatial transcriptomics,
+including conceptual lectures and hands-on PyTorch tutorials on representation learning,
+image-based prediction, and model evaluation.
+:::
+:::
+
+::: {.teaching-item}
+::: {.teaching-date}
+Jan 2025 – Mar 2025
+:::
+::: {.teaching-role}
+Teaching Assistant, Genomic Data Visualization
+:::
+::: {.teaching-org}
+Biomedical Engineering Department, Johns Hopkins University
+:::
+::: {.teaching-desc}
+Supported student learning through office hours, grading, and feedback on genomic data
+visualization techniques for high-dimensional genomic datasets.
+:::
+:::
+
+::: {.teaching-item}
+::: {.teaching-date}
+Jan 2024 – May 2024
+:::
+::: {.teaching-role}
+Teaching Assistant, Data Science for Public Health I/II
+:::
+::: {.teaching-org}
+Biostatistics Department, Johns Hopkins Bloomberg School of Public Health
+:::
+::: {.teaching-desc}
+Facilitated student understanding of data science concepts through office hours, assignment
+support, and grading of computational assignments.
+:::
+:::
+
+::: {.teaching-item}
+::: {.teaching-date}
+Jan 2023
+:::
+::: {.teaching-role}
+Teaching Assistant, Computational Analysis of Heterogeneity in Cellular Images Nano Course
+:::
+::: {.teaching-org}
+Harvard Medical School Curriculum Fellows Program, Harvard Medical School
+:::
+::: {.teaching-desc}
+Guided 20 participants through hands-on analysis of live-cell image datasets, supporting
+instruction on cell segmentation, edge detection, and cell tracking.
+:::
+:::
+
+::: {.teaching-item}
+::: {.teaching-date}
+Jan 2020 – May 2021
+:::
+::: {.teaching-role}
+Teaching Assistant, Regression Analysis
+:::
+::: {.teaching-org}
+Statistics Department, University of Virginia
+:::
+::: {.teaching-desc}
+Supported instruction for 80 students in a SAS-based, project-oriented regression analysis course,
+including office hours, grading, and individualized feedback.
+:::
+:::
+
+::: {.teaching-item}
+::: {.teaching-date}
+Sep 2019 – Dec 2019
+:::
+::: {.teaching-role}
+Teaching Assistant, Introduction to Chemistry Lab
+:::
+::: {.teaching-org}
+Chemistry Department, University of Virginia
+:::
+::: {.teaching-desc}
+Supervised 24 students in weekly chemistry laboratory sessions, including grading and lab safety
+support.
+:::
+:::
+:::

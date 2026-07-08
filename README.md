@@ -1,6 +1,30 @@
-# Website for Caleb Hallinan
+# calebhallinan.github.io
 
-I, Caleb, am the author of this website. I utilized the design of various other websites to come up with mine. This website was created and deployed via quarto (https://quarto.org/). Feel free to reach out to me with any questions regarding it!
+Personal academic website for Caleb Hallinan — a Biomedical Engineering PhD candidate at Johns
+Hopkins University working on machine learning and computational methods for spatial
+transcriptomics, digital pathology, and tissue-scale biological analysis.
 
-To check out the results or for my contact info, check out my website here:
-https://calebhallinan.github.io/
+Built with [Quarto](https://quarto.org/) and deployed to GitHub Pages via GitHub Actions
+(`.github/workflows/publish.yml`) on every push to `main`.
+
+## Structure
+
+- `index.qmd` — single-page landing (intro, research, news, publications, software, teaching,
+  experience & education, contact)
+- `talks.qmd` — talks and posters
+- `cv.qmd` — embedded CV PDF
+- `styles.css` — site theme (light, minimal, indigo accent)
+- `_quarto.yml` — site config, navigation, and SEO metadata
+
+## Local preview
+
+```bash
+quarto preview     # live-reloading local server
+quarto render      # build the static site into _site/
+```
+
+## Deploy
+
+Push to `main`; the GitHub Action runs `quarto publish gh-pages`. No manual steps required.
+
+Live site: https://calebhallinan.github.io/

@@ -1,0 +1,200 @@
+---
+title: "All Publications"
+format:
+    html:
+        toc: false
+---
+
+::: {.section-intro}
+The complete and automatically updated list of my publications is available on
+[Google Scholar](https://scholar.google.com/citations?user=jqY4-LcAAAAJ&hl=en). Below is a manually
+curated list cross-checked against Google Scholar and my CV, most recent first. Names in **bold**
+indicate me; an asterisk (\*) denotes co-first authorship.
+:::
+
+[{{< fa graduation-cap >}} View complete list on Google Scholar](https://scholar.google.com/citations?user=jqY4-LcAAAAJ&hl=en){.btn-accent}
+
+<br><br>
+
+::: {.filter-bar data-pub-filter="true" role="group" aria-label="Filter publications by type"}
+<button type="button" class="filter-btn" data-filter-type="all" aria-pressed="true">All</button>
+<button type="button" class="filter-btn" data-filter-type="journal" aria-pressed="false">Journal</button>
+<button type="button" class="filter-btn" data-filter-type="preprint" aria-pressed="false">Preprint</button>
+<button type="button" class="filter-btn" data-filter-type="conference" aria-pressed="false">Conference</button>
+<label class="filter-label" for="pub-year">Year</label>
+<select id="pub-year" class="filter-select" data-year-filter="true">
+<option value="all">All</option>
+<option value="2026">2026</option>
+<option value="2025">2025</option>
+<option value="2024">2024</option>
+<option value="2023">2023</option>
+<option value="2022">2022</option>
+</select>
+<button type="button" class="filter-btn" data-sort-toggle="true" aria-pressed="false">Newest first</button>
+:::
+
+::: {.pub-list}
+::: {.pub data-type="journal" data-year="2026"}
+::: {.pub-title}
+[Evidence of off-target probe binding affecting 10x Genomics Xenium gene panels compromise accuracy of spatial transcriptomic profiling](https://elifesciences.org/articles/107070)
+:::
+::: {.pub-authors}
+[Hallinan C]{.me}, Ji HJ, Tsou E, Salzberg SL, Fan J
+:::
+::: {.pub-venue}
+eLife, 2026 [Journal]{.pub-tag}
+:::
+::: {.pub-links}
+[eLife](https://elifesciences.org/articles/107070)
+[DOI](https://doi.org/10.7554/eLife.107070.3)
+[Code](https://github.com/JEFworks-Lab/off-target-probe-tracker)
+:::
+:::
+
+::: {.pub data-type="preprint" data-year="2025"}
+::: {.pub-title}
+[Spatial Transcriptomics As Rasterized Image Tensors (STARIT) characterizes cell states with subcellular molecular heterogeneity](https://www.biorxiv.org/content/10.64898/2025.12.18.695193v1)
+:::
+::: {.pub-authors}
+Velazquez D, [Hallinan C]{.me}, An R, Clifton K, Fan J
+:::
+::: {.pub-venue}
+bioRxiv, 2025 [Preprint]{.pub-tag}
+:::
+::: {.pub-links}
+[Preprint](https://www.biorxiv.org/content/10.64898/2025.12.18.695193v1)
+[PDF](https://www.biorxiv.org/content/10.64898/2025.12.18.695193v1.full.pdf)
+[Code](https://github.com/JEFworks-Lab/STARIT)
+:::
+:::
+
+::: {.pub data-type="preprint" data-year="2025"}
+::: {.pub-title}
+[Impact of Data Quality on Deep Learning Prediction of Spatial Transcriptomics from Histology Images](https://www.biorxiv.org/content/10.1101/2025.09.04.674228v1)
+:::
+::: {.pub-authors}
+[Hallinan C]{.me}, Lucas C-HG, Fan J
+:::
+::: {.pub-venue}
+bioRxiv, 2025 [Preprint]{.pub-tag}
+:::
+::: {.pub-links}
+[Preprint](https://www.biorxiv.org/content/10.1101/2025.09.04.674228v1)
+[PDF](https://www.biorxiv.org/content/10.1101/2025.09.04.674228v1.full.pdf)
+[DOI](https://doi.org/10.1101/2025.09.04.674228)
+<!-- TODO: add Code link when the repository is public -->
+:::
+:::
+
+::: {.pub data-type="journal" data-year="2025"}
+::: {.pub-title}
+[Spatial mutual nearest neighbors for spatial transcriptomics data](https://doi.org/10.1093/bioinformatics/btaf403)
+:::
+::: {.pub-authors}
+Zhou H, Panwar P, Guo B, [Hallinan C]{.me}, Ghazanfar S, Hicks SC
+:::
+::: {.pub-venue}
+Bioinformatics, 2025 [Journal]{.pub-tag}
+:::
+::: {.pub-links}
+[Article](https://doi.org/10.1093/bioinformatics/btaf403)
+[DOI](https://doi.org/10.1093/bioinformatics/btaf403)
+[Code](https://github.com/Pixel-Dream/spatialMNN)
+:::
+:::
+
+::: {.pub data-type="journal" data-year="2025"}
+::: {.pub-title}
+[Heterogeneity-preserving discriminative feature selection for disease-specific subtype discovery (PHet)](https://www.nature.com/articles/s41467-025-58718-1)
+:::
+::: {.pub-authors}
+M A Basher AR\*, [Hallinan C]{.me}\*, Lee K
+:::
+::: {.pub-venue}
+Nature Communications, 2025 [Journal]{.pub-tag}
+:::
+::: {.pub-links}
+[Article](https://www.nature.com/articles/s41467-025-58718-1)
+[DOI](https://doi.org/10.1038/s41467-025-58718-1)
+[Code](https://github.com/kleelab-bch/phet)
+:::
+:::
+
+::: {.pub data-type="journal" data-year="2025"}
+::: {.pub-title}
+[Breast Cancer-Derived Extracellular Vesicles Modulate the Cytoplasmic and Cytoskeletal Dynamics of Blood-Brain Barrier Endothelial Cells](https://doi.org/10.1002/jev2.70038)
+:::
+::: {.pub-authors}
+Busatto S, Song T-H, Kim HJ, [Hallinan C]{.me}, Lombardo MN, Stemmer-Rachamimov AO, Lee K, Moses MA
+:::
+::: {.pub-venue}
+Journal of Extracellular Vesicles, 2025 [Journal]{.pub-tag}
+:::
+::: {.pub-links}
+[Article](https://doi.org/10.1002/jev2.70038)
+[DOI](https://doi.org/10.1002/jev2.70038)
+:::
+:::
+
+::: {.pub data-type="conference" data-year="2024"}
+::: {.pub-title}
+Crosstalk with postmenopausal obese mammary adipocytes impacts breast cancer cell metabolism and promotes tumorigenesis
+:::
+::: {.pub-authors}
+Roy R, Aldakhlallah R, Cobbs S, Man E, [Hallinan C]{.me}, Lee K, Lotz-Bousvaros M, Pories S, Moses MA
+:::
+::: {.pub-venue}
+Cancer Research, 2024 [Conference]{.pub-tag}
+:::
+::: {.pub-links}
+<!-- TODO: add a link/DOI for this conference abstract if one becomes available. -->
+:::
+:::
+
+::: {.pub data-type="conference" data-year="2024"}
+::: {.pub-title}
+Integrating Motility and Morphology for Unraveling Cellular Phenotypic Heterogeneity in Breast Cancer Stem Cells
+:::
+::: {.pub-authors}
+Lee K, [Hallinan C]{.me}, Kim H, Basher A, Abul M, Sui L, Watnick R
+:::
+::: {.pub-venue}
+Molecular Biology of the Cell, 2024 [Conference]{.pub-tag}
+:::
+::: {.pub-links}
+<!-- TODO: add a link/DOI for this conference abstract if one becomes available. -->
+:::
+:::
+
+::: {.pub data-type="journal" data-year="2023"}
+::: {.pub-title}
+[Screening adequacy of unstained thyroid fine needle aspiration samples using a deep learning-based classifier (FNA-Net)](https://www.nature.com/articles/s41598-023-40652-1)
+:::
+::: {.pub-authors}
+Jang J, Kim YH, Westgate B, Zong Y, [Hallinan C]{.me}, Akalin A, Lee K
+:::
+::: {.pub-venue}
+Scientific Reports, 2023 [Journal]{.pub-tag}
+:::
+::: {.pub-links}
+[Article](https://www.nature.com/articles/s41598-023-40652-1)
+[DOI](https://doi.org/10.1038/s41598-023-40652-1)
+:::
+:::
+
+::: {.pub data-type="journal" data-year="2022"}
+::: {.pub-title}
+[Protocol for live cell image segmentation to profile cellular morphodynamics using MARS-Net](https://www.sciencedirect.com/science/article/pii/S2666166722003495)
+:::
+::: {.pub-authors}
+Jang J, [Hallinan C]{.me}, Lee K
+:::
+::: {.pub-venue}
+STAR Protocols, 2022 [Journal]{.pub-tag}
+:::
+::: {.pub-links}
+[Article](https://www.sciencedirect.com/science/article/pii/S2666166722003495)
+[DOI](https://doi.org/10.1016/j.xpro.2022.101469)
+:::
+:::
+:::

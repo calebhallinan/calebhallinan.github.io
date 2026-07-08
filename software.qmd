@@ -1,40 +1,80 @@
 ---
-title: "Software and data packages"
+title: "Software"
 format:
     html:
-        toc: true
+        toc: false
 ---
 
-## Bioconductor
+::: {.section-intro}
+Open-source tools I've built or contributed to for spatial and imaging-based transcriptomics. More
+on my [GitHub](https://github.com/calebhallinan).
+:::
 
-#### Software packages
+::: {.software-grid}
+::: {.software-item}
+### Off-target Probe Tracker (OPT)
+A tool associated with the Xenium off-target probe binding work for identifying putative
+off-target probe binding through sequence-alignment-based analysis.
 
-TBD
+::: {.software-links}
+::: {.pub-links}
+[GitHub](https://github.com/JEFworks-Lab/off-target-probe-tracker)
+:::
+[Manuscript](https://elifesciences.org/articles/107070){.btn-accent-sm}
+:::
+:::
 
+::: {.software-item}
+### P-Het
+Software for Preserving Heterogeneity / subtype discovery from transcriptomic data, associated
+with the Nature Communications P-Het paper.
 
-#### Data packages
+::: {.software-links}
+::: {.pub-links}
+[GitHub](https://github.com/kleelab-bch/phet)
+:::
+[Manuscript](https://doi.org/10.1038/s41467-025-58718-1){.btn-accent-sm}
+:::
+:::
 
-TBD
+::: {.software-item}
+### SpatialMNN
+spatialMNN, an algorithm that integrates multiple spatial transcriptomic samples and identifies
+spatial domains.
+<!-- TODO: clarify Caleb's specific role/contribution to this project once confirmed. -->
 
-## CRAN
+::: {.software-links}
+::: {.pub-links}
+[GitHub](https://github.com/Pixel-Dream/spatialMNN)
+:::
+[Manuscript](https://doi.org/10.1093/bioinformatics/btaf403){.btn-accent-sm}
+:::
+:::
 
-#### Software packages
+::: {.software-item}
+### STARIT
+Converts transcripts within segmented cells in imaging-based spatial transcriptomics data into
+rasterized image tensors, enabling deep-learning models to characterize cell states from
+subcellular molecular heterogeneity rather than gene counts alone.
 
-TBD
+::: {.software-links}
+::: {.pub-links}
+[GitHub](https://github.com/JEFworks-Lab/STARIT)
+:::
+[Manuscript](https://www.biorxiv.org/content/10.64898/2025.12.18.695193v1){.btn-accent-sm}
+:::
+:::
 
+::: {.software-item}
+### FNA-Net
+Deep learning software associated with FNA-Net for screening the adequacy of unstained thyroid
+fine needle aspiration samples.
 
-## Python
-
-#### Software packages
-
-TBD
-
-## GitHub
-
-#### Software packages
-
-TBD
-
-#### Data packages
-
-TBD
+::: {.software-links}
+::: {.pub-links}
+[GitHub](https://github.com/kleelab-bch/FNA)
+:::
+[Manuscript](https://www.nature.com/articles/s41598-023-40652-1#Abs1){.btn-accent-sm}
+:::
+:::
+:::

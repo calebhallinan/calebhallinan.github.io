@@ -1,22 +1,55 @@
 project:
   type: website
+  output-dir: _site
+  resources:
+    - assets/
 
 website:
   title: "Caleb Hallinan"
+  description: "Caleb Hallinan is a Biomedical Engineering PhD candidate at Johns Hopkins University developing machine learning and computational methods for spatial transcriptomics, digital pathology, and tissue-scale biological analysis."
+  site-url: "https://calebhallinan.github.io"
   favicon: "images/dice_icon.png"
-  page-footer:
-    center: "Website last updated on: February 13, 2026"
+  open-graph: true
+  twitter-card:
+    creator: "@caleb_hallinan"
+    card-style: summary
   navbar:
+    pinned: true
+    title: "Caleb Hallinan"
     right:
-      - aboutme.qmd
-      - projects.qmd
-      - talks.qmd
-      - cv.qmd
+      - text: "Research"
+        href: "research.qmd"
+      - text: "Publications"
+        href: "publications.qmd"
+      - text: "Software"
+        href: "software.qmd"
+      - text: "Talks"
+        href: "talks.qmd"
+      - text: "Teaching"
+        href: "teaching.qmd"
+      - text: "News"
+        href: "news.qmd"
+      - text: "CV"
+        href: "cv.qmd"
+  page-footer:
+    left: "&copy; 2026 Caleb Hallinan"
+    center: "Built with [Quarto](https://quarto.org/)"
+    right: "[GitHub](https://github.com/calebhallinan) &middot; [Email](mailto:challin1@jh.edu)"
 
 format:
   html:
-    theme: darkly
+    theme: cosmo
     css: styles.css
+    toc: false
+    grid:
+      body-width: 1040px
+    anchor-sections: true
+    link-external-newwindow: true
+    link-external-icon: false
+    smooth-scroll: true
+    include-in-header: _includes/head-theme.html
+    include-before-body: _includes/canvas.html
+    include-after-body: _includes/scripts.html
 
 editor: visual
 

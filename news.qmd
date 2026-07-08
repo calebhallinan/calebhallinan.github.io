@@ -1,0 +1,230 @@
+---
+title: "News"
+format:
+    html:
+        toc: false
+---
+
+::: {.section-intro}
+A chronological record of publications, talks, and milestones. Filter by category below.
+:::
+
+::: {.filter-bar data-news-filter="true" role="group" aria-label="Filter news by category"}
+<button type="button" class="filter-btn" data-filter-tag="all" aria-pressed="true">All</button>
+<button type="button" class="filter-btn" data-filter-tag="publication" aria-pressed="false">Publication</button>
+<button type="button" class="filter-btn" data-filter-tag="talk" aria-pressed="false">Talk</button>
+<button type="button" class="filter-btn" data-filter-tag="milestone" aria-pressed="false">Milestone</button>
+<button type="button" class="filter-btn" data-filter-tag="other" aria-pressed="false">Other</button>
+:::
+
+::: {.news-list}
+::: {.news-item data-tags="milestone"}
+::: {.news-date}
+Jun 2026
+:::
+::: {.news-body}
+Attended the HuBMAP Final Hurrah and Spatial Biology meetings at the NIH.
+
+::: {.tag-row}
+[Milestone]{.tag}
+:::
+:::
+:::
+
+::: {.news-item data-tags="publication"}
+::: {.news-date}
+May 2026
+:::
+::: {.news-body}
+Version of record published in **eLife**: [off-target probe binding in 10x Genomics Xenium gene panels](https://elifesciences.org/articles/107070), introducing the [Off-target Probe Tracker (OPT)](https://github.com/JEFworks-Lab/off-target-probe-tracker) tool.
+
+::: {.tag-row}
+[Publication]{.tag}
+:::
+:::
+:::
+
+::: {.news-item data-tags="talk"}
+::: {.news-date}
+2026
+:::
+::: {.news-body}
+Gave a talk, "Understanding Spatial Transcriptomics and Evaluating Probe Accuracy in 10x Genomics Xenium Technology," at the Models, Inference & Algorithms (MIA) Seminar, Broad Institute, Cambridge, MA.
+
+::: {.tag-row}
+[Talk]{.tag}
+:::
+:::
+:::
+
+::: {.news-item data-tags="talk"}
+::: {.news-date}
+2026
+:::
+::: {.news-body}
+Gave a talk, "Predicting 3D Molecular Maps from 2D Histology using Deep Learning," at the Genomics Joint Lab Meeting, Johns Hopkins University, Baltimore, MD.
+
+::: {.tag-row}
+[Talk]{.tag}
+:::
+:::
+:::
+
+::: {.news-item data-tags="publication"}
+::: {.news-date}
+Dec 2025
+:::
+::: {.news-body}
+New bioRxiv preprint, [STARIT](https://www.biorxiv.org/content/10.64898/2025.12.18.695193v1), characterizing cell states with subcellular molecular heterogeneity in spatial transcriptomics data.
+
+::: {.tag-row}
+[Publication]{.tag}
+:::
+:::
+:::
+
+::: {.news-item data-tags="publication"}
+::: {.news-date}
+Sep 2025
+:::
+::: {.news-body}
+New [bioRxiv preprint](https://www.biorxiv.org/content/10.1101/2025.09.04.674228v1) on how molecular and image **data quality** shapes deep-learning prediction of spatial transcriptomics from histology.
+
+::: {.tag-row}
+[Publication]{.tag}
+:::
+:::
+:::
+
+::: {.news-item data-tags="publication"}
+::: {.news-date}
+Aug 2025
+:::
+::: {.news-body}
+[spatialMNN](https://doi.org/10.1093/bioinformatics/btaf403) published in *Bioinformatics* — an algorithm for integrating multiple spatial transcriptomics samples and identifying spatial domains ([code](https://github.com/Pixel-Dream/spatialMNN)).
+
+::: {.tag-row}
+[Publication]{.tag}
+:::
+:::
+:::
+
+::: {.news-item data-tags="publication"}
+::: {.news-date}
+Apr 2025
+:::
+::: {.news-body}
+**[PHet](https://doi.org/10.1038/s41467-025-58718-1)** published in *Nature Communications* — a heterogeneity-preserving feature-selection method for disease-specific subtype discovery (co-first author).
+
+::: {.tag-row}
+[Publication]{.tag}
+:::
+:::
+:::
+
+::: {.news-item data-tags="talk"}
+::: {.news-date}
+2025
+:::
+::: {.news-body}
+Gave a talk, "Impact of Data Quality on Gene Expression Prediction using Deep Learning on Histopathology Images," at the Genomics Joint Lab Meeting, Johns Hopkins University, Baltimore, MD.
+
+::: {.tag-row}
+[Talk]{.tag}
+:::
+:::
+:::
+
+::: {.news-item data-tags="talk"}
+::: {.news-date}
+2025
+:::
+::: {.news-body}
+Presented a poster, "Impact of Data Quality on Deep Learning Prediction of Spatial Transcriptomics from Histology Images," at the AI in Molecular Biology Keystone Symposia, Santa Fe, NM.
+
+::: {.tag-row}
+[Talk]{.tag}
+:::
+:::
+:::
+
+::: {.news-item data-tags="publication"}
+::: {.news-date}
+Jan 2025
+:::
+::: {.news-body}
+Co-authored ["Breast Cancer-Derived Extracellular Vesicles Modulate the Cytoplasmic and Cytoskeletal Dynamics of Blood-Brain Barrier Endothelial Cells"](https://doi.org/10.1002/jev2.70038), published in the *Journal of Extracellular Vesicles*.
+
+::: {.tag-row}
+[Publication]{.tag}
+:::
+:::
+:::
+
+::: {.news-item data-tags="talk"}
+::: {.news-date}
+2023
+:::
+::: {.news-body}
+Presented a poster, "Phenotyping of Heterogeneous Live Cell Motility and Morphology," at the Dr. M. Judah Folkman Research Day, Boston Children's Hospital & Harvard Medical School, Boston, MA.
+
+::: {.tag-row}
+[Talk]{.tag}
+:::
+:::
+:::
+
+::: {.news-item data-tags="talk"}
+::: {.news-date}
+2022
+:::
+::: {.news-body}
+Gave a talk, "Deconvolution of Cellular Heterogeneity for Sub-Type Discovery by Analyzing Feature Variation," at the Vascular Biology Program Work in Progress, Boston Children's Hospital & Harvard Medical School, Boston, MA.
+
+::: {.tag-row}
+[Talk]{.tag}
+:::
+:::
+:::
+
+::: {.news-item data-tags="talk"}
+::: {.news-date}
+2022
+:::
+::: {.news-body}
+Gave a talk, "Machine Learning Approaches Applied to the Prediction of COVID-19 Spread and Cell Motility Phenotyping," at the Vascular Biology Program Work in Progress, Boston Children's Hospital & Harvard Medical School, Boston, MA.
+
+::: {.tag-row}
+[Talk]{.tag}
+:::
+:::
+:::
+
+::: {.news-item data-tags="talk"}
+::: {.news-date}
+2022
+:::
+::: {.news-body}
+Presented a poster, "Deep-Hetero: A Deep Metric Learning with UMAP-based Clustering Approach for Identifying Heterogeneity in Cells," at the Dr. M. Judah Folkman Research Day, Boston Children's Hospital & Harvard Medical School, Boston, MA.
+
+::: {.tag-row}
+[Talk]{.tag}
+:::
+:::
+:::
+
+::: {.news-item data-tags="talk"}
+::: {.news-date}
+2021
+:::
+::: {.news-body}
+Gave a talk, "Ultrasound Microbubble Tumor Analysis," at the Focused Ultrasound Foundation Summer Intern Presentations, Charlottesville, VA.
+
+::: {.tag-row}
+[Talk]{.tag}
+:::
+:::
+:::
+:::
+
+<!-- TODO: append new items here (keep most recent first); assign one of publication/talk/milestone/other via data-tags. -->
