@@ -1,284 +1,713 @@
-@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Sora:wght@500;600;700&display=swap");
+/* ==========================================================================
+   Caleb Hallinan — minimal academic theme
+   Dark-first · orange accent · spatial-transcriptomics canvas background
+   Theme tokens switch via [data-theme] on <html>; dark is the default.
+   ========================================================================== */
 
-:root {
-  --bg-0: #18120c;
-  --bg-1: #21170f;
-  --surface-0: rgba(255, 255, 255, 0.04);
-  --surface-1: rgba(255, 255, 255, 0.07);
-  --text-0: #fff6ec;
-  --text-1: #ffdcbf;
-  --accent-0: #ff8a1c;
-  --accent-1: #ff6b00;
-  --accent-2: #ffb066;
-  --border-0: rgba(255, 167, 82, 0.35);
-  --shadow-0: 0 16px 40px rgba(0, 0, 0, 0.35);
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,500;6..72,600&display=swap");
+
+/* ---- Theme tokens -------------------------------------------------------- */
+
+:root,
+:root[data-theme="dark"] {
+  --bg: #0d0e10;
+  --bg-muted: #16181c;
+  --text: #e9e7e3;
+  --text-muted: #9ba0a6;
+  --text-faint: #71767c;
+  --border: rgba(255, 255, 255, 0.10);
+  --border-strong: rgba(255, 255, 255, 0.17);
+  --accent: #f2994a;         /* restrained orange */
+  --accent-hover: #f6b273;
+  --accent-soft: rgba(242, 153, 74, 0.14);
+  /* Mostly-opaque but not fully solid: the background canvas stays faintly
+     visible through cards (rather than disappearing behind them) while text
+     contrast stays effectively unchanged since the canvas itself is so faint. */
+  --card-bg: rgba(23, 25, 29, 0.92);
+  --link: var(--accent);
+  --serif: "Newsreader", Georgia, "Times New Roman", serif;
+  --sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  /* Must match format.html.grid.body-width in _quarto.yml so the navbar and
+     footer line up with the main content column. */
+  --content-width: 1040px;
 }
 
-html,
-body {
-  min-height: 100%;
+:root[data-theme="light"] {
+  --bg: #ffffff;
+  --bg-muted: #f5f6f7;
+  --text: #1f2328;
+  --text-muted: #5b6570;
+  --text-faint: #8a929c;
+  --border: #e7e9ee;
+  --border-strong: #d5d9e0;
+  --accent: #b45309;         /* darker orange for AA contrast on white */
+  --accent-hover: #8f420a;
+  --accent-soft: rgba(180, 83, 9, 0.10);
+  /* Mostly-opaque but not fully solid; see the dark-theme --card-bg comment. */
+  --card-bg: rgba(255, 255, 255, 0.92);
+  --link: var(--accent);
+}
+
+/* ---- Base ---------------------------------------------------------------- */
+
+html {
+  background: var(--bg);
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;   /* keep anchors clear of the fixed navbar */
 }
 
 body {
-  font-family: "Manrope", "Segoe UI", sans-serif;
-  color: var(--text-0);
-  background:
-    radial-gradient(circle at 12% 18%, rgba(255, 138, 28, 0.24), transparent 34%),
-    radial-gradient(circle at 88% 12%, rgba(255, 107, 0, 0.2), transparent 30%),
-    linear-gradient(135deg, var(--bg-0), var(--bg-1));
+  background: transparent !important;   /* let the canvas show through */
+  font-family: var(--sans);
+  color: var(--text);
+  font-size: 17px;
   line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-.navbar-brand,
-.quarto-title .title {
-  font-family: "Sora", "Trebuchet MS", sans-serif;
-  letter-spacing: 0.01em;
-}
+html, body { overflow-x: hidden; }
 
-.navbar {
-  background: linear-gradient(90deg, rgba(196, 95, 1, 0.94), rgba(176, 80, 0, 0.94));
-  border-bottom: 1px solid rgba(196, 95, 1, 0.85);
-  backdrop-filter: blur(6px);
-}
+/* ---- Spatial-transcriptomics canvas layer -------------------------------- */
 
-.navbar .navbar-brand,
-.navbar .nav-link {
-  color: #fff8f1;
-  font-weight: 700;
-}
-
-.navbar .nav-link {
-  border-radius: 999px;
-  padding: 0.4rem 0.8rem;
-  transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
-}
-
-.navbar .nav-link:hover,
-.navbar .nav-link:focus {
-  color: #fff;
-  background: rgba(0, 0, 0, 0.22);
-  transform: translateY(-1px);
-}
-
-.navbar .nav-link.active {
-  color: #fff;
-  background: rgba(0, 0, 0, 0.28);
-}
-
-a {
-  color: var(--accent-2);
-  text-decoration-thickness: 2px;
-  text-underline-offset: 3px;
-}
-
-a:hover,
-a:focus {
-  color: #ffd8b0;
-}
-
-.quarto-about-trestles {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  justify-content: center;
-  margin: 20px;
-  width: calc(100vw - 40px);
-  max-width: calc(100vw - 40px);
-  height: calc(100dvh - 40px - 72px);
-  gap: 20px;
-  column-gap: 20px !important;
-  row-gap: 20px !important;
-  align-items: stretch;
-}
-
-.quarto-about-trestles > .about-entity,
-.quarto-about-trestles > .about-contents {
+#spatial-bg {
+  position: fixed;
+  inset: 0;
   width: 100%;
-  max-width: none;
-  min-width: 0;
-  display: flex;
-  align-items: stretch;
   height: 100%;
-  margin: 0 !important;
-  padding: 0 !important;
-  min-height: 0;
+  z-index: -1;              /* behind all content, above the html background */
+  pointer-events: none;    /* never blocks clicks or text selection */
+  display: block;
 }
 
-.quarto-about-trestles > .about-entity,
-.quarto-about-trestles > .about-contents {
-  background: linear-gradient(165deg, var(--surface-1), var(--surface-0));
-  border: 1px solid var(--border-0);
-  border-radius: 22px;
-  box-shadow: var(--shadow-0);
-  backdrop-filter: blur(6px);
-  height: 100%;
-  box-sizing: border-box;
+/* ---- Scroll progress bar --------------------------------------------- */
+
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  width: 0%;
+  background: var(--accent);
+  z-index: 1050;           /* above the sticky navbar */
+  pointer-events: none;
+  transition: width 0.1s ease-out;
 }
 
-.quarto-about-trestles > .about-entity::before,
-.quarto-about-trestles > .about-entity::after,
-.quarto-about-trestles > .about-contents::before,
-.quarto-about-trestles > .about-contents::after {
-  display: none !important;
+/* Content wrappers stay transparent so the canvas is visible behind them;
+   card-style elements (below) provide the actual reading surface. */
+#quarto-content,
+main.content,
+.page-columns,
+.quarto-title-block { background: transparent; }
+
+main.content { padding-top: 1.5rem; }
+
+/* ---- Typography ------------------------------------------------------ */
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--sans);
+  color: var(--text);
+  font-weight: 650;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
 }
 
-.quarto-about-trestles > .about-contents {
-  display: flex;
-  align-items: stretch;
+main h2:not(.title) {
+  font-size: 1.4rem;
+  margin-top: 3rem;
+  margin-bottom: 1.1rem;
+  padding-bottom: 0.45rem;
+  border-bottom: 1px solid var(--border);
 }
 
-.quarto-about-trestles > .about-contents > main.content {
-  width: 100%;
-  display: flex;
-  height: 100%;
-  margin: 0 !important;
-  padding: 0 !important;
-}
-
-.quarto-about-trestles .about-entity {
-  padding: 0.9rem 1rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  min-height: 0;
-}
-
-.quarto-about-trestles .column-body {
-  width: 100%;
-  padding: 1.1rem 1.4rem;
-  height: 100%;
-  box-sizing: border-box;
-  background: transparent;
-  border: 0;
-  box-shadow: none;
-  margin: 0;
-  min-height: 0;
-}
-
-.quarto-about-trestles .column-body {
-  overflow: auto;
-}
-
-.quarto-about-trestles .about-links {
+/* Section heading + "All X" link, sharing one header row / one hairline.
+   No background panel — text-heavy areas rely on the canvas dimming itself
+   near text (see assets/js/spatial-background.js) rather than a boxed scrim. */
+.section-heading-row {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem 1.2rem;
+  margin-top: 3rem;
+  margin-bottom: 1.1rem;
+  padding-bottom: 0.45rem;
+  border-bottom: 1px solid var(--border);
 }
-
-.quarto-about-trestles .about-image {
-  border-radius: 24px;
-  width: min(100%, 28rem) !important;
-  height: auto !important;
-  aspect-ratio: 1 / 1;
-  object-fit: cover;
-  border: 2px solid rgba(255, 170, 90, 0.55);
-  box-shadow: 0 18px 30px rgba(0, 0, 0, 0.3);
+.section-heading-row h2 {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  text-align: left; /* explicit: every section heading (Research, News, ...) must align identically */
 }
-
-.quarto-about-trestles .about-links {
-  margin-top: 0.7rem;
-  gap: 0.8rem;
-}
-
-.quarto-about-trestles .quarto-title h1.title {
-  margin: 0.6rem 0 0.4rem;
-  font-size: clamp(1.6rem, 2.5vw, 2rem);
-}
-
-.quarto-about-trestles .about-link {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 176, 102, 0.45);
-  border-radius: 999px;
-  padding: 0.72rem 1.2rem;
-  font-size: 1.15rem;
-  color: #ffddb8;
-  transition: transform 0.2s ease, background-color 0.2s ease;
-}
-
-.quarto-about-trestles .about-link i,
-.quarto-about-trestles .about-link svg {
-  font-size: 1.15rem;
-}
-
-.quarto-about-trestles .about-link:hover {
-  background: rgba(255, 138, 28, 0.22);
-  border-color: rgba(255, 176, 102, 0.45);
-  color: #ffddb8;
-  transform: translateY(-2px);
-}
-
-.quarto-about-trestles .about-link-text {
+.section-link {
+  font-size: 0.85rem;
   font-weight: 600;
+  color: var(--accent);
+  white-space: nowrap;
+}
+.section-link:hover, .section-link:focus { color: var(--accent-hover); text-decoration: underline; }
+
+h3 { font-size: 1.08rem; margin-top: 1.6rem; }
+
+p, li { color: var(--text); }
+
+/* Keep loose paragraph text at a comfortable line length; no background box —
+   the canvas itself dims near text instead (see spatial-background.js). */
+.section-intro { max-width: 66ch; }
+
+a {
+  color: var(--link);
+  text-decoration: none;
+  text-underline-offset: 2px;
+  transition: color 0.15s ease;
+}
+a:hover, a:focus { color: var(--accent-hover); text-decoration: underline; }
+
+/* Visible focus for keyboard users everywhere. */
+a:focus-visible,
+button:focus-visible,
+.nav-link:focus-visible,
+.theme-toggle:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 4px;
 }
 
-.column-body h3 {
-  color: #ffd1a1;
-  margin-top: 1rem;
-  margin-bottom: 0.45rem;
+/* ---- Buttons (accent-colored; used for CV download + "All X" links) ------ */
+
+.btn-accent {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.5rem 1rem;
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--accent);
+  background: transparent;
+  border: 1px solid var(--accent);
+  border-radius: 8px;
+  transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease;
+}
+.btn-accent:hover, .btn-accent:focus {
+  color: var(--bg);
+  background: var(--accent);
+  border-color: var(--accent);
+  text-decoration: none;
+}
+.btn-accent:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+/* Compact accent button — e.g. the "Manuscript" link on Software cards, where
+   a full-size .btn-accent would be too heavy inside a small card. */
+.btn-accent-sm {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.16rem 0.6rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--accent);
+  background: transparent;
+  border: 1px solid var(--accent);
+  border-radius: 6px;
+  transition: color 0.15s ease, background-color 0.15s ease;
+}
+.btn-accent-sm:hover, .btn-accent-sm:focus {
+  color: var(--bg);
+  background: var(--accent);
+  text-decoration: none;
+}
+.btn-accent-sm:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+/* ---- Navbar -------------------------------------------------------------- */
+
+.navbar {
+  background: var(--bg) !important;
+  border-bottom: 1px solid var(--border);
+  box-shadow: none;
 }
 
-.column-body h3:first-child {
-  margin-top: 0;
+/* Match the navbar's inner content width to the main content column so the
+   brand/links line up with page headings instead of hugging the viewport edge. */
+.navbar-container {
+  max-width: var(--content-width);
+  margin-inline: auto;
 }
 
-.quarto-about-trestles .column-body > section:first-child {
-  margin-top: 0;
-  padding-top: 0;
+.navbar .navbar-brand {
+  font-weight: 700;
+  color: var(--text) !important;
+  letter-spacing: -0.01em;
 }
 
-.quarto-about-trestles .column-body > section:first-child h3 {
-  margin-top: 0;
+.navbar .nav-link {
+  color: var(--text-muted) !important;
+  font-weight: 500;
+  font-size: 0.95rem;
+  padding: 0.35rem 0.7rem;
+  border-radius: 6px;
+  transition: color 0.15s ease, background-color 0.15s ease;
+}
+.navbar .nav-link:hover,
+.navbar .nav-link:focus {
+  color: var(--accent) !important;
+  background: var(--accent-soft);
 }
 
-.column-body p,
-.column-body li {
-  color: #fff3e4;
+.navbar .bi { color: var(--text-muted); }
+
+/* ---- Theme toggle button ------------------------------------------------- */
+
+.theme-toggle-item { display: flex; align-items: center; margin-left: 0.4rem; }
+
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  padding: 0;
+  background: transparent;
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: color 0.15s ease, border-color 0.15s ease, background-color 0.15s ease;
 }
+.theme-toggle:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+
+/* ---- Hero / header ------------------------------------------------------- */
+
+.hero {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 2.4rem;
+  align-items: center;
+  margin: 1.5rem 0 1rem;
+  padding: 2rem;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background: var(--card-bg);
+}
+
+h1.hero-name {
+  font-family: var(--serif);
+  font-size: clamp(2rem, 4vw, 2.7rem);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin: 0 0 0.35rem;
+  line-height: 1.1;
+  color: var(--text);
+}
+
+.hero-text p {
+  font-family: var(--sans);
+  font-size: 1.02rem;
+  font-weight: 400;
+}
+
+.hero-role {
+  display: block;
+  color: var(--text-muted);
+  font-size: 1.04rem;
+  font-weight: 500;
+}
+
+.hero-bio { margin: 0 0 1.1rem; max-width: 46rem; }
+
+/* Large, prominent photo. No visible caption is rendered (see index.qmd —
+   the image uses an empty markdown caption + fig-alt so alt text stays in the
+   HTML for screen readers without a visible label on the page). */
+.hero-photo img {
+  display: block;
+  width: min(300px, 44vw);
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  object-position: top center;
+  border-radius: 18px;
+  border: 1px solid var(--border-strong);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.30);
+}
+
+/* ---- Social links -------------------------------------------------------- */
+
+.social-links,
+.social-links > p {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0.6rem 0 0;
+}
+
+.social-links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.34rem 0.7rem;
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  background: transparent;
+  border: 1px solid var(--border-strong);
+  border-radius: 999px;
+  transition: color 0.15s ease, border-color 0.15s ease, background-color 0.15s ease;
+}
+.social-links a:hover,
+.social-links a:focus {
+  color: var(--accent);
+  border-color: var(--accent);
+  background: var(--accent-soft);
+  text-decoration: none;
+}
+
+/* ---- Research cards ------------------------------------------------------ */
+
+.research-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.9rem;
+  margin-top: 0.5rem;
+}
+
+.research-card {
+  padding: 1rem 1.15rem;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--card-bg);
+  transition: border-color 0.15s ease;
+}
+.research-card:hover { border-color: var(--border-strong); }
+
+.research-card h3 { margin: 0 0 0.35rem; font-size: 1rem; font-weight: 600; }
+.research-card p { margin: 0; font-size: 0.92rem; color: var(--text-muted); line-height: 1.55; }
+
+/* ---- News -------------------------------------------------------------- */
+
+.news-list { display: flex; flex-direction: column; gap: 0.7rem; }
+
+.news-item {
+  display: grid;
+  grid-template-columns: 6rem 1fr;
+  gap: 1rem;
+  padding: 0.75rem 0.9rem;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--card-bg);
+}
+.news-date {
+  color: var(--accent);
+  font-weight: 600;
+  font-size: 0.82rem;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  padding-top: 0.15rem;
+}
+.news-body p { margin: 0 0 0.4rem; font-size: 0.95rem; }
+.news-body p:last-child { margin-bottom: 0; }
+
+.news-item.is-hidden { display: none; }
+
+/* ---- Tags & filter controls -------------------------------------------- */
+
+.tag-row { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-top: 0.3rem; }
+
+.tag {
+  display: inline-block;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--accent);
+  background: var(--accent-soft);
+  padding: 0.1rem 0.55rem;
+  border-radius: 999px;
+}
+
+.filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0.9rem 0 1.4rem;
+}
+
+.filter-bar .filter-label {
+  font-size: 0.82rem;
+  color: var(--text-faint);
+  margin-right: 0.15rem;
+}
+
+.filter-btn {
+  padding: 0.34rem 0.85rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  background: transparent;
+  border: 1px solid var(--border-strong);
+  border-radius: 999px;
+  cursor: pointer;
+  transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease;
+}
+.filter-btn:hover { color: var(--accent); border-color: var(--accent); background: var(--accent-soft); }
+.filter-btn[aria-pressed="true"] {
+  color: var(--bg);
+  background: var(--accent);
+  border-color: var(--accent);
+}
+.filter-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+.filter-select {
+  padding: 0.32rem 0.6rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text);
+  background: var(--card-bg);
+  border: 1px solid var(--border-strong);
+  border-radius: 8px;
+}
+.filter-select:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+/* ---- Publications ---------------------------------------------------- */
+
+.pub-list { display: flex; flex-direction: column; gap: 1rem; margin-top: 0.5rem; }
+
+.pub {
+  padding: 1.05rem 1.2rem;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--card-bg);
+}
+
+.pub.is-hidden { display: none; }
+
+.pub-title { font-weight: 600; font-size: 1.02rem; line-height: 1.4; margin: 0 0 0.3rem; }
+.pub-title a { color: var(--text); }
+.pub-title a:hover, .pub-title a:focus { color: var(--accent); }
+
+.pub-authors { color: var(--text-muted); font-size: 0.9rem; margin: 0 0 0.15rem; }
+.pub-authors .me { color: var(--text); font-weight: 700; }
+
+.pub-venue { color: var(--text-faint); font-size: 0.88rem; font-style: italic; margin: 0 0 0.55rem; }
+
+.pub-links,
+.pub-links > p {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 0.5rem;
+  font-size: 0.82rem;
+  margin: 0;
+}
+.pub-links a {
+  display: inline-block;
+  padding: 0.12rem 0.55rem;
+  border: 1px solid var(--border-strong);
+  border-radius: 6px;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+.pub-links a:hover, .pub-links a:focus {
+  color: var(--accent);
+  border-color: var(--accent);
+  background: var(--accent-soft);
+  text-decoration: none;
+}
+
+.pub-tag {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--accent);
+  background: var(--accent-soft);
+  padding: 0.05rem 0.45rem;
+  border-radius: 5px;
+  margin-left: 0.4rem;
+  vertical-align: 0.08em;
+}
+
+/* ---- Software (two-column on wide screens) ------------------------------- */
+
+.software-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.9rem;
+  margin-top: 0.5rem;
+}
+
+.software-item {
+  padding: 1rem 1.15rem;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--card-bg);
+}
+.software-item h3 { margin: 0 0 0.3rem; font-size: 1.02rem; }
+.software-item p { margin: 0 0 0.5rem; color: var(--text-muted); font-size: 0.92rem; line-height: 1.55; }
+.software-item .pub-links { font-size: 0.8rem; }
+
+/* Row of GitHub (muted chip, via nested .pub-links) + Manuscript (orange
+   .btn-accent-sm) links under each software entry. */
+.software-links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.6rem;
+}
+.software-links .pub-links { margin: 0; }
+
+/* ---- Talks (compact text list) -------------------------------------- */
+
+.talks-list { display: flex; flex-direction: column; gap: 0.9rem; margin-top: 0.5rem; }
+
+.talk-item {
+  padding: 0.95rem 1.15rem;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--card-bg);
+}
+.talk-year {
+  color: var(--accent);
+  font-weight: 600;
+  font-size: 0.8rem;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  margin-bottom: 0.3rem;
+}
+.talk-title { font-weight: 600; font-size: 1rem; margin: 0 0 0.3rem; }
+.talk-venue { color: var(--text-muted); font-size: 0.92rem; margin: 0; }
+.talk-location { color: var(--text-faint); font-size: 0.85rem; margin: 0; }
+
+/* ---- Teaching (compact text list, same language as Talks) ---------------- */
+
+.teaching-list { display: flex; flex-direction: column; gap: 0.9rem; margin-top: 0.5rem; }
+
+.teaching-item {
+  padding: 0.95rem 1.15rem;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--card-bg);
+}
+.teaching-date {
+  color: var(--accent);
+  font-weight: 600;
+  font-size: 0.8rem;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  margin-bottom: 0.3rem;
+}
+.teaching-role { font-weight: 600; font-size: 1rem; margin: 0 0 0.2rem; }
+.teaching-org { color: var(--text-muted); font-size: 0.92rem; margin: 0; }
+.teaching-desc { color: var(--text-muted); font-size: 0.88rem; margin: 0.4rem 0 0; line-height: 1.5; }
+
+/* ---- Experience / education (two columns on wide screens) ---------------- */
+
+.cv-columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem 2.4rem;
+}
+
+.cv-block { margin-bottom: 0.5rem; }
+
+.cv-entry {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0.4rem 1rem;
+  padding: 0.55rem 0;
+  border-bottom: 1px solid var(--border);
+}
+.cv-entry:last-child { border-bottom: 0; }
+
+.cv-entry .cv-text { display: flex; flex-direction: column; gap: 0.1rem; }
+.cv-entry .role { display: block; font-weight: 600; }
+.cv-entry .place { display: block; color: var(--text-muted); font-size: 0.9rem; }
+.cv-entry .date { color: var(--text-faint); font-size: 0.83rem; white-space: nowrap; text-align: right; }
+
+/* ---- Footer -------------------------------------------------------------- */
 
 .footer {
-  color: #ffd6ae;
-  background: transparent;
-  border: 0;
-  backdrop-filter: none;
+  border-top: 1px solid var(--border);
+  background: var(--bg) !important;
+}
+.nav-footer {
+  /* Bootstrap's cosmo theme hardcodes .nav-footer { background-color: #fff },
+     which otherwise leaves the footer white regardless of the active theme. */
+  background: var(--bg) !important;
+  max-width: var(--content-width);
+  margin-inline: auto;
+  color: var(--text-muted);
+  font-size: 0.78rem;
+  margin-top: 1.5rem;
+  border-top: 0; /* border now lives on .footer so it spans full-bleed like the navbar */
+  padding: 0.6rem 0;
+  min-height: 0; /* Bootstrap's cosmo theme sets .nav-footer { min-height: 3.5em } */
+}
+/* Bootstrap's cosmo theme also sets .nav-footer-center { min-height: 3em;
+   margin-top: 3em } and .footer-items { padding-top/bottom: .3em }, which
+   together force several extra em of footer height — the main cause of the
+   oversized footer. Zero all of it out. */
+.nav-footer-left,
+.nav-footer-center,
+.nav-footer-right,
+.footer-items {
+  min-height: 0;
+  margin-top: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+.nav-footer a { color: var(--text-muted); }
+.nav-footer a:hover { color: var(--accent); }
+
+/* ---- Media / misc -------------------------------------------------------- */
+
+img { max-width: 100%; height: auto; }
+main img { border-radius: 8px; }
+iframe { max-width: 100%; border: 1px solid var(--border); border-radius: 8px; background: var(--bg-muted); }
+
+/* On-page TOC (talks page) */
+#TOC a, .toc-actions a { color: var(--text-muted); }
+#TOC a.active, #TOC a:hover { color: var(--accent); }
+
+/* ---- Responsive ---------------------------------------------------------- */
+
+@media (max-width: 860px) {
+  .cv-columns { grid-template-columns: 1fr; gap: 0.5rem; }
+  .software-grid { grid-template-columns: 1fr; }
 }
 
-pre,
-code,
-.sourceCode {
-  border-radius: 12px;
-  border: 1px solid rgba(255, 171, 91, 0.22);
-}
+@media (max-width: 720px) {
+  body { font-size: 16px; }
 
-@media (max-width: 991px) {
-  .quarto-about-trestles {
+  .hero {
     grid-template-columns: 1fr;
-    margin: 12px;
-    width: calc(100vw - 24px);
-    max-width: calc(100vw - 24px);
-    height: auto;
-    gap: 12px;
+    text-align: center;
+    padding: 1.6rem 1.2rem;
+    gap: 1.3rem;
   }
+  .hero-photo { order: -1; }
+  .hero-photo img { width: min(220px, 60vw); margin-inline: auto; }
+  .hero-bio { margin-inline: auto; }
+  .social-links, .social-links > p { justify-content: center; }
 
-  .quarto-about-trestles > .about-entity,
-  .quarto-about-trestles > .about-contents {
-    width: 100%;
-    max-width: 100%;
-  }
+  .research-grid { grid-template-columns: 1fr; }
 
-  .quarto-about-trestles .column-body {
-    padding: 1rem;
-  }
+  .news-item { grid-template-columns: 1fr; gap: 0.1rem; }
+  .news-date { font-size: 0.78rem; }
 
-  .navbar .nav-link {
-    margin: 0.15rem 0;
-  }
+  .cv-entry { grid-template-columns: 1fr; }
+  .cv-entry .date { text-align: left; }
+
+  .section-heading-row { flex-direction: column; align-items: flex-start; gap: 0.3rem; }
+}
+
+/* ---- Reduced motion ------------------------------------------------------ */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { transition: none !important; }
 }
