@@ -14,7 +14,7 @@ format:
 [Biomedical Engineering PhD Candidate · Johns Hopkins University]{.hero-role}
 
 I am a PhD candidate in Biomedical Engineering at Johns Hopkins University, working in the
-[JEFworks Lab](https://jef.works/), where I develop machine learning and computational methods for
+[JEFworks Lab](https://jef.works/) under the mentorship of Dr. Jean Fan, where I develop machine learning and computational methods for
 spatial transcriptomics, digital pathology, and tissue-scale biological analysis. I care about
 building practical, reproducible, open-source tools that help biologists make sense of complex
 tissues.
