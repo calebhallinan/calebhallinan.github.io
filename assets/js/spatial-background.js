@@ -1,11 +1,12 @@
 /* Spatial-transcriptomics background.
  *
  * Draws softly-outlined cell-like shapes (rounded or mildly oval, not perfect
- * circles/ellipses) scattered across the viewport. Each cell has a smooth,
- * gently irregular membrane, a faint cytoplasmic gradient, an occasional
- * nucleus-like region, and a handful of small colored dots evoking per-cell
- * mRNA/transcript counts. Cells drift gently and ease away from the cursor,
- * then spring back home.
+ * circles/ellipses) scattered evenly across the viewport (jittered-grid
+ * placement — see build() — so cells spread out rather than clumping the way
+ * pure random placement would at this density). Each cell has a smooth,
+ * gently irregular membrane, a faint cytoplasmic gradient, a nucleus-like
+ * region, and a handful of small colored dots evoking per-cell mRNA/transcript
+ * counts. Cells drift gently and ease away from the cursor, then spring back home.
  *
  * Shape: cells are mostly-round or mildly-oval with a smooth, restrained
  * amount of membrane irregularity — see makeBlobPoints() and the archetype
@@ -198,6 +199,24 @@
     var count = Math.round((W * H) / 3000);
     count = Math.max(16, Math.min(count, maxCells));
 
+    // Home positions are drawn one-per-tile from a shuffled jittered grid
+    // (blue-noise-ish) rather than pure uniform random, so cells spread out
+    // evenly across the viewport instead of clumping by chance — uniform
+    // random sampling at this density otherwise visibly clusters in places
+    // and leaves other areas empty.
+    var gridCols = Math.max(1, Math.round(Math.sqrt((count * W) / H)));
+    var gridRows = Math.max(1, Math.ceil(count / gridCols));
+    var tileW = W / gridCols;
+    var tileH = H / gridRows;
+    var tiles = [];
+    for (var gy = 0; gy < gridRows; gy++) {
+      for (var gx = 0; gx < gridCols; gx++) tiles.push([gx, gy]);
+    }
+    for (var si = tiles.length - 1; si > 0; si--) {
+      var sj = Math.floor(Math.random() * (si + 1));
+      var tmp = tiles[si]; tiles[si] = tiles[sj]; tiles[sj] = tmp;
+    }
+
     // Mostly round cells (typical of tissue), with a smaller share of mildly
     // flattened ovals for gentle variety. No elongated/squamous or amoeboid
     // forms — kept restrained and biologically plausible rather than showy.
@@ -211,18 +230,20 @@
 
       var vertexCount = Math.round(rand(9, 13));
 
-      var hx = rand(0, W);
-      var hy = rand(0, H);
+      // Jittered position within this cell's assigned grid tile (roughly
+      // centered, with jitter covering most of the tile so placement still
+      // looks organic rather than snapped to a visible grid).
+      var tile = tiles[i % tiles.length];
+      var hx = (tile[0] + 0.5) * tileW + rand(-0.34, 0.34) * tileW;
+      var hy = (tile[1] + 0.5) * tileH + rand(-0.34, 0.34) * tileH;
 
-      var hasNucleus = Math.random() < 0.45;
-      var nucleus = hasNucleus
-        ? {
-            dx: rand(-0.25, 0.25) * rx,
-            dy: rand(-0.25, 0.25) * ry,
-            rx: rx * rand(0.32, 0.46),
-            ry: ry * rand(0.32, 0.46)
-          }
-        : null;
+      // Every cell gets a nucleus.
+      var nucleus = {
+        dx: rand(-0.25, 0.25) * rx,
+        dy: rand(-0.25, 0.25) * ry,
+        rx: rx * rand(0.32, 0.46),
+        ry: ry * rand(0.32, 0.46)
+      };
 
       // Internal transcript dots, placed inside the blob's footprint.
       var dots = [];
