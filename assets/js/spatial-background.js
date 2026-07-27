@@ -9,8 +9,10 @@
  * counts. Cells drift gently and ease away from the cursor, then spring back home.
  *
  * Shape: cells are mostly-round or mildly-oval with a smooth, restrained
- * amount of membrane irregularity — see makeBlobPoints() and the archetype
- * selection in build(). Deliberately excludes strongly elongated/squamous
+ * amount of membrane irregularity — see CellShapes.makeBlobPoints() (in
+ * assets/js/cell-shapes.js, shared with the hero overlay and the research-card
+ * motifs) and the archetype selection in build(). Deliberately excludes
+ * strongly elongated/squamous
  * forms and amoeboid/concave outlines: those read as distracting rather than
  * "biologically plausible but restrained."
  *
@@ -67,16 +69,18 @@
   var running = false;
   var palette = {};
 
-  var TWO_PI = Math.PI * 2;
+  // Shared cell geometry / helpers (assets/js/cell-shapes.js, loaded first).
+  var CS = window.CellShapes;
+  if (!CS) return;
+
+  var TWO_PI = CS.TWO_PI;
+  var rand = CS.rand;
+  var smoothstep = CS.smoothstep;
 
   // Cells at/inside a text element's box fade to this alpha; farther than
   // TEXT_FEATHER px away they're back to full strength, smoothly in between.
   var TEXT_MIN_ALPHA = 0.1;
   var TEXT_FEATHER = 80;
-
-  function rand(min, max) { return min + Math.random() * (max - min); }
-  function clamp01(v) { return v < 0 ? 0 : v > 1 ? 1 : v; }
-  function smoothstep(t) { return t * t * (3 - 2 * t); }
 
   // Pull colors from the active theme so both light and dark look right.
   function readPalette() {
@@ -93,31 +97,6 @@
       ? [accent, "#3f6f8f", "#6d7f72", "#9c7a3d", "#7a6d8f"]
       : [accent, "#7fb3d5", "#8fb3a0", "#c9a26b", "#9aa7c0"];
     palette.dotAlpha = isLight ? 0.4 : 0.42;
-  }
-
-  // Build a smooth, gently irregular cell outline: N control points around an
-  // ellipse, nudged by a restrained per-vertex jitter plus one soft harmonic
-  // so cells look like natural tissue cells (a bit lumpy, never perfectly
-  // circular) without becoming lobed, elongated, or amoeboid. Deterministic
-  // per cell (no per-frame re-randomization, so the shape doesn't flicker).
-  function makeBlobPoints(vertexCount) {
-    var pts = [];
-    var hFreq = Math.round(rand(2, 3));
-    var hAmp = rand(0.03, 0.09);
-    var hPhase = rand(0, TWO_PI);
-
-    for (var i = 0; i < vertexCount; i++) {
-      var angle = (i / vertexCount) * TWO_PI;
-      var harmonic = 1 + hAmp * Math.sin(hFreq * angle + hPhase);
-      var wobble = harmonic * rand(0.9, 1.08);
-      pts.push({
-        angle: angle,
-        wobble: wobble,
-        // slight per-vertex phase so the very subtle breathing animation isn't synced
-        phase: rand(0, TWO_PI)
-      });
-    }
-    return pts;
   }
 
   // (Re)create each cell's cached cytoplasm gradient from the current palette.
@@ -204,18 +183,7 @@
     // evenly across the viewport instead of clumping by chance — uniform
     // random sampling at this density otherwise visibly clusters in places
     // and leaves other areas empty.
-    var gridCols = Math.max(1, Math.round(Math.sqrt((count * W) / H)));
-    var gridRows = Math.max(1, Math.ceil(count / gridCols));
-    var tileW = W / gridCols;
-    var tileH = H / gridRows;
-    var tiles = [];
-    for (var gy = 0; gy < gridRows; gy++) {
-      for (var gx = 0; gx < gridCols; gx++) tiles.push([gx, gy]);
-    }
-    for (var si = tiles.length - 1; si > 0; si--) {
-      var sj = Math.floor(Math.random() * (si + 1));
-      var tmp = tiles[si]; tiles[si] = tiles[sj]; tiles[sj] = tmp;
-    }
+    var homes = CS.jitteredGrid(count, W, H);
 
     // Mostly round cells (typical of tissue), with a smaller share of mildly
     // flattened ovals for gentle variety. No elongated/squamous or amoeboid
@@ -230,12 +198,8 @@
 
       var vertexCount = Math.round(rand(9, 13));
 
-      // Jittered position within this cell's assigned grid tile (roughly
-      // centered, with jitter covering most of the tile so placement still
-      // looks organic rather than snapped to a visible grid).
-      var tile = tiles[i % tiles.length];
-      var hx = (tile[0] + 0.5) * tileW + rand(-0.34, 0.34) * tileW;
-      var hy = (tile[1] + 0.5) * tileH + rand(-0.34, 0.34) * tileH;
+      var hx = homes[i].x;
+      var hy = homes[i].y;
 
       // Every cell gets a nucleus.
       var nucleus = {
@@ -266,7 +230,7 @@
         rotation: rand(0, Math.PI),
         phase: rand(0, TWO_PI),
         speed: rand(0.5, 1.1),
-        blob: makeBlobPoints(vertexCount),
+        blob: CS.makeBlobPoints(vertexCount),
         nucleus: nucleus,
         dots: dots,
         gradient: null, // filled in by refreshGradients()
@@ -279,39 +243,6 @@
     refreshTextDimming();
   }
 
-  // Trace the irregular membrane as a smooth closed curve through the
-  // (subtly, slowly breathing) perturbed vertices.
-  function traceBlob(c, t) {
-    var pts = c.blob;
-    var n = pts.length;
-    var verts = new Array(n);
-
-    for (var i = 0; i < n; i++) {
-      var p = pts[i];
-      // Very slow, tiny breathing so the membrane isn't perfectly static.
-      var breathe = 1 + Math.sin(t * 0.00025 * c.speed + p.phase) * 0.025;
-      var rr = p.wobble * breathe;
-      verts[i] = {
-        x: Math.cos(p.angle) * c.rx * rr,
-        y: Math.sin(p.angle) * c.ry * rr
-      };
-    }
-
-    ctx.beginPath();
-    var start = {
-      x: (verts[n - 1].x + verts[0].x) / 2,
-      y: (verts[n - 1].y + verts[0].y) / 2
-    };
-    ctx.moveTo(start.x, start.y);
-    for (var k = 0; k < n; k++) {
-      var cur = verts[k];
-      var next = verts[(k + 1) % n];
-      var mid = { x: (cur.x + next.x) / 2, y: (cur.y + next.y) / 2 };
-      ctx.quadraticCurveTo(cur.x, cur.y, mid.x, mid.y);
-    }
-    ctx.closePath();
-  }
-
   function drawCell(c, t) {
     ctx.save();
     ctx.translate(c.x, c.y);
@@ -320,7 +251,7 @@
     // toward TEXT_MIN_ALPHA near/behind text (see refreshTextDimming()).
     ctx.globalAlpha = c.textDim;
 
-    traceBlob(c, t);
+    CS.traceBlob(ctx, c.blob, c.rx, c.ry, t, c.speed);
 
     // Faint cytoplasmic gradient for a little depth without a heavy fill.
     // Reused from cache (see refreshGradients()) rather than rebuilt per frame.

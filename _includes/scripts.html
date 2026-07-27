@@ -1,4 +1,10 @@
+<!-- Order matters: cell-shapes.js defines window.CellShapes, which the
+     background, hero overlay, and card motifs all consume. Deferred scripts
+     execute in document order, so listing it first is sufficient. -->
 <script src="assets/js/theme-toggle.js" defer></script>
+<script src="assets/js/cell-shapes.js" defer></script>
 <script src="assets/js/spatial-background.js" defer></script>
+<script src="assets/js/card-motifs.js" defer></script>
+<script src="assets/js/reveal.js" defer></script>
 <script src="assets/js/scroll-progress.js" defer></script>
 <script src="assets/js/filter-lists.js" defer></script>

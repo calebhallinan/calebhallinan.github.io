@@ -24,6 +24,7 @@
      visible through cards (rather than disappearing behind them) while text
      contrast stays effectively unchanged since the canvas itself is so faint. */
   --card-bg: rgba(23, 25, 29, 0.92);
+  --card-shadow: 0 6px 22px rgba(0, 0, 0, 0.30);
   --link: var(--accent);
   --serif: "Newsreader", Georgia, "Times New Roman", serif;
   --sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
@@ -45,6 +46,7 @@
   --accent-soft: rgba(180, 83, 9, 0.10);
   /* Mostly-opaque but not fully solid; see the dark-theme --card-bg comment. */
   --card-bg: rgba(255, 255, 255, 0.92);
+  --card-shadow: 0 6px 18px rgba(31, 35, 40, 0.10);
   --link: var(--accent);
 }
 
@@ -113,8 +115,21 @@ h1, h2, h3, h4, h5, h6 {
   letter-spacing: -0.01em;
 }
 
+/* Newsreader is reserved for display type — the hero name, page titles, and
+   section headings — so there is real typographic contrast against the 17px
+   Inter body text. Body copy, card headings (h3), and UI stay sans. */
+main h2:not(.title),
+.section-heading-row h2,
+h1.title {
+  font-family: var(--serif);
+  font-weight: 600;
+  letter-spacing: -0.015em;
+}
+
+h1.title { font-size: clamp(2rem, 4.5vw, 2.9rem); line-height: 1.15; }
+
 main h2:not(.title) {
-  font-size: 1.4rem;
+  font-size: 1.75rem;
   margin-top: 3rem;
   margin-bottom: 1.1rem;
   padding-bottom: 0.45rem;
@@ -135,7 +150,11 @@ main h2:not(.title) {
   padding-bottom: 0.45rem;
   border-bottom: 1px solid var(--border);
 }
-.section-heading-row h2 {
+/* :not(.title) is required, not decorative: it lifts this reset to specificity
+   0-2-2 so it beats `main h2:not(.title)` (0-1-2) above. Without it the reset
+   loses on specificity regardless of source order, and the heading keeps its
+   own border-bottom — drawing a second hairline just above the row's. */
+.section-heading-row h2:not(.title) {
   margin: 0;
   padding: 0;
   border: 0;
@@ -297,11 +316,11 @@ button:focus-visible,
 
 h1.hero-name {
   font-family: var(--serif);
-  font-size: clamp(2rem, 4vw, 2.7rem);
+  font-size: clamp(2.5rem, 6vw, 4rem);
   font-weight: 600;
-  letter-spacing: -0.01em;
-  margin: 0 0 0.35rem;
-  line-height: 1.1;
+  letter-spacing: -0.022em;
+  margin: 0 0 0.4rem;
+  line-height: 1.03;
   color: var(--text);
 }
 
@@ -379,12 +398,34 @@ h1.hero-name {
   border: 1px solid var(--border);
   border-radius: 12px;
   background: var(--card-bg);
-  transition: border-color 0.15s ease;
+  overflow: hidden;   /* keep the full-bleed motif strip inside the rounded corners */
 }
-.research-card:hover { border-color: var(--border-strong); }
 
 .research-card h3 { margin: 0 0 0.35rem; font-size: 1rem; font-weight: 600; }
 .research-card p { margin: 0; font-size: 0.92rem; color: var(--text-muted); line-height: 1.55; }
+
+/* ---- Card motifs --------------------------------------------------------
+   Generated topic visuals drawn by assets/js/card-motifs.js into a canvas
+   inserted as the card's first child. Full-bleed: negative margins cancel the
+   card's 1rem/1.15rem padding so the strip spans edge to edge.
+
+   CSS owns the layout size here; the script only sets the canvas backing store
+   (canvas.width/height) for devicePixelRatio, and reads this box back via
+   getBoundingClientRect(). Don't set width/height attributes from CSS-adjacent
+   code or the two will fight. */
+.motif-canvas {
+  display: block;
+  width: calc(100% + 2.3rem);
+  height: 72px;
+  margin: -1rem -1.15rem 0.9rem;
+  border-bottom: 1px solid var(--border);
+  background:
+    radial-gradient(120% 140% at 50% 0%, var(--accent-soft) 0%, transparent 70%);
+}
+
+@media (max-width: 720px) {
+  .motif-canvas { height: 62px; }
+}
 
 /* ---- News -------------------------------------------------------------- */
 
@@ -628,6 +669,56 @@ h1.hero-name {
 .cv-entry .role { display: block; font-weight: 600; }
 .cv-entry .place { display: block; color: var(--text-muted); font-size: 0.9rem; }
 .cv-entry .date { color: var(--text-faint); font-size: 0.83rem; white-space: nowrap; text-align: right; }
+
+/* ---- Shared card interaction: hover lift + scroll reveal -----------------
+   Defined once over every card-style surface so the subpages (publications,
+   software, talks, teaching, news) inherit the same behavior with no
+   page-specific CSS.
+
+   The hover lift deliberately uses the independent `translate` property rather
+   than `transform`, because the scroll reveal below animates `transform`. Using
+   both on `transform` would make the two fight — the reveal's resting
+   `transform: none` is more specific than `:hover` and would cancel the lift.
+   Keeping them on separate properties lets them compose instead.
+
+   All four transitions are declared here in one place: a `transition` in the
+   reveal rules below would replace this declaration rather than add to it. */
+.research-card,
+.pub,
+.software-item,
+.talk-item,
+.teaching-item,
+.news-item {
+  transition:
+    translate 0.18s ease,
+    border-color 0.18s ease,
+    box-shadow 0.18s ease,
+    opacity 0.5s ease,
+    transform 0.5s ease;
+}
+
+.research-card:hover,
+.pub:hover,
+.software-item:hover,
+.talk-item:hover,
+.teaching-item:hover,
+.news-item:hover {
+  translate: 0 -2px;
+  border-color: var(--border-strong);
+  box-shadow: var(--card-shadow);
+}
+
+/* The hidden state is scoped to html.js-reveal, a class only ever added by
+   assets/js/reveal.js. If that script is absent, fails, or opts out under
+   prefers-reduced-motion, nothing is hidden and content renders normally. */
+html.js-reveal .reveal {
+  opacity: 0;
+  transform: translateY(14px);
+}
+html.js-reveal .reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
 
 /* ---- Footer -------------------------------------------------------------- */
 

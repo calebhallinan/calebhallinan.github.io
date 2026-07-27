@@ -46,36 +46,36 @@ making spatial and imaging technologies more accurate, interpretable, and usable
 :::
 
 ::: {.research-grid}
-::: {.research-card}
+::: {.research-card data-motif="spatial"}
 ### Spatial transcriptomics
 Computational analysis and benchmarking of imaging- and sequencing-based spatial transcriptomics
 data to study the spatial organization of tissues.
 :::
 
-::: {.research-card}
+::: {.research-card data-motif="histology"}
 ### Digital pathology & deep learning
 Predicting spatial gene expression from H&E histology images, and understanding how data quality
 shapes model performance and interpretability.
 :::
 
-::: {.research-card}
+::: {.research-card data-motif="probes"}
 ### Data & probe quality
 Assessing measurement fidelity in spatial platforms, including off-target probe binding, to improve
 the biological interpretability of spatial data.
 :::
 
-::: {.research-card}
+::: {.research-card data-motif="subtypes"}
 ### Subtype discovery
 Feature-selection and metric-learning methods that preserve heterogeneity to uncover disease and
 cell-state subtypes from transcriptomic data.
 :::
 
-::: {.research-card}
+::: {.research-card data-motif="livecell"}
 ### Live-cell image analysis
 Deep learning for cell segmentation, tracking, and morphodynamic profiling of live-cell imaging.
 :::
 
-::: {.research-card}
+::: {.research-card data-motif="software"}
 ### Open-source software
 Building user-friendly, reproducible computational tools for biologists who may not be
 programmers.

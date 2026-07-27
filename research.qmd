@@ -13,41 +13,41 @@ publications behind each.
 :::
 
 ::: {.research-grid}
-::: {.research-card}
+::: {.research-card data-motif="spatial"}
 ### Spatial transcriptomics
 Computational analysis and benchmarking of imaging-based (e.g., Xenium) and sequencing-based (e.g.,
 Visium) spatial transcriptomics data, with a focus on understanding how technology choice shapes
 the resulting data and downstream biological interpretation.
 :::
 
-::: {.research-card}
+::: {.research-card data-motif="histology"}
 ### Digital pathology & deep learning
 Predicting spatial gene expression directly from hematoxylin and eosin (H&E) histology images using
 deep learning, and studying how training data quality — molecular sparsity/noise and image
 resolution — affects model performance and interpretability.
 :::
 
-::: {.research-card}
+::: {.research-card data-motif="probes"}
 ### Data & probe quality
 Assessing measurement fidelity in spatial transcriptomics platforms, including off-target probe
 binding in probe-based panels, to improve the biological interpretability and reproducibility of
 spatial data.
 :::
 
-::: {.research-card}
+::: {.research-card data-motif="subtypes"}
 ### Subtype discovery
 Feature-selection and metric-learning methods that preserve heterogeneity while distinguishing
 known disease or cell states, in order to uncover disease and cell-state subtypes from
 transcriptomic and proteomic data.
 :::
 
-::: {.research-card}
+::: {.research-card data-motif="livecell"}
 ### Live-cell image analysis
 Deep learning for cell segmentation, tracking, and morphodynamic profiling in live-cell microscopy,
 including work on phase-contrast and fluorescence imaging pipelines.
 :::
 
-::: {.research-card}
+::: {.research-card data-motif="software"}
 ### Open-source software
 Building user-friendly, reproducible computational tools for biologists who may not have a strong
 programming background — see the [Software](software.qmd) page for released tools.
