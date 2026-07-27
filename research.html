@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.38">
+<meta name="generator" content="quarto-1.10.18">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -12,10 +12,13 @@
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
 */
-code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -39,10 +42,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-b27b049b3463fdc547e6c3d00ce49d92.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-4bdbd506bdddbcb9ae923aa916cfc438.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -186,27 +189,27 @@ ul.task-list li input[type="checkbox"] {
 <p>My research sits at the intersection of machine learning and tissue biology, with an emphasis on making spatial and imaging technologies more accurate, interpretable, and usable. Below is a more detailed look at the directions I work on; see <a href="./publications.html">Selected Works</a> for the publications behind each.</p>
 </div>
 <div class="research-grid">
-<section id="spatial-transcriptomics" class="level3 research-card">
+<section id="spatial-transcriptomics" class="level3 research-card" data-motif="spatial">
 <h3 class="anchored" data-anchor-id="spatial-transcriptomics">Spatial transcriptomics</h3>
 <p>Computational analysis and benchmarking of imaging-based (e.g., Xenium) and sequencing-based (e.g., Visium) spatial transcriptomics data, with a focus on understanding how technology choice shapes the resulting data and downstream biological interpretation.</p>
 </section>
-<section id="digital-pathology-deep-learning" class="level3 research-card">
+<section id="digital-pathology-deep-learning" class="level3 research-card" data-motif="histology">
 <h3 class="anchored" data-anchor-id="digital-pathology-deep-learning">Digital pathology &amp; deep learning</h3>
 <p>Predicting spatial gene expression directly from hematoxylin and eosin (H&amp;E) histology images using deep learning, and studying how training data quality — molecular sparsity/noise and image resolution — affects model performance and interpretability.</p>
 </section>
-<section id="data-probe-quality" class="level3 research-card">
+<section id="data-probe-quality" class="level3 research-card" data-motif="probes">
 <h3 class="anchored" data-anchor-id="data-probe-quality">Data &amp; probe quality</h3>
 <p>Assessing measurement fidelity in spatial transcriptomics platforms, including off-target probe binding in probe-based panels, to improve the biological interpretability and reproducibility of spatial data.</p>
 </section>
-<section id="subtype-discovery" class="level3 research-card">
+<section id="subtype-discovery" class="level3 research-card" data-motif="subtypes">
 <h3 class="anchored" data-anchor-id="subtype-discovery">Subtype discovery</h3>
 <p>Feature-selection and metric-learning methods that preserve heterogeneity while distinguishing known disease or cell states, in order to uncover disease and cell-state subtypes from transcriptomic and proteomic data.</p>
 </section>
-<section id="live-cell-image-analysis" class="level3 research-card">
+<section id="live-cell-image-analysis" class="level3 research-card" data-motif="livecell">
 <h3 class="anchored" data-anchor-id="live-cell-image-analysis">Live-cell image analysis</h3>
 <p>Deep learning for cell segmentation, tracking, and morphodynamic profiling in live-cell microscopy, including work on phase-contrast and fluorescence imaging pipelines.</p>
 </section>
-<section id="open-source-software" class="level3 research-card">
+<section id="open-source-software" class="level3 research-card" data-motif="software">
 <h3 class="anchored" data-anchor-id="open-source-software">Open-source software</h3>
 <p>Building user-friendly, reproducible computational tools for biologists who may not have a strong programming background — see the <a href="./software.html">Software</a> page for released tools.</p>
 </section>
@@ -216,8 +219,14 @@ ul.task-list li input[type="checkbox"] {
 
 
 </main> <!-- /main -->
+<!-- Order matters: cell-shapes.js defines window.CellShapes, which the
+     background, hero overlay, and card motifs all consume. Deferred scripts
+     execute in document order, so listing it first is sufficient. -->
 <script src="assets/js/theme-toggle.js" defer=""></script>
+<script src="assets/js/cell-shapes.js" defer=""></script>
 <script src="assets/js/spatial-background.js" defer=""></script>
+<script src="assets/js/card-motifs.js" defer=""></script>
+<script src="assets/js/reveal.js" defer=""></script>
 <script src="assets/js/scroll-progress.js" defer=""></script>
 <script src="assets/js/filter-lists.js" defer=""></script>
 <script id="quarto-html-after-body" type="application/javascript">
